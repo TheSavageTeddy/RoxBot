@@ -48,8 +48,105 @@ class Image(commands.Cog):
         e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
 
         await ctx.send(embed=e)
+    
+    @commands.command(
+        name='drake',
+        description='Drake Choice meme',
+        aliases=['drakeposting', 'hotline', 'hotlinebling', 'drakehotlinebling']
+    )
+    async def drake(self, ctx):
+        msg = ctx.message.content
 
-# https://api.imgflip.com/caption_image?template_id=112126428&text0=abcd&text1=hadsh&username=roxiun&password=supergoodpassword
+        prefix_used = ctx.prefix
+        alias_used = ctx.invoked_with
+        args = msg[len(prefix_used) + len(alias_used):].split(',')
+
+        
+        if len(args) > 2:
+            await ctx.send(":x: Too many arguments (Max 2)")
+        
+        image = self.API_Handler.getImgflip("181913649", args)
+        
+        e = discord.Embed(colour=0x2ECC71)
+        e.set_image(url=image)
+        e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
+
+        await ctx.send(embed=e)
+    @commands.command(
+        name='changemymind',
+        description='Steven Crowder\'s sign, prove me wrong',
+    )
+    async def changemymind(self, ctx):
+        msg = ctx.message.content
+
+        prefix_used = ctx.prefix
+        alias_used = ctx.invoked_with
+        args = msg[len(prefix_used) + len(alias_used):].split(',')
+
+        
+        if len(args) > 2:
+            await ctx.send(":x: Too many arguments (Max 2)")
+        
+        image = self.API_Handler.getImgflip("129242436", args)
+        
+        e = discord.Embed(colour=0x2ECC71)
+        e.set_image(url=image)
+        e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
+
+        await ctx.send(embed=e)
+    
+    @commands.command(
+        name='expandingbrain',
+        description='3 brain meme',
+        aliases=['brains', 'bigbrain']
+    )
+    async def expandingbrain(self, ctx):
+        msg = ctx.message.content
+
+        prefix_used = ctx.prefix
+        alias_used = ctx.invoked_with
+        args = msg[len(prefix_used) + len(alias_used):].split(',')
+
+        
+        if len(args) > 2:
+            await ctx.send(":x: Too many arguments (Max 2)")
+        
+        image = self.API_Handler.getImgflip("93895088", args)
+        
+        e = discord.Embed(colour=0x2ECC71)
+        e.set_image(url=image)
+        e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
+
+        await ctx.send(embed=e)
+    
+    @commands.command(
+        name='carswerve',
+        description='Car drifts off highway, sharp turn on road',
+        aliases=['distractedcar', 'carexit']
+    )
+    async def carswerve(self, ctx):
+        msg = ctx.message.content
+
+        prefix_used = ctx.prefix
+        alias_used = ctx.invoked_with
+        args = msg[len(prefix_used) + len(alias_used):].split(',')
+
+        
+        if len(args) > 3:
+            await ctx.send(":x: Too many arguments (Max 3)")
+        
+        image = self.API_Handler.getImgflip("124822590", args)
+        
+        e = discord.Embed(colour=0x2ECC71)
+        e.set_image(url=image)
+        e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
+
+        await ctx.send(embed=e)
+    
+
+
+
+
 
 def setup(bot):
     bot.add_cog(Image(bot))
