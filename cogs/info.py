@@ -91,6 +91,15 @@ class Info(commands.Cog):
         message = await ctx.send("🏓 Pong")
         ping = (time.monotonic() - before) * 1000
         await message.edit(content=f"🏓 WS: {before_ws}ms  |  REST: {int(ping)}ms")
+    
+    @commands.command(
+        name='invite',
+        description='Gets the an invite link for the bot',
+        aliases=['botinvite', 'addbot']
+    )
+    async def botinvite(self, ctx):
+        message = await ctx.send(f"Here is my invite! {config.bot_invite}")
+
 
 def setup(bot):
     bot.add_cog(Info(bot))
