@@ -40,6 +40,10 @@ class Image(commands.Cog):
         
         if len(args) > 3:
             await ctx.send(":x: Too many arguments (Max 3)")
+            return
+        elif len(args) == 1 and args[0] == '':
+            await ctx.send("You must specify some text dummy")
+            return
         
         image = self.API_Handler.getImgflip("112126428", args)
         
@@ -64,6 +68,10 @@ class Image(commands.Cog):
         
         if len(args) > 2:
             await ctx.send(":x: Too many arguments (Max 2)")
+            return
+        elif len(args) == 1 and args[0] == '':
+            await ctx.send("You must specify some text dummy")
+            return
         
         image = self.API_Handler.getImgflip("181913649", args)
         
@@ -86,6 +94,10 @@ class Image(commands.Cog):
         
         if len(args) > 2:
             await ctx.send(":x: Too many arguments (Max 2)")
+            return
+        elif len(args) == 1 and args[0] == '':
+            await ctx.send("You must specify some text dummy")
+            return
         
         image = self.API_Handler.getImgflip("129242436", args)
         
@@ -110,6 +122,10 @@ class Image(commands.Cog):
         
         if len(args) > 2:
             await ctx.send(":x: Too many arguments (Max 2)")
+            return
+        elif len(args) == 1 and args[0] == '':
+            await ctx.send("You must specify some text dummy")
+            return
         
         image = self.API_Handler.getImgflip("93895088", args)
         
@@ -131,9 +147,14 @@ class Image(commands.Cog):
         alias_used = ctx.invoked_with
         args = msg[len(prefix_used) + len(alias_used):].split(',')
 
+
         
         if len(args) > 3:
             await ctx.send(":x: Too many arguments (Max 3)")
+            return
+        elif len(args) == 1 and args[0] == '':
+            await ctx.send("You must specify some text dummy")
+            return
         
         image = self.API_Handler.getImgflip("124822590", args)
         
@@ -143,8 +164,31 @@ class Image(commands.Cog):
 
         await ctx.send(embed=e)
     
+    @commands.command(
+        name='uno',
+        description='Draw 25 cards or do something you dont like meme',
+        aliases=['unodraw', 'drawcards', 'draw25']
+    )
+    async def uno(self, ctx):
+        msg = ctx.message.content
 
+        prefix_used = ctx.prefix
+        alias_used = ctx.invoked_with
+        args = msg[len(prefix_used) + len(alias_used):].split(',')
 
+        
+        if len(args) > 3:
+            await ctx.send(":x: Too many arguments (Max 2)")
+            return
+        elif len(args) == 1 and args[0] == '':
+            await ctx.send("You must specify some text dummy")
+            return
+
+        image = self.API_Handler.getImgflip("93895088", args)
+        
+        e = discord.Embed(colour=0x2ECC71)
+        e.set_image(url=image)
+        e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
 
 
 
