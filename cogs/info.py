@@ -98,7 +98,7 @@ class Info(commands.Cog):
         aliases=['botinvite', 'addbot']
     )
     async def botinvite(self, ctx):
-        message = await ctx.send(f"Here is my invite! {config.bot_invite}")
+        message = await ctx.send(f"Here is my invite! {self.config.bot_invite}")
 
 
 def setup(bot):
