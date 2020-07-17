@@ -112,7 +112,7 @@ class Info(commands.Cog):
         description='Gets the support server invite',
         aliases=['server', 'supportserver', 'helpserver', 'helpinvite', 'devserver']
     )
-    async def botinvite(self, ctx):
+    async def serverinvite(self, ctx):
         invite_embed = discord.Embed(
             title='Here is the offical RoxBot Development and Support Server!',
             description=f"{self.config.server_invite}",
@@ -120,6 +120,20 @@ class Info(commands.Cog):
         )
         invite_embed.set_footer(text="Made with ❤️ by Roxiun")
         await ctx.send(embed=invite_embed)
+    
+    @commands.command(
+        name='source',
+        description='Gets the source code link',
+        aliases=['sourcecode']
+    )
+    async def botinvite(self, ctx):
+        source_embed = discord.Embed(
+            title='Here is my Source Code!',
+            description=f"https://github.com/Roxiun/RoxBot/",
+            color=0x2ECC71
+        )
+        source_embed.set_footer(text="Made with ❤️ by Roxiun")
+        await ctx.send(embed=source_embed)
 
 
 def setup(bot):
