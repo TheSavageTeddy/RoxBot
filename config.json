@@ -2,6 +2,7 @@
     "token": "NjUyMTExNTgyNjYyMzYxMTAw.XxEKCg.XyIoaOd028d7QMK9qYyW80ElYgM",
     "join_message": "RoxBot Sucessfully Added! 🌟",
     "bot_invite":"https://discord.com/oauth2/authorize?client_id=652111582662361100&scope=bot&permissions=8",
+    "bot_invite_basic":"https://discordapp.com/oauth2/authorize?client_id=652111582662361100&scope=bot&permissions=3263552",
     "server_invite":"https://discord.gg/abDzX98",
     "owners": [
         352308837794971648
