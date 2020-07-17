@@ -17,8 +17,8 @@ class Utility(commands.Cog):
     
     @commands.command(
         name='math',
-        description='Solves the maths problem',
-        aliases=['maths', 'calc', 'calculat', 'add', 'addition', 'multiply'],
+        description='Evaluates the calculation',
+        aliases=['maths', 'calc', 'calculat', 'add', 'addition', 'multiply', 'calculate'],
     )
     async def math_command(self, ctx):
         msg = ctx.message.content
@@ -44,7 +44,7 @@ class Utility(commands.Cog):
         alias_used = ctx.invoked_with
         choice = random.choice(msg[len(prefix_used) + len(alias_used):].split())
 
-        await ctx.send(content=f"I choose {choice}")
+        await ctx.send(content=f"I choose `{choice}`")
 
     @commands.command(
         name='shutdown',

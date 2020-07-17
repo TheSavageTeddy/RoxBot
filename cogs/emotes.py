@@ -37,7 +37,7 @@ class Emotes(commands.Cog):
             try:
                 await ctx.send(f"{emotes_list[str(text)]}")
             except KeyError:
-                await ctx.send("No emote found :x:")
+                await ctx.send(":x: No emote found")
 
 def setup(bot):
     bot.add_cog(Emotes(bot))

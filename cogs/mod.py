@@ -14,7 +14,7 @@ class Moderator(commands.Cog):
     
     @commands.command(
         name='kick',
-        description='Kicks a member',
+        description='Kicks a member from the server',
         aliases=[]
     )
     async def kick(self, ctx):    
