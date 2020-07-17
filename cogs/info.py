@@ -29,7 +29,7 @@ class Info(commands.Cog):
             help_embed.add_field(name="Images", value="`?help image`")
             help_embed.add_field(name="Utility", value="`?help utility`")
             help_embed.add_field(name="Info", value="`?help info`")
-            help_embed.add_field(name="Currency", value="`?help currency`")
+            help_embed.add_field(name="Music", value="`?help music`")
             help_embed.add_field(name="Other", value="`?help other`")
         else:
             cogA = cog.lower()
