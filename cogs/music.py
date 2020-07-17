@@ -84,6 +84,12 @@ class Music(commands.Cog):
         else:
             await destination.connect()
             await ctx.send(":white_check_mark: Sucessfuly joined the channel")
+        
+        while True:
+            await asyncio.sleep(10)
+            if len([member.id for member in destination.members]) == 1:
+                await ctx.voice_client.disconnect()
+                return
 
     @commands.command(
         name='play',
@@ -94,12 +100,19 @@ class Music(commands.Cog):
         if url == "somereallygoodthingwhichnoonewouldsearch":
             await ctx.send(":x: You must specify a URL or name")
         elif "youtube.com" in url or "youtu.be" in url:
+            destination = ctx.author.voice.channel
             async with ctx.typing():
                 player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
                 ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
 
             await ctx.send('Now playing: {}'.format(player.title))
+            while True:
+                await asyncio.sleep(15)
+                if len([member.id for member in destination.members]) == 1:
+                    await ctx.voice_client.disconnect()
+                    return
         else:
+            destination = ctx.author.voice.channel
             def check(reaction, user):
                     return user == ctx.message.author and (str(reaction.emoji) == '✅' or str(reaction.emoji) == '❌')
             try:
@@ -136,9 +149,11 @@ class Music(commands.Cog):
                     ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
                 
                 await ctx.send('Now playing: {}'.format(player.title))
-                    
-
-    
+                await asyncio.sleep(15)
+                if len([member.id for member in destination.members]) == 1:
+                    await ctx.voice_client.disconnect()
+                    return
+                        
     @commands.command(
         name='stop',
         description='Stops music and disconnects the bot',
@@ -147,7 +162,8 @@ class Music(commands.Cog):
     async def stop(self, ctx):
         """Stops and disconnects the bot from voice"""
         await ctx.voice_client.disconnect()
-    
+
+
     @yt.before_invoke
     async def ensure_voice(self, ctx):
         if ctx.voice_client is None:
