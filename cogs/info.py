@@ -126,7 +126,7 @@ class Info(commands.Cog):
         description='Gets the source code link',
         aliases=['sourcecode']
     )
-    async def botinvite(self, ctx):
+    async def sourceCode(self, ctx):
         source_embed = discord.Embed(
             title='Here is my Source Code!',
             description=f"https://github.com/Roxiun/RoxBot/",
