@@ -39,7 +39,7 @@ class Other(commands.Cog):
                 Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
                 Server_embed.set_footer(text="Made with ❤️ by Roxiun")
                 await msg.edit(
-                    embed=embed,
+                    embed=Server_embed,
                     content=None
                 )
                 time.sleep(1)
@@ -53,7 +53,7 @@ class Other(commands.Cog):
             Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
             Server_embed.set_footer(text="Made with ❤️ by Roxiun")
             await msg.edit(
-                embed=embed,
+                embed=Server_embed,
                 content=None
             )
                 
