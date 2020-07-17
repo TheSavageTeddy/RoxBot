@@ -106,6 +106,20 @@ class Info(commands.Cog):
         invite_embed.add_field(name="Basic Permissions", value=f"{self.config.bot_invite_basic}")
         invite_embed.set_footer(text="Made with ❤️ by Roxiun")
         await ctx.send(embed=invite_embed)
+    
+    @commands.command(
+        name='support',
+        description='Gets the support server invite',
+        aliases=['server', 'supportserver', 'helpserver', 'helpinvite', 'devserver']
+    )
+    async def botinvite(self, ctx):
+        invite_embed = discord.Embed(
+            title='Here is the offical RoxBot Development and Support Server!',
+            description=f"{self.config.server_invite}",
+            color=0x2ECC71
+        )
+        invite_embed.set_footer(text="Made with ❤️ by Roxiun")
+        await ctx.send(embed=invite_embed)
 
 
 def setup(bot):
