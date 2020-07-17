@@ -33,7 +33,7 @@ class Info(commands.Cog):
             help_embed.add_field(name="Other", value="`?help other`")
         else:
             cogA = cog.lower()
-            emojiCategory = {"Moderator":":tools:", "Image":":camera:", "Utility":":tools:","Info":":question:","Other":""}
+            emojiCategory = {"Moderator":":tools:", "Image":":camera:", "Utility":":tools:","Info":":question:","Other":"", "Music":":musical_note:"}
             categoryAlias = {}
             
             cogs = [c for c in self.bot.cogs.keys()]
