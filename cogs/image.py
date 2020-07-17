@@ -8,6 +8,9 @@ from datetime import datetime
 from utils.web_api import ImageAPI
 
 class Image(commands.Cog):  
+
+    footerText = "Made with ❤️ by Roxiun#5546, TheSavageTeddy#7458 & Imgflip"
+
     def __init__(self, bot):
         self.bot = bot
         self.config = getJSON("config.json")
@@ -21,7 +24,7 @@ class Image(commands.Cog):
     async def deadchat(self, ctx):
         e = discord.Embed(colour=0x2ECC71)
         e.set_image(url="https://i.imgur.com/0WjrVUN.png")
-        e.set_footer(text="Made with ❤️ by Roxiun")
+        e.set_footer(footerText)
 
         await ctx.send(embed=e)
 
@@ -49,7 +52,7 @@ class Image(commands.Cog):
         
         e = discord.Embed(colour=0x2ECC71)
         e.set_image(url=image)
-        e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
+        e.set_footer(footerText)
 
         await ctx.send(embed=e)
     
@@ -77,7 +80,7 @@ class Image(commands.Cog):
         
         e = discord.Embed(colour=0x2ECC71)
         e.set_image(url=image)
-        e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
+        e.set_footer(footerText)
 
         await ctx.send(embed=e)
     @commands.command(
@@ -103,7 +106,7 @@ class Image(commands.Cog):
         
         e = discord.Embed(colour=0x2ECC71)
         e.set_image(url=image)
-        e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
+        e.set_footer(footerText)
 
         await ctx.send(embed=e)
     
@@ -131,7 +134,7 @@ class Image(commands.Cog):
         
         e = discord.Embed(colour=0x2ECC71)
         e.set_image(url=image)
-        e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
+        e.set_footer(footerText)
 
         await ctx.send(embed=e)
     
@@ -160,7 +163,7 @@ class Image(commands.Cog):
         
         e = discord.Embed(colour=0x2ECC71)
         e.set_image(url=image)
-        e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
+        e.set_footer(footerText)
 
         await ctx.send(embed=e)
     
@@ -188,7 +191,7 @@ class Image(commands.Cog):
         
         e = discord.Embed(colour=0x2ECC71)
         e.set_image(url=image)
-        e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
+        e.set_footer(footerText)
 
 
 
