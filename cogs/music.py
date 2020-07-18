@@ -160,7 +160,6 @@ class Music(commands.Cog):
                 async with ctx.typing():
                     req = self.youtube.search().list(q=str(url), part='snippet', type='video', maxResults=10, pageToken=None)
                     results  = req.execute()
-                    # results = YoutubeSearch(str(url), max_results=10).to_dict()
             except:
                 await ctx.send(":x: Couldnt find any videos from that query.")
                 return
@@ -174,9 +173,9 @@ class Music(commands.Cog):
                         title=f"{results['items'][i]['snippet']['title']}",
                         color=0x2ECC71
                     )
-                    videoEmbed.set_thumbnail(url=results['items'][i]['snippet']["thumbnails"]["high"])
+                    videoEmbed.set_thumbnail(url=results['items'][i]['snippet']["thumbnails"]["high"]["url"])
                     videoEmbed.add_field(name="**Description**\n", value=f"{results['items'][i]['snippet']['description']}\n", inline=False)
-                    videoEmbed.add_field(name="**Info**\n", value=f"Result #{i+1}\n Duration: {str(convert_YouTube_duration_to_seconds(res2['contentDetails'][i]['duration']))}\n Views: {results[i]['views']}\n Channel Name: {results['items'][i]['snippet']['channelTitle']}", inline=False)
+                    videoEmbed.add_field(name="**Info**\n", value=f"Result #{i+1}\n Duration: {str(self.convert_YouTube_duration_to_seconds(res2['items'][0]['contentDetails']['duration']))}\n Views: \n Channel Name: {results['items'][i]['snippet']['channelTitle']}", inline=False)
                     videoEmbed.set_footer(text=f"Made with ❤️ by Roxiun")
                     message = await ctx.send(embed=videoEmbed)
                     await message.add_reaction(chr(0x2705))
@@ -187,19 +186,36 @@ class Music(commands.Cog):
                         await channel.send(':x: Reaction timed out.')
                     else:
                         if str(reaction) == "✅":
+                            playTitle=f"Now Playing {results['items'][i]['snippet']['title']}"
+                            thumbURL=results['items'][i]['snippet']["thumbnails"]["high"]["url"]
                             musicURL = f"http://www.youtube.com/watch?v={results['items'][i]['id']['videoId']}"
                             print(musicURL)
                             break
-                    
-                    async with ctx.typing():
-                        player = await YTDLSource.from_url(musicURL, loop=self.bot.loop)
-                        ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
-                    
-                    await ctx.send('Now playing: {}'.format(player.title))
-                    await asyncio.sleep(15)
-                    if len([member.id for member in destination.members]) == 1:
-                        await ctx.voice_client.disconnect()
-                        return
+            
+            playEmbed = discord.Embed(
+                title="Downloading Video..",
+                color=0x2ECC71
+            )
+            playEmbed.set_thumbnail(url=musicURL)
+            msg = await ctx.send(embed=playEmbed)
+            async with ctx.typing():
+                player = await YTDLSource.from_url(musicURL, loop=self.bot.loop)
+                ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+            
+            playEmbed = discord.Embed(
+                title=playTitle,
+                color=0x2ECC71
+            )
+            playEmbed.set_thumbnail(url=thumbURL)
+            await msg.edit(
+                embed=playEmbed,
+                content=None
+            )
+            while True:
+                await asyncio.sleep(15)
+                if len([member.id for member in destination.members]) == 1:
+                    await ctx.voice_client.disconnect()
+                    return
                         
     @commands.command(
         name='stop',
