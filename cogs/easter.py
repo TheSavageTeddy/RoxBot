@@ -15,6 +15,5 @@ class EasterEggs(commands.Cog):
         if "the earth king has invited you to lake laogai" in message.content.lower():
             await message.channel.send("I am honoured to accept his invitation.")
 
-
 def setup(bot):
     bot.add_cog(EasterEggs(bot))
