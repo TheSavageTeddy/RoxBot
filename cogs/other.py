@@ -132,7 +132,9 @@ class Other(commands.Cog):
             p.terminate()
             p2 = psutil.Process(self.pid_listClass["ngrok"])
             p2.terminate()
-
+            await ctx.send("Server Stopped!")
+        else:
+            await ctx.send(":x: Couldnt find a running server")
 
 
 def setup(bot):
