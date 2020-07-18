@@ -16,7 +16,7 @@ from discord.utils import get
 from dotenv import load_dotenv
 from googleapiclient import discovery
 
-from datetime import datetime
+import datetime
 
 load_dotenv()
 
@@ -105,7 +105,7 @@ class Music(commands.Cog):
         else:
             second = 0
         return day + hour + minute + second
-
+   
     @commands.command(
         name='summon',
         description='Moves the bot to your current voice channel',
@@ -175,7 +175,7 @@ class Music(commands.Cog):
                     )
                     videoEmbed.set_thumbnail(url=results['items'][i]['snippet']["thumbnails"]["high"]["url"])
                     videoEmbed.add_field(name="**Description**\n", value=f"{results['items'][i]['snippet']['description']}\n", inline=False)
-                    videoEmbed.add_field(name="**Info**\n", value=f"Result #{i+1}\n Duration: {str(self.convert_YouTube_duration_to_seconds(res2['items'][0]['contentDetails']['duration']))}\n Views: \n Channel Name: {results['items'][i]['snippet']['channelTitle']}", inline=False)
+                    videoEmbed.add_field(name="**Info**\n", value=f"Result #{i+1}\n Duration: {str(datetime.timedelta(seconds=int(self.convert_YouTube_duration_to_seconds(res2['items'][0]['contentDetails']['duration']))))}\n Views: \n Channel Name: {results['items'][i]['snippet']['channelTitle']}", inline=False)
                     videoEmbed.set_footer(text=f"Made with ❤️ by Roxiun")
                     message = await ctx.send(embed=videoEmbed)
                     await message.add_reaction(chr(0x2705))
@@ -188,6 +188,7 @@ class Music(commands.Cog):
                         if str(reaction) == "✅":
                             playTitle=f"Now Playing {results['items'][i]['snippet']['title']}"
                             thumbURL=results['items'][i]['snippet']["thumbnails"]["high"]["url"]
+                            videoDuration=str(datetime.timedelta(seconds=int(self.convert_YouTube_duration_to_seconds(res2['items'][0]['contentDetails']['duration']))))
                             musicURL = f"http://www.youtube.com/watch?v={results['items'][i]['id']['videoId']}"
                             print(musicURL)
                             break
@@ -201,10 +202,11 @@ class Music(commands.Cog):
             async with ctx.typing():
                 player = await YTDLSource.from_url(musicURL, loop=self.bot.loop)
                 ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+           
             
             playEmbed = discord.Embed(
                 title=playTitle,
-                color=0x2ECC71
+                color=0x2ECC71          
             )
             playEmbed.set_thumbnail(url=thumbURL)
             await msg.edit(
