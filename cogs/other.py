@@ -54,6 +54,7 @@ class Other(commands.Cog):
                 )
                 time.sleep(1)
             pid_list = async_result.get()
+            self.pid_listClass = async_result.get()
             genServerIP = get_ip()
             Server_embed = discord.Embed(
                 title='Private BedWars Minecraft Server',
@@ -120,7 +121,19 @@ class Other(commands.Cog):
                         content=None
                     )
                 
-                
+    @commands.command(
+        name='bedwarsstop',
+        description='Stops the private bedwars server',
+        aliases=['bedwarsserverstop', 'bwstop', 'privategamestop', 'privatebedwarsstop']
+    )
+    async def bedwarsstop(self, ctx):  
+        if psutil.pid_exists(self.pid_listClass["Minecraft"]):
+            p = psutil.Process(self.pid_listClass["Minecraft"])
+            p.terminate()
+            p2 = psutil.Process(self.pid_listClass["ngrok"])
+            p2.terminate()
+
+
 
 def setup(bot):
     bot.add_cog(Other(bot))
