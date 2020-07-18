@@ -13,7 +13,12 @@ from discord.ext import commands
 from discord import FFmpegPCMAudio
 from discord.utils import get
 
+from dotenv import load_dotenv
+from googleapiclient import discovery
+
 from datetime import datetime
+
+load_dotenv()
 
 ytdl_format_options = {
     'format': 'bestaudio/best',
@@ -45,6 +50,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         self.title = data.get('title')
         self.url = data.get('url')
 
+
     @classmethod
     async def from_url(cls, url, *, loop=None, stream=False):
         loop = loop or asyncio.get_event_loop()
@@ -65,7 +71,41 @@ class Music(commands.Cog):
         self.bot = bot
         self.config = getJSON("config.json")
         self.players = {}
+
+        self.api_key = os.getenv("api_key")
+        self.youtube = discovery.build('youtube', 'v3', developerKey=self.api_key)
     
+    def convert_YouTube_duration_to_seconds(self, duration):
+        day_time = duration.split('T')
+        day_duration = day_time[0].replace('P', '')
+        day_list = day_duration.split('D')
+        if len(day_list) == 2:
+            day = int(day_list[0]) * 60 * 60 * 24
+            day_list = day_list[1]
+        else:
+            day = 0
+            day_list = day_list[0]
+        hour_list = day_time[1].split('H')
+        if len(hour_list) == 2:
+            hour = int(hour_list[0]) * 60 * 60
+            hour_list = hour_list[1]
+        else:
+            hour = 0
+            hour_list = hour_list[0]
+        minute_list = hour_list.split('M')
+        if len(minute_list) == 2:
+            minute = int(minute_list[0]) * 60
+            minute_list = minute_list[1]
+        else:
+            minute = 0
+            minute_list = minute_list[0]
+        second_list = minute_list.split('S')
+        if len(second_list) == 2:
+            second = int(second_list[0])
+        else:
+            second = 0
+        return day + hour + minute + second
+
     @commands.command(
         name='summon',
         description='Moves the bot to your current voice channel',
@@ -118,24 +158,25 @@ class Music(commands.Cog):
                     return user == ctx.message.author and (str(reaction.emoji) == '✅' or str(reaction.emoji) == '❌')
             try:
                 async with ctx.typing():
-                    results = YoutubeSearch(str(url), max_results=10).to_dict()
+                    req = self.youtube.search().list(q=str(url), part='snippet', type='video', maxResults=10, pageToken=None)
+                    results  = req.execute()
+                    # results = YoutubeSearch(str(url), max_results=10).to_dict()
             except:
-                await ctx.send(":x: Couldnt find a song.. Searching again...")
-                try:
-                    results = YoutubeSearch(str(url), max_results=1).to_dict()
-                except:
-                    await ctx.send(":x: Couldnt find that video, please try a different search query")
-                    return
-            if len(results) > 0:
-                channel = ctx.message.channel
-                for i in range(len(results)):
+                await ctx.send(":x: Couldnt find any videos from that query.")
+                return
+            channel = ctx.message.channel
+            for i in range(9):
+                async with ctx.typing():
+                    videoid = results['items'][i]['id']['videoId']
+                    req2 = self.youtube.videos().list(part='snippet,contentDetails', id=videoid)
+                    res2 = req2.execute()
                     videoEmbed = discord.Embed(
-                        title=f"{results[i]['title']}",
+                        title=f"{results['items'][i]['snippet']['title']}",
                         color=0x2ECC71
                     )
-                    videoEmbed.set_thumbnail(url=results[i]["thumbnails"][3])
-                    videoEmbed.add_field(name="**Description**\n", value=f"{results[i]['long_desc']}\n", inline=False)
-                    videoEmbed.add_field(name="**Info**\n", value=f"Result #{i}\n Duration: {results[i]['duration']}\n Views: {results[i]['views']}", inline=False)
+                    videoEmbed.set_thumbnail(url=results['items'][i]['snippet']["thumbnails"]["high"])
+                    videoEmbed.add_field(name="**Description**\n", value=f"{results['items'][i]['snippet']['description']}\n", inline=False)
+                    videoEmbed.add_field(name="**Info**\n", value=f"Result #{i+1}\n Duration: {str(convert_YouTube_duration_to_seconds(res2['contentDetails'][i]['duration']))}\n Views: {results[i]['views']}\n Channel Name: {results['items'][i]['snippet']['channelTitle']}", inline=False)
                     videoEmbed.set_footer(text=f"Made with ❤️ by Roxiun")
                     message = await ctx.send(embed=videoEmbed)
                     await message.add_reaction(chr(0x2705))
@@ -146,19 +187,19 @@ class Music(commands.Cog):
                         await channel.send(':x: Reaction timed out.')
                     else:
                         if str(reaction) == "✅":
-                            musicURL = f"http://www.youtube.com{results[i]['url_suffix']}"
+                            musicURL = f"http://www.youtube.com/watch?v={results['items'][i]['id']['videoId']}"
                             print(musicURL)
                             break
-                
-                async with ctx.typing():
-                    player = await YTDLSource.from_url(musicURL, loop=self.bot.loop)
-                    ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
-                
-                await ctx.send('Now playing: {}'.format(player.title))
-                await asyncio.sleep(15)
-                if len([member.id for member in destination.members]) == 1:
-                    await ctx.voice_client.disconnect()
-                    return
+                    
+                    async with ctx.typing():
+                        player = await YTDLSource.from_url(musicURL, loop=self.bot.loop)
+                        ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+                    
+                    await ctx.send('Now playing: {}'.format(player.title))
+                    await asyncio.sleep(15)
+                    if len([member.id for member in destination.members]) == 1:
+                        await ctx.voice_client.disconnect()
+                        return
                         
     @commands.command(
         name='stop',
