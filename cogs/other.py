@@ -126,6 +126,14 @@ class Other(commands.Cog):
         aliases=[]
     )
     async def test(self, ctx):
+        Server_embed = discord.Embed(
+            title='Starting Server...',
+            color=0x2ECC71
+        )
+        Server_embed.add_field(name="Server IP", value=f"`Generating...`")
+        Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
+        Server_embed.set_footer(text="Made with ❤️ by Roxiun")
+        msg = await ctx.send(embed=Server_embed)
         serverStartTime = time.time()
 
         for i in range(60):
