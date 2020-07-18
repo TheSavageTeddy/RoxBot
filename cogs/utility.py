@@ -17,7 +17,7 @@ class Utility(commands.Cog):
     
     @commands.command(
         name='math',
-        description='Evaluates the calculation',
+        description='Evaluates the maths equations',
         aliases=['maths', 'calc', 'calculat', 'add', 'addition', 'multiply', 'calculate'],
     )
     async def math_command(self, ctx):
