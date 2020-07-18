@@ -49,8 +49,8 @@ class Events(commands.Cog):
             activity=discord.Activity(type=playing_type, name=self.config.playing),
             status=status_type
         )
-        print(f"RoxBot is in {len(bot.guilds)} servers!")
-        print(f"{20 - len(bot.guilds)} servers to go")
+        print(f"RoxBot is in {len(self.bot.guilds)} servers!")
+        print(f"{20 - len(self.bot.guilds)} servers to go")
 
 def setup(bot):
     bot.add_cog(Events(bot))
