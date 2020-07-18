@@ -202,8 +202,7 @@ class Music(commands.Cog):
             async with ctx.typing():
                 player = await YTDLSource.from_url(musicURL, loop=self.bot.loop)
                 ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
-           
-            
+                   
             playEmbed = discord.Embed(
                 title=playTitle,
                 color=0x2ECC71          
