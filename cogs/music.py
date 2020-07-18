@@ -19,7 +19,7 @@ ytdl_format_options = {
     'format': 'bestaudio/best',
     'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
     'restrictfilenames': True,
-    'noplaylist': True,
+    'noplaylist': False,
     'nocheckcertificate': True,
     'ignoreerrors': False,
     'logtostderr': False,
@@ -55,7 +55,8 @@ class YTDLSource(discord.PCMVolumeTransformer):
             data = data['entries'][0]
 
         filename = data['url'] if stream else ytdl.prepare_filename(data)
-        print(filename)
+        os.sytem(f"mv {filename} audio/{filename}")
+        filename = f"audio/{filename}"
         return cls(discord.FFmpegPCMAudio(filename, **ffmpeg_options), data=data)
 
 
@@ -102,7 +103,7 @@ class Music(commands.Cog):
         elif "youtube.com" in url or "youtu.be" in url:
             destination = ctx.author.voice.channel
             async with ctx.typing():
-                player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
+                player = await YTDLSource.from_url(url, loop=self.bot.loop)
                 ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
 
             await ctx.send('Now playing: {}'.format(player.title))
@@ -119,7 +120,12 @@ class Music(commands.Cog):
                 async with ctx.typing():
                     results = YoutubeSearch(str(url), max_results=10).to_dict()
             except:
-                pass
+                await ctx.send(":x: Couldnt find a song.. Searching again...")
+                try:
+                    results = YoutubeSearch(str(url), max_results=1).to_dict()
+                except:
+                    await ctx.send(":x: Couldnt find that video, please try a different search query")
+                    return
             if len(results) > 0:
                 channel = ctx.message.channel
                 for i in range(len(results)):
@@ -145,7 +151,7 @@ class Music(commands.Cog):
                             break
                 
                 async with ctx.typing():
-                    player = await YTDLSource.from_url(musicURL, loop=self.bot.loop, stream=True)
+                    player = await YTDLSource.from_url(musicURL, loop=self.bot.loop)
                     ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
                 
                 await ctx.send('Now playing: {}'.format(player.title))
