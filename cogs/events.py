@@ -50,7 +50,7 @@ class Events(commands.Cog):
             status=status_type
         )
         print(f"RoxBot is in {len(self.bot.guilds)} servers!")
-        print(f"{20 - len(self.bot.guilds)} servers to go")
+        print(f"{75 - len(self.bot.guilds)} servers to go")
 
 def setup(bot):
     bot.add_cog(Events(bot))
