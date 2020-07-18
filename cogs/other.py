@@ -154,7 +154,7 @@ class Other(commands.Cog):
                 )
                 Server_embed.add_field(name="Server IP", value=f"`Offline`")
                 Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
-                Server_embed.add_field(name="Time Remaining", value=f"`{str(datetime.timedelta(seconds=timeRemaining))}`", inline=True)
+                Server_embed.add_field(name="Time Remaining", value=f"`{str(timedelta(seconds=timeRemaining))}`", inline=True)
                 Server_embed.set_footer(text="Made with ❤️ by Roxiun")
                 await msg.edit(
                     embed=Server_embed,
