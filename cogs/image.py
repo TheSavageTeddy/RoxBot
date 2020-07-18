@@ -190,7 +190,28 @@ class Image(commands.Cog):
         e.set_image(url=image)
         e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
 
+    @commands.command(
+        name='spank',
+        description='Spanks a user',
+        aliases=[]
+    )
+    async def spank(self, ctx, user: discord.User):
+        await ctx.send(f"{user.mention} has been spanked by {ctx.message.author.mention} 😳")
 
+        '''
+        if len(args) > 3:
+            await ctx.send(":x: Too many arguments (Max 2)")
+            return
+        elif len(args) == 1 and args[0] == '':
+            await ctx.send("You must specify some text dummy")
+            return
+
+        image = self.API_Handler.getImgflip("93895088", args)
+        
+        e = discord.Embed(colour=0x2ECC71)
+        e.set_image(url=image)
+        e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
+    '''
 
 def setup(bot):
     bot.add_cog(Image(bot))
