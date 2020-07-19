@@ -128,7 +128,7 @@ class Info(commands.Cog):
     )
     async def sourceCode(self, ctx):
         source_embed = discord.Embed(
-            title='<:github:734317758438965330> Here is my Source Code!',
+            title='Here is my Source Code!',
             description=f"https://github.com/Roxiun/RoxBot/",
             color=0x2ECC71
         )
