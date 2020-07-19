@@ -11,6 +11,7 @@ from datetime import datetime
 from utils.safe_math import NumericStringParser
 from utils.cli_logging import *
 
+import base64
 
 class Utility(commands.Cog):  
     def __init__(self, bot):
@@ -47,6 +48,38 @@ class Utility(commands.Cog):
         choice = random.choice(msg[len(prefix_used) + len(alias_used):].split())
 
         await ctx.send(content=f"I choose `{choice}`")
+
+    @commands.group(
+        name='encode',
+        description='Encodes the input',
+        aliases=['encrypt']
+    )
+    async def encode(self, ctx):
+        if ctx.invoked_subcommand is None:
+            e = discord.Embed(
+                title='Encode Command',
+                description=f"Encodes the given input",
+                color=0x2ECC71
+            )
+            e.add_field(name="Usage", value=f"`?encode <encoding_type> <input>`")
+            e.add_field(name="Avaliable encoding types", value=f"`base16 base32 base64 base85 hex binary url rot13 rot 47 `")
+            e.set_footer(text="Made with ❤️ by Roxiun")
+            await ctx.send(embed=e)
+
+    @encode.command(name="base64", aliases=["b64"])
+    async def encode_base64(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(colour=0x2ECC71)
+    
+        result = base64.urlsafe_b64encode(input.encode('UTF-8')).decode('utf-8')
+        e.add_field(name="Input", value=f"{input}")
+        e.add_field(name="Output", value=f"{result}")
+
+        await ctx.send(e)
 
     @commands.command(
         name='shutdown',

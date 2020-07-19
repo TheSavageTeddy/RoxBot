@@ -196,8 +196,10 @@ class Image(commands.Cog):
         aliases=[]
     )
     async def spank(self, ctx, user: discord.User):
-        await ctx.send(f"{user.mention} has been spanked by {ctx.message.author.mention} 😳")
+        e = discord.Embed(colour=0x2ECC71)
+        e.description = f"{user.mention} has been spanked by {ctx.message.author.mention} 😳"
 
+        await ctx.send(embed=e)
         '''
         if len(args) > 3:
             await ctx.send(":x: Too many arguments (Max 2)")
