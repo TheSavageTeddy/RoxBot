@@ -53,7 +53,7 @@ class Moderator(commands.Cog):
             await ctx.send(embed=e)
         else:
             userName = str(user)
-            #await ctx.guild.kick(user, reason=reason)
+            await ctx.guild.kick(user, reason=reason)
             e = discord.Embed(colour=0x2ECC71)
             e.set_author(
                 name=f"{userName} has been kicked",
