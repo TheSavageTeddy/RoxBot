@@ -46,21 +46,20 @@ class Moderator(commands.Cog):
     )
     @commands.guild_only()
     @commands.has_permissions(kick_members = True)
-    async def kick(self, ctx, user: discord.User, *, reason=None):
+    async def kick(self, ctx, user: discord.Member, *, reason: str = None):
         process("Kick Command Called")
         if user.guild_permissions.administrator:
             await ctx.send(f":x: You cannot kick an admin from the server")
         else:
-            userID = user.id
-            userName = user.name
+            userName = str(user)
             await ctx.guild.kick(member, reason=reason)
-            await ctx.send(f":white_check_mark: Sucessfully kicked {userName} (ID: {userID}) from the server.")
+            await ctx.send(f":white_check_mark: Sucessfully kicked {userName} from the server.")
 
                 
     @kick.error
     async def kick_error(self, error, ctx):
         #if isinstance(error, MissingPermissions):
-        print(error)
+
         await ctx.send(f":x: An Error occured:\n {error}")
         #else:
         #    await ctx.send(":x: Something went wrong")
