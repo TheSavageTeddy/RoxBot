@@ -57,7 +57,7 @@ class Moderator(commands.Cog):
             e = discord.Embed(colour=0x2ECC71)
             e.set_author(
                 name=f"{userName} has been kicked",
-                icon_url=member.avatar_url
+                icon_url=user.avatar_url
             )
             desc = ""
             desc += f"**Reason**: {reason}\n"
