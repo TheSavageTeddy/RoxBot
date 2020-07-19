@@ -60,6 +60,7 @@ class Moderator(commands.Cog):
     @kick.error
     async def kick_error(self, error, ctx):
         #if isinstance(error, MissingPermissions):
+        print(error)
         await ctx.send(f":x: An Error occured:\n {error}")
         #else:
         #    await ctx.send(":x: Something went wrong")
