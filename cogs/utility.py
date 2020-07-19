@@ -75,7 +75,7 @@ class Utility(commands.Cog):
 
         e = discord.Embed(title="Result", colour=0x2ECC71)
     
-        result = base64.urlsafe_b64encode(input.encode('UTF-8')).decode('utf-8')
+        result = base64.b64encode(input.encode('UTF-8')).decode('utf-8')
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
         e.set_footer(text="Made with ❤️ by Roxiun")
@@ -91,7 +91,7 @@ class Utility(commands.Cog):
 
         e = discord.Embed(title="Result", colour=0x2ECC71)
     
-        result = base64.urlsafe_b32encode(input.encode('UTF-8')).decode('utf-8')
+        result = base64.b32encode(input.encode('UTF-8')).decode('utf-8')
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
         e.set_footer(text="Made with ❤️ by Roxiun")
@@ -107,7 +107,7 @@ class Utility(commands.Cog):
 
         e = discord.Embed(title="Result", colour=0x2ECC71)
     
-        result = base64.urlsafe_b16encode(input.encode('UTF-8')).decode('utf-8')
+        result = base64.b16encode(input.encode('UTF-8')).decode('utf-8')
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
         e.set_footer(text="Made with ❤️ by Roxiun")
@@ -123,7 +123,7 @@ class Utility(commands.Cog):
 
         e = discord.Embed(title="Result", colour=0x2ECC71)
     
-        result = base64.urlsafe_b85encode(input.encode('UTF-8')).decode('utf-8')
+        result = base64.b85encode(input.encode('UTF-8')).decode('utf-8')
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
         e.set_footer(text="Made with ❤️ by Roxiun")
