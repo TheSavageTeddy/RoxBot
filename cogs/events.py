@@ -25,8 +25,10 @@ class Events(commands.Cog):
         process("Pulling from git")
         os.system("git pull")
 
+        changed = []
         for f, mtime in WATCHED_FILES_MTIMES:
             if getmtime(f) != mtime:
+                changed.append(f)
                 # One of the files has changed, so restart the script.
                 info('Change Detected...')
                 process('--> restarting')
@@ -34,8 +36,8 @@ class Events(commands.Cog):
                 #os.execv(__file__, sys.argv)
                 # When running the script via `python daemon.py` (e.g. Windows), use
                 os.execv(sys.executable, ['python'] + sys.argv)
-            else:
-                info("No files changes")
+        if len(changed) == 0:
+            info("No files changes")
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
