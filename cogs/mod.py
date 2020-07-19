@@ -9,6 +9,8 @@ from discord.ext.commands import has_permissions, CheckFailure, BadArgument
 from discord.ext.tasks import loop
 from datetime import datetime
 
+from utils.cli_logging import *
+
 # From: https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/mod.py
 class MemberID(commands.Converter):
     async def convert(self, ctx, argument):
@@ -46,6 +48,7 @@ class Moderator(commands.Cog):
     @commands.has_permissions(kick_members = True)
     @commands.bot_has_permissions(administrator = True)
     async def kick(self, ctx, user: discord.User, *, reason=None):
+        process("Kick Command Called")
         if user.guild_permissions.administrator:
             await ctx.send(f":x: You cannot kick an admin from the server")
         else:
