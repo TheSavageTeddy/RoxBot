@@ -73,11 +73,11 @@ class Utility(commands.Cog):
             await ctx.send(embed=e)
             return
 
-        e = discord.Embed(colour=0x2ECC71)
+        e = discord.Embed(title="Result", colour=0x2ECC71)
     
         result = base64.urlsafe_b64encode(input.encode('UTF-8')).decode('utf-8')
-        e.add_field(name="Input", value=f"{input}")
-        e.add_field(name="Output", value=f"{result}")
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}")
 
         await ctx.send(embed=e)
 
