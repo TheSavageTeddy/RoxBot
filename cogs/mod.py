@@ -73,6 +73,7 @@ class Moderator(commands.Cog):
             await ctx.send(embed=e)
         else:
             e = discord.Embed(description=":no_entry_sign: Something went wrong", colour=0xE74C3C)
+            e.set_footer(text="Make Sure I have permissions to kick, and am higher than the specified member")
             await ctx.send(embed=e)
 
     
