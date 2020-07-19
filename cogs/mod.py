@@ -52,7 +52,7 @@ class Moderator(commands.Cog):
             await ctx.send(f":x: You cannot kick an admin from the server")
         else:
             userName = str(user)
-            await ctx.guild.kick(member, reason=reason)
+            await ctx.guild.kick(user, reason=reason)
             await ctx.send(f":white_check_mark: Sucessfully kicked {userName} from the server.")
 
                 
