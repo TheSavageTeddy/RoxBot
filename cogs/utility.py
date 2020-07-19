@@ -87,5 +87,20 @@ class Utility(commands.Cog):
         else:
             await ctx.send("You do not own this bot!")
 
+    @commands.command(
+        name='test',
+        description='Testing command(Owner only)',
+        aliases=[]
+    )
+    async def test(self,ctx):
+        if ctx.message.author.id == self.config.owners[0]: #replace OWNERID with your user id
+            try:
+                rmsg = await ctx.send(content=":github: (Emoji test)")
+            except Exception as e:
+                await smsg.edit(content=f":x: An error occured\n {e}")
+                warning("Error in testing command")
+        else:
+            await ctx.send("You do not have testing permissions!")
+
 def setup(bot):
     bot.add_cog(Utility(bot))
