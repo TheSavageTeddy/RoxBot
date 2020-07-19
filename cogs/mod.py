@@ -5,7 +5,7 @@ from utils.data import getJSON
 
 
 from discord.ext import commands
-from discord.ext.commands import has_permissions, CheckFailure, BadArgument
+from discord.ext.commands import has_permissions, CheckFailure, BadArgument, check
 from discord.ext.tasks import loop
 from datetime import datetime
 
@@ -68,10 +68,12 @@ class Moderator(commands.Cog):
                 
     @kick.error
     async def kick_error(self, error, ctx):
-        #if isinstance(error, MissingPermissions):
-            await ctx.send(":no_entry_sign: I'm missing permissions to do that.\n Maybe user/role is higher than me?")
-        #else:
-        #    await ctx.send(":x: Something went wrong")
+        if isinstance(error, discord.Forbidden):
+            e = discord.Embed(description=":no_entry_sign: :no_entry_sign: I'm missing permissions to do that.\n Maybe user/role is higher than me?", colour=0xE74C3C)
+            await ctx.send(embed=e)
+        else:
+            e = discord.Embed(description=":no_entry_sign: Something went wrong", colour=0xE74C3C)
+            await ctx.send(embed=e)
 
     
 
