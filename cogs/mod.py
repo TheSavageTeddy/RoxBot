@@ -53,7 +53,7 @@ class Moderator(commands.Cog):
             await ctx.send(embed=e)
         else:
             userName = str(user)
-            await ctx.guild.kick(user, reason=reason)
+            await ctx.guild.kick(user, reason=f"{reason}- {ctx.message.author.name}")
             e = discord.Embed(colour=0x2ECC71)
             e.set_author(
                 name=f"{userName} has been kicked",
@@ -65,7 +65,33 @@ class Moderator(commands.Cog):
             e.description = desc
             await ctx.send(embed=e)
 
-                
+    @commands.command(
+        name='ban',
+        description='Bans a member from the server',
+        aliases=[]
+    )
+    @commands.guild_only()
+    @commands.has_permissions(ban_members = True)
+    async def ban(self, ctx, user: discord.Member, *, reason: str = None):
+        process(f"Ban Command Called by {ctx.message.author.name}")
+        if user.guild_permissions.administrator:
+            e = discord.Embed(description=":no_entry_sign: You cannot ban an administrator", colour=0xE74C3C)
+            await ctx.send(embed=e)
+        else:
+            userName = str(user)
+            await ctx.guild.ban(discord.Object(id=user), reason=f"{reason}- {ctx.message.author.name}")
+            e = discord.Embed(colour=0x2ECC71)
+            e.set_author(
+                name=f"{userName} has been banned",
+                icon_url=user.avatar_url
+            )
+            desc = ""
+            desc += f"**Reason**: {reason}\n"
+            desc += f"**Moderator:** {ctx.message.author.mention}"
+            e.description = desc
+            await ctx.send(embed=e)
+
+
     @kick.error
     async def kick_error(self, ctx, error):
         if isinstance(error, discord.Forbidden):
@@ -76,7 +102,6 @@ class Moderator(commands.Cog):
             e.set_footer(text="Make Sure I have permissions to kick, and am higher than the specified member")
             await ctx.send(embed=e)
 
-    
 
 def setup(bot):
     bot.add_cog(Moderator(bot))
