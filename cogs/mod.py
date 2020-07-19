@@ -46,7 +46,6 @@ class Moderator(commands.Cog):
     )
     @commands.guild_only()
     @commands.has_permissions(kick_members = True)
-    @commands.bot_has_permissions(administrator = True)
     async def kick(self, ctx, user: discord.User, *, reason=None):
         process("Kick Command Called")
         if user.guild_permissions.administrator:
