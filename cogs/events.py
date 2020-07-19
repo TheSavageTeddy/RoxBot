@@ -1,17 +1,22 @@
 import os
-import discord
+import sys
+from os.path import getmtime
 from utils.data import getJSON
 
+import discord
 from discord.ext import commands
-from discord.ext import tasks
+from discord.ext.tasks import loop
 from datetime import datetime
+
+from utils.cli_logging import *
 
 class Events(commands.Cog):  
     def __init__(self, bot):
         self.bot = bot
         self.config = getJSON("config.json")
+        self.check_for_change.start()
     
-    @tasks.loop(seconds=10)
+    @loop(seconds=60.0)
     async def check_for_change(self):
         info("Checking for New Update")
         WATCHED_FILES = ["index.py", "cogs/easter.py", "cogs/events.py", "cogs/image.py", "cogs/info.py", "cogs/mod.py", "cogs/music.py", "cogs/other.py", "cogs/utility.py", "utils/cli_logging.py", "utils/data.py", "utils/safe_math.py", "utils/start_server.py", "utils/web_api.py", 'test.txt']
@@ -40,6 +45,12 @@ class Events(commands.Cog):
             pass
         else:
             await to_send.send(self.config.join_message)
+
+
+    @check_for_change.before_loop
+    async def before_check_for_change(self):
+        process('Waiting for Bot start...')
+        await self.bot.wait_until_ready()
 
     @commands.Cog.listener()
     async def on_command(self, ctx):

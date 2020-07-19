@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 import discord
 import random
@@ -8,6 +9,7 @@ from discord.ext import commands
 from datetime import datetime
 
 from utils.safe_math import NumericStringParser
+from utils.cli_logging import *
 
 
 class Utility(commands.Cog):  
@@ -55,10 +57,12 @@ class Utility(commands.Cog):
         if ctx.message.author.id == self.config.owners[0]: #replace OWNERID with your user id
             info("Shutdown")
             try:
-                await ctx.send("Attemping to shutdown...")
+                smsg = await ctx.send(content="Attemping to shutdown...")
+                process("Pulling from git")
+                os.system("git pull")
                 await self.bot.logout()
             except:
-                await ctx.send(":x: An error occured")
+                await smsg.edit(content=":x: An error occured")
                 warning("EnvironmentError")
                 self.bot.clear()
         else:
@@ -73,10 +77,12 @@ class Utility(commands.Cog):
         if ctx.message.author.id == self.config.owners[0]: #replace OWNERID with your user id
             info("Restart")
             try:
-                await ctx.send("Attemping to restart...")
+                rmsg = await ctx.send(content="Attemping to restart...")
+                process("Pulling from git")
+                os.system("git pull")
                 os.execv(sys.executable, ['python'] + sys.argv)
-            except:
-                await ctx.send(":x: An error occured")
+            except Exception as e:
+                await smsg.edit(content=f":x: An error occured\n {e}")
                 warning("Error")
         else:
             await ctx.send("You do not own this bot!")
