@@ -47,20 +47,30 @@ class Moderator(commands.Cog):
     @commands.guild_only()
     @commands.has_permissions(kick_members = True)
     async def kick(self, ctx, user: discord.Member, *, reason: str = None):
-        process("Kick Command Called")
+        process(f"Kick Command Called by {ctx.message.author.name}")
         if user.guild_permissions.administrator:
-            await ctx.send(f":x: You cannot kick an admin from the server")
+            e = discord.Embed(description=":no_entry_sign: You cannot kick an administrator", colour=0xE74C3C)
+            await ctx.send(embed=e)
         else:
             userName = str(user)
-            await ctx.guild.kick(user, reason=reason)
-            await ctx.send(f":white_check_mark: Sucessfully kicked {userName} from the server.")
+            #await ctx.guild.kick(user, reason=reason)
+            e = discord.Embed(colour=0x2ECC71)
+            e.set_author(
+                name=f"{userName} has been kicked",
+                icon_url=ctx.message.author.avatar_url
+            )
+            desc = ""
+            if not reason:
+                desc += f"**Reason**: {reason}\n"
+            desc += f"**Moderator:**{ctx.message.author.mention}"
+            e.description = desc
+            await ctx.send(embed=e)
 
                 
     @kick.error
     async def kick_error(self, error, ctx):
         #if isinstance(error, MissingPermissions):
-
-        await ctx.send(f":x: An Error occured:\n {error}")
+            await ctx.send(":no_entry_sign: I'm missing permissions to do that.\n Maybe user/role is higher than me?")
         #else:
         #    await ctx.send(":x: Something went wrong")
 
