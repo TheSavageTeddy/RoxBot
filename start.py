@@ -1,15 +1,18 @@
 import os
 import sys
+import subprocess
 from os.path import getmtime
 
 from utils.cli_logging import *
 
+
 # Parse script arguments and configuration files.
 # ...
 
-WATCHED_FILES = ["index.py", "cogs/easter.py", "cogs/events.py", "cogs/image.py", "cogs/info.py", "cogs/mod.py", "cogs/music.py", "cogs/other.py", "cogs/utility.py", "utils/cli_logging.py", "utils/data.py", "utils/safe_math.py", "utils/start_server.py", "utils/web_api.py"]
+WATCHED_FILES = ["index.py", "cogs/easter.py", "cogs/events.py", "cogs/image.py", "cogs/info.py", "cogs/mod.py", "cogs/music.py", "cogs/other.py", "cogs/utility.py", "utils/cli_logging.py", "utils/data.py", "utils/safe_math.py", "utils/start_server.py", "utils/web_api.py", 'test.txt']
 WATCHED_FILES_MTIMES = [(f, getmtime(f)) for f in WATCHED_FILES]
 
+subprocess.Popen([sys.executable, "index.py"])
 while True:
     # Wait for inputs and act on them.
     # ...

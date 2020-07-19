@@ -53,12 +53,31 @@ class Utility(commands.Cog):
     )
     async def shutdown(self,ctx):
         if ctx.message.author.id == self.config.owners[0]: #replace OWNERID with your user id
-            print("shutdown")
-        try:
-            await self.bot.logout()
-        except:
-            print("EnvironmentError")
-            self.bot.clear()
+            info("Shutdown")
+            try:
+                await ctx.send("Attemping to shutdown...")
+                await self.bot.logout()
+            except:
+                await ctx.send(":x: An error occured")
+                warning("EnvironmentError")
+                self.bot.clear()
+        else:
+            await ctx.send("You do not own this bot!")
+    
+    @commands.command(
+        name='restart',
+        description='Restarts down the bot (Owner only)',
+        aliases=[]
+    )
+    async def restart(self,ctx):
+        if ctx.message.author.id == self.config.owners[0]: #replace OWNERID with your user id
+            info("Restart")
+            try:
+                await ctx.send("Attemping to restart...")
+                os.execv(sys.executable, ['python'] + sys.argv)
+            except:
+                await ctx.send(":x: An error occured")
+                warning("Error")
         else:
             await ctx.send("You do not own this bot!")
 
