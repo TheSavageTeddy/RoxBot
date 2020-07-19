@@ -61,7 +61,7 @@ class Moderator(commands.Cog):
             )
             desc = ""
             desc += f"**Reason**: {reason}\n"
-            desc += f"**Moderator:**{ctx.message.author.mention}"
+            desc += f"**Moderator:** {ctx.message.author.mention}"
             e.description = desc
             await ctx.send(embed=e)
 
