@@ -62,7 +62,7 @@ class Utility(commands.Cog):
                 color=0x2ECC71
             )
             e.add_field(name="Usage", value=f"`?encode <encoding_type> <input>`")
-            e.add_field(name="Avaliable encoding types", value=f"`base16 base32 base64 base85 hex binary url rot13 rot 47 `")
+            e.add_field(name="Avaliable encoding types", value=f"`base16 base32 base64 base85 hex binary url rot13 rot47 `")
             e.set_footer(text="Made with ❤️ by Roxiun")
             await ctx.send(embed=e)
 
@@ -79,7 +79,7 @@ class Utility(commands.Cog):
         e.add_field(name="Input", value=f"{input}")
         e.add_field(name="Output", value=f"{result}")
 
-        await ctx.send(e)
+        await ctx.send(embed=e)
 
     @commands.command(
         name='shutdown',
