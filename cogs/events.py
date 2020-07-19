@@ -10,11 +10,12 @@ class Events(commands.Cog):
         self.bot = bot
         self.config = getJSON("config.json")
     
-    @tasks.loop(seconds=60)
+    @tasks.loop(seconds=10)
     async def check_for_change(self):
         info("Checking for New Update")
         WATCHED_FILES = ["index.py", "cogs/easter.py", "cogs/events.py", "cogs/image.py", "cogs/info.py", "cogs/mod.py", "cogs/music.py", "cogs/other.py", "cogs/utility.py", "utils/cli_logging.py", "utils/data.py", "utils/safe_math.py", "utils/start_server.py", "utils/web_api.py", 'test.txt']
         WATCHED_FILES_MTIMES = [(f, getmtime(f)) for f in WATCHED_FILES]
+        
         process("Pulling from git")
         os.system("git pull")
 
