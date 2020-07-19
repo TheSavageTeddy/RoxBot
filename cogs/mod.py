@@ -57,11 +57,10 @@ class Moderator(commands.Cog):
             e = discord.Embed(colour=0x2ECC71)
             e.set_author(
                 name=f"{userName} has been kicked",
-                icon_url=ctx.message.author.avatar_url
+                icon_url=member.avatar_url
             )
             desc = ""
-            if not reason:
-                desc += f"**Reason**: {reason}\n"
+            desc += f"**Reason**: {reason}\n"
             desc += f"**Moderator:**{ctx.message.author.mention}"
             e.description = desc
             await ctx.send(embed=e)
