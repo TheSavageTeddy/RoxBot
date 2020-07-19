@@ -12,6 +12,7 @@ from utils.safe_math import NumericStringParser
 from utils.cli_logging import *
 
 import base64
+from requests.utils import requote_uri
 
 class Utility(commands.Cog):  
     def __init__(self, bot):
@@ -129,6 +130,38 @@ class Utility(commands.Cog):
         e.set_footer(text="Made with ❤️ by Roxiun")
 
         await ctx.send(embed=e)
+
+    @encode.command(name="hex", aliases=[])
+    async def encode_hex(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        result = (input.encode('UTF-8').hex()).decode('utf-8')
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun")
+
+        await ctx.send(embed=e)  
+    
+    @encode.command(name="url", aliases=[])
+    async def encode_url(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        result = requote_uri(str(input))
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun")
+
+        await ctx.send(embed=e)  
 
     @commands.command(
         name='shutdown',
