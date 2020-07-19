@@ -18,8 +18,8 @@ class Events(commands.Cog):
     
     @loop(seconds=60.0)
     async def check_for_change(self):
-        info("Checking for New Update")
-        WATCHED_FILES = ["index.py", "cogs/easter.py", "cogs/events.py", "cogs/image.py", "cogs/info.py", "cogs/mod.py", "cogs/music.py", "cogs/other.py", "cogs/utility.py", "utils/cli_logging.py", "utils/data.py", "utils/safe_math.py", "utils/start_server.py", "utils/web_api.py", 'test.txt']
+        process("Checking for New Update")
+        WATCHED_FILES = ["index.py", "cogs/easter.py", "cogs/events.py", "cogs/image.py", "cogs/info.py", "cogs/mod.py", "cogs/music.py", "cogs/other.py", "cogs/utility.py", "utils/cli_logging.py", "utils/data.py", "utils/safe_math.py", "utils/start_server.py", "utils/web_api.py"]
         WATCHED_FILES_MTIMES = [(f, getmtime(f)) for f in WATCHED_FILES]
         
         process("Pulling from git")
@@ -34,6 +34,8 @@ class Events(commands.Cog):
                 #os.execv(__file__, sys.argv)
                 # When running the script via `python daemon.py` (e.g. Windows), use
                 os.execv(sys.executable, ['python'] + sys.argv)
+            else:
+                info("No files changes")
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
