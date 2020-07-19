@@ -67,7 +67,7 @@ class Moderator(commands.Cog):
 
                 
     @kick.error
-    async def kick_error(self, error, ctx):
+    async def kick_error(self, ctx, error):
         if isinstance(error, discord.Forbidden):
             e = discord.Embed(description=":no_entry_sign: :no_entry_sign: I'm missing permissions to do that.\n Maybe user/role is higher than me?", colour=0xE74C3C)
             await ctx.send(embed=e)
