@@ -10,7 +10,7 @@
 
 <div align="center">
 
-[![Discord][discord-badge]][discord-invite]
+[![Discord][discord-badge]][discord-invite][![Built with Love][built-with-love]][repo][![Patreon][patreon-badge]][patreon-link]
 
 </div>
 
@@ -57,3 +57,7 @@ Badges & :inks
 -->
 [discord-badge]:https://img.shields.io/discord/732561688917966880?color=7289da&label=Discord&style=for-the-badge
 [discord-invite]:https://discord.gg/abDzX98
+[patreon-badge]:https://img.shields.io/static/v1?label=patreon&message=donate&color=F96854&logo=patreon&style=for-the-badge
+[patreon-link]:https://www.patreon.com/join/roxiun
+[built-with-love]:https://forthebadge.com/images/badges/built-with-love.svg
+[repo]:https://github.com/Roxiun/RoxBot/
