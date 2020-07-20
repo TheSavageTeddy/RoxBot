@@ -11,7 +11,8 @@
 <div align="center">
     [![Discord][discord-badge]][discord-invite]
 </div>
-[![Discord][discord-badge]]
+
+[![Discord][discord-badge]][discord-invite]
 
 
 ## What is this?
