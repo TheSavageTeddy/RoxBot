@@ -9,7 +9,7 @@
 </h3>
 
 <div align="center">
-    [![Discord][discord-badge]][discord-invite]
+[![Discord][discord-badge]][discord-invite]
 </div>
 
 
