@@ -8,30 +8,35 @@
   <img alt="Made by Roxiun" src="docs/images/made-by.png">
 </h3>
 
+<div align="center">
+    <img alt="Discord" src="https://img.shields.io/discord/732561688917966880?color=7289da&label=Discord&style=for-the-badge">
+</div>
+
 
 ## What is this?
-RoxBot is an all purpose bot that seeks to be the one bot that can do anything you need. It's development is highly active with new updates being pushed out every 10-48hrs.
+**RoxBot** is an all purpose bot that seeks to be the one bot that can do anything you need. It's development is highly active with new updates being pushed out every 2-48hrs.
 
 ## Features
+* Private BedWars Server
+    * Our bot has a built-in command that starts your very own private bedwars server
 * Music Commands
     * Play Youtube Video from URL
     * Search through youtube videos from keywords
 * Image Commands
     * Fun Image commands
     * Random Memes
-    * Meme Creator
+    * Meme Generator
 * Moderation
     * Kick, Ban and Mute Members
-    * Tempmute and tempban members
-    * Prune messages
-    * Profanity Filter
+    * Tempmute and tempban members - *Upcomming*
+    * Prune messages - *Upcomming*
+    * Profanity Filter - *Upcomming*
     * Alt-Detect - Has features that allow identification of likely alt accounts
-* Private BedWars Server
-    * Our bot has a built-in command that starts your very own private minecraft server
+**Note**: Web dashboard is curently unreleased and will be released in the next 2-3wks.
 
 ## How do I add it to my server?
 * [Full Permissions](https://discord.com/oauth2/authorize?client_id=652111582662361100&scope=bot&permissions=8) (Recommended)
-* [Basic Permissions](https://discordapp.com/oauth2/authorize?client_id=652111582662361100&scope=bot&permissions=3263552) (Can Break for some commands)
+* [Minimum Permissions](https://discordapp.com/oauth2/authorize?client_id=652111582662361100&scope=bot&permissions=305524070) (Can Break for some commands)
 
 ## I found a bug/error!
 Create and [issue](https://github.com/Roxiun/RoxBot/issues) or join the [suppport server](https://discord.gg/abDzX98)
