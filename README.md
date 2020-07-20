@@ -30,3 +30,9 @@ Create and [issue](https://github.com/Roxiun/RoxBot/issues) or join the [supppor
 
 ## How to Contribute
 Submit a [Pull Request](https://github.com/Roxiun/RoxBot/pulls)
+
+## Credits
+* [TheDrone7](https://repl.it/talk/learn/Discordpy-Rewrite-Tutorial-using-commands-extension/10690) - discord.py reference
+* [Rapptz](https://github.com/Rapptz/discord.py/blob/master/examples/basic_voice.py) - Music commands mostly from here
+* [AlexFlipnote](https://github.com/AlexFlipnote/discord_bot.py) - Learnt alot from this repo
+* [VoxelPixel](https://github.com/VoxelPixel) - rot47 functions

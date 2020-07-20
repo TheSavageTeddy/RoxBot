@@ -180,6 +180,7 @@ class Utility(commands.Cog):
 
         await ctx.send(embed=e)  
     
+    #https://github.com/VoxelPixel
     @encode.command(name="rot47", aliases=['r47'])
     async def encode_rot47(self, ctx, *, input: commands.clean_content = None):
         if not input:
@@ -210,6 +211,23 @@ class Utility(commands.Cog):
         e.set_footer(text="Made with ❤️ by Roxiun")
 
         await ctx.send(embed=e) 
+
+    @commands.group(
+        name='decode',
+        description='Decode the input',
+        aliases=['decrypt']
+    )
+    async def decode(self, ctx):
+        if ctx.invoked_subcommand is None:
+            e = discord.Embed(
+                title='Decode Command',
+                description=f"Decodes the given input",
+                color=0x2ECC71
+            )
+            e.add_field(name="Usage", value=f"`?decode <decoding_type> <input>`")
+            e.add_field(name="Avaliable decoding types", value=f"`base16 base32 base64 base85 hex binary url rot13 rot47 `")
+            e.set_footer(text="Made with ❤️ by Roxiun")
+            await ctx.send(embed=e)   
 
     @commands.command(
         name='shutdown',
