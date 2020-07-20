@@ -10,6 +10,9 @@
 
 <div align="center">
     <img alt="Discord" src="https://img.shields.io/discord/732561688917966880?color=7289da&label=Discord&style=for-the-badge">
+        <div class="overlay">
+            <a target="_blank" href="https://discord.gg/abDzX98">
+        </div>
 </div>
 
 
