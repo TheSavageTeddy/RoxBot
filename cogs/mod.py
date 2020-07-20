@@ -91,7 +91,6 @@ class Moderator(commands.Cog):
             e.description = desc
             await ctx.send(embed=e)
 
-
     @kick.error
     async def kick_error(self, ctx, error):
         if isinstance(error, discord.Forbidden):

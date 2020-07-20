@@ -12,6 +12,7 @@ from utils.safe_math import NumericStringParser
 from utils.cli_logging import *
 
 import base64
+import codecs
 from requests.utils import requote_uri
 
 class Utility(commands.Cog):  
@@ -68,7 +69,7 @@ class Utility(commands.Cog):
             await ctx.send(embed=e)
 
     @encode.command(name="base64", aliases=["b64"])
-    async def base64(self, ctx, *, input: commands.clean_content = None):
+    async def encode_base64(self, ctx, *, input: commands.clean_content = None):
         if not input:
             e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
             await ctx.send(embed=e)
@@ -84,7 +85,7 @@ class Utility(commands.Cog):
         await ctx.send(embed=e)
     
     @encode.command(name="base32", aliases=["b32"])
-    async def base32(self, ctx, *, input: commands.clean_content = None):
+    async def encode_base32(self, ctx, *, input: commands.clean_content = None):
         if not input:
             e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
             await ctx.send(embed=e)
@@ -100,7 +101,7 @@ class Utility(commands.Cog):
         await ctx.send(embed=e)
     
     @encode.command(name="base16", aliases=["b16"])
-    async def base16(self, ctx, *, input: commands.clean_content = None):
+    async def encode_base16(self, ctx, *, input: commands.clean_content = None):
         if not input:
             e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
             await ctx.send(embed=e)
@@ -116,7 +117,7 @@ class Utility(commands.Cog):
         await ctx.send(embed=e)
     
     @encode.command(name="base85", aliases=["b85"])
-    async def base85(self, ctx, *, input: commands.clean_content = None):
+    async def encode_base85(self, ctx, *, input: commands.clean_content = None):
         if not input:
             e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
             await ctx.send(embed=e)
@@ -162,6 +163,53 @@ class Utility(commands.Cog):
         e.set_footer(text="Made with ❤️ by Roxiun")
 
         await ctx.send(embed=e)  
+    
+    @encode.command(name="rot13", aliases=['r13'])
+    async def encode_rot13(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        result = codecs.encode(str(input), "rot-13")
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun")
+
+        await ctx.send(embed=e)  
+    
+    @encode.command(name="rot47", aliases=['r47'])
+    async def encode_rot47(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        message = str(input)
+        key = 47
+        encryp_text = ""
+
+        for i in range(len(message)):
+            temp = ord(message[i]) + key
+            if ord(message[i]) == 32:
+                encryp_text += " "
+            elif temp > 126:
+                temp -= 94
+                encryp_text += chr(temp)
+            else:
+                encryp_text += chr(temp)
+            
+        result = encryp_text
+
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun")
+
+        await ctx.send(embed=e) 
 
     @commands.command(
         name='shutdown',
