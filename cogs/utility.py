@@ -51,6 +51,16 @@ class Utility(commands.Cog):
 
         await ctx.send(content=f"I choose `{choice}`")
 
+    @commands.command(
+        name='sendembed',
+        description='Sends an embed in the selected channel',
+        aliases=['send_embed', 'embed', 'botembed', 'bot_embed']
+    )
+    @commands.guild_only()
+    @commands.has_permissions(administrator = True)
+    async def send_embed(self, ctx, channel: discord.TextChannel = None):
+        pass
+
     @commands.group(
         name='encode',
         description='Encodes the input',

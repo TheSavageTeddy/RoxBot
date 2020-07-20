@@ -53,7 +53,7 @@ Submit a [Pull Request][pr-link]
 * [VoxelPixel](https://github.com/VoxelPixel) - rot47 functions
 
 <!--
-Badges & :inks
+Badges & links
 -->
 [discord-badge]:https://img.shields.io/discord/732561688917966880?color=7289da&label=Discord&style=for-the-badge
 [discord-invite]:https://discord.gg/abDzX98
