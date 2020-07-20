@@ -1,5 +1,13 @@
-# RoxBot
-#### Made by Roxiun
+<h1 align="center">
+  <img src="images/roxbot-logo.png" alt="RoxBot" />
+</h1>
+<h2 align="center">
+  <img alt="Open Source Discord Bot" src="images/subtitle.png">
+</h2>
+<h3 align="center">
+  <img alt="Made by Roxiun" src="images/made-by.png">
+</h3>
+
 
 ## What is this?
 RoxBot is an all purpose bot that seeks to be the one bot that can do anything you need. It's development is highly active with new updates being pushed out every 10-48hrs.
