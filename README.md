@@ -1,11 +1,11 @@
 <h1 align="center">
-  <img src="images/roxbot-logo.png" alt="RoxBot" />
+  <img src="docs/images/roxbot-logo.png" alt="RoxBot" />
 </h1>
 <h2 align="center">
-  <img alt="Open Source Discord Bot" src="images/subtitle.png">
+  <img alt="Open Source Discord Bot" src="docs/images/subtitle.png">
 </h2>
 <h3 align="center">
-  <img alt="Made by Roxiun" src="images/made-by.png">
+  <img alt="Made by Roxiun" src="docs/images/made-by.png">
 </h3>
 
 
