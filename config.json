@@ -2,8 +2,9 @@
     "token": "lmao i'm not dumb",
     "join_message": "RoxBot Sucessfully Added! 🌟",
     "bot_invite":"https://discord.com/oauth2/authorize?client_id=652111582662361100&scope=bot&permissions=8",
-    "bot_invite_basic":"https://discordapp.com/oauth2/authorize?client_id=652111582662361100&scope=bot&permissions=3263552",
+    "bot_invite_basic":"https://discordapp.com/oauth2/authorize?client_id=652111582662361100&scope=bot&permissions=305524070",
     "server_invite":"https://discord.gg/abDzX98",
+    "donate_link":"https://www.patreon.com/join/roxiun",
     "owners": [
         352308837794971648
     ],
