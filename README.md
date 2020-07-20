@@ -9,10 +9,7 @@
 </h3>
 
 <div align="center">
-    <img alt="Discord" src="https://img.shields.io/discord/732561688917966880?color=7289da&label=Discord&style=for-the-badge">
-        <div class="overlay">
-            <a target="_blank" href="https://discord.gg/abDzX98">
-        </div>
+    [![Discord][discord-badge]][discord-invite]
 </div>
 
 
@@ -52,3 +49,9 @@ Submit a [Pull Request](https://github.com/Roxiun/RoxBot/pulls)
 * [Rapptz](https://github.com/Rapptz/discord.py/blob/master/examples/basic_voice.py) - Music commands mostly from here
 * [AlexFlipnote](https://github.com/AlexFlipnote/discord_bot.py) - Learnt alot from this repo
 * [VoxelPixel](https://github.com/VoxelPixel) - rot47 functions
+
+<!--
+Badges & :inks
+-->
+[discord-badge]:https://img.shields.io/discord/732561688917966880?color=7289da&label=Discord&style=for-the-badge
+[discord-invite]:https://discord.gg/abDzX98
