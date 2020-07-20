@@ -9,8 +9,9 @@
 </h3>
 
 <div align="center">
-[![Discord][discord-badge]][discord-invite]
+    [![Discord][discord-badge]][discord-invite]
 </div>
+[![Discord][discord-badge]][discord-invite]
 
 
 ## What is this?
