@@ -229,6 +229,18 @@ class Utility(commands.Cog):
             e.set_footer(text="Made with ❤️ by Roxiun")
             await ctx.send(embed=e)   
 
+    @commands.command(name="prune", aliases=[])
+    async def prune(self, ctx, user: discord.Member = None):
+        if not user:
+            e = discord.Embed(description=":no_entry_sign: Comming Soon", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(description=":no_entry_sign: Comming Soon", colour=0xE74C3C)
+        e.set_footer(text="Made with ❤️ by Roxiun")
+
+        await ctx.send(embed=e)  
+
     @commands.command(
         name='shutdown',
         description='Shuts down the bot (Owner only)',
