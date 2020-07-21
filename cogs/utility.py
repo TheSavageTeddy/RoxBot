@@ -158,7 +158,7 @@ class Utility(commands.Cog):
                 await ctx.send(embed=e)
                 return
 
-        color_list = [c.lower() for c in self.colors.values()]
+        #color_list = [c.lower() for c in self.colors.values()]
 
         e = discord.Embed(description="What would you colour to be?", colour=0x2ECC71)
         e.set_footer(text="Send `None` for the default colour")
