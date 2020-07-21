@@ -92,7 +92,7 @@ class Utility(commands.Cog):
         
         channel_to_send = self.bot.get_channel(channelID)
 
-        await channel.send('testing embed send')
+        await channel_to_send.send('testing embed send')
 
     @commands.group(
         name='encode',
