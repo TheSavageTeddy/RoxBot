@@ -209,9 +209,11 @@ class Utility(commands.Cog):
     )
     @commands.guild_only()
     @commands.has_permissions(administrator = True)
-    async def edit_embed(self, ctx, message: discord.Message = None):
-        print(message.content)
-        #print(message.content)
+    async def edit_embed(self, ctx, channel: discord.TextChannel = None, message: discord.Message = None):
+        channel = self.bot.get_channel(channel.id)
+        message = await channel.fetch_message(message.id)
+
+        await message.edit(content="test edit")
 
 
 
