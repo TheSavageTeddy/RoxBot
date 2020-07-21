@@ -90,7 +90,7 @@ class Utility(commands.Cog):
                 e = discord.Embed(description=":no_entry_sign: Something went wrong with the channel you specified", colour=0xE74C3C)
                 await ctx.send(embed=e)
         
-        channel_to_send = client.get_channel(channelID)
+        channel_to_send = self.bot.get_channel(channelID)
 
         await channel.send('testing embed send')
 
