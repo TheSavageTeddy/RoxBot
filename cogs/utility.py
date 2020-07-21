@@ -201,6 +201,20 @@ class Utility(commands.Cog):
 
         await channel_to_send.send(embed=embed)
 
+
+    @commands.command(
+        name='editembed',
+        description='Edits the embed in the selected channel',
+        aliases=['edit_embed', 'embededit', 'embed_edit', 'edit']
+    )
+    @commands.guild_only()
+    @commands.has_permissions(administrator = True)
+    async def edit_embed(self, ctx, message: discord.Message = None):
+        print(message.content)
+        #print(message.content)
+
+
+
     @commands.group(
         name='encode',
         description='Encodes the input',
