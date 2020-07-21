@@ -45,12 +45,11 @@ class Moderator(commands.Cog):
         aliases=['userinfo', 'user', 'user_info']
     )
     @commands.guild_only()
-    async def whois(self, ctx, user = None):
+    async def whois(self, ctx, user: discord.Member = None):
         if not user:
             e = discord.Embed(description=":no_entry_sign: You must specify a user", colour=0xE74C3C)
             await ctx.send(embed=e)
             return
-        user: discord.Member = user
 
         e = discord.Embed(title=f"{user}", colour=0x2ECC71)
     
