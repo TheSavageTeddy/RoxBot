@@ -80,6 +80,8 @@ class Utility(commands.Cog):
         prefix_used = ctx.prefix
         alias_used = ctx.invoked_with
         choice = random.choice(msg[len(prefix_used) + len(alias_used):].split())
+        choice = choice.replace("@", "")
+        choice = choice.replace("`", "")
 
         await ctx.send(content=f"I choose `{choice}`")
 
@@ -107,6 +109,8 @@ class Utility(commands.Cog):
             else:
                 try:
                     channelVar = int(str(msg.content).replace("<#", "").replace(">", ""))
+                    print(msg.content)
+                    print(channelVar)
                 except:
                     try:
                         channelID = int(msg.content)
