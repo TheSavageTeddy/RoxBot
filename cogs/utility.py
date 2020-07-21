@@ -73,7 +73,26 @@ class Utility(commands.Cog):
                 e = discord.Embed(description=":no_entry_sign: You did not reply in time!", colour=0xE74C3C)
                 await ctx.send(embed=e)
             else:
-                print(msg.content)
+                try:
+                    channelVar = msg.content
+                    channelVar: discord.TextChannel
+                    channelID = channelVar.id
+                except:
+                    try:
+                        channelID = int(msg.content)
+                    except:
+                        e = discord.Embed(description=":no_entry_sign: Something went wrong with the channel you specified", colour=0xE74C3C)
+                        await ctx.send(embed=e)
+        else:
+            try:
+                channelID = channel.id
+            except:
+                e = discord.Embed(description=":no_entry_sign: Something went wrong with the channel you specified", colour=0xE74C3C)
+                await ctx.send(embed=e)
+        
+        channel_to_send = client.get_channel(channelID)
+
+        await channel.send('testing embed send')
 
     @commands.group(
         name='encode',
