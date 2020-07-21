@@ -108,9 +108,8 @@ class Utility(commands.Cog):
                 return
             else:
                 try:
-                    channelID = int(str(msg.content).replace("<#", "").replace(">", ""))
+                    channelID = int((((str(msg.content)).replace("<", "")).replace("#", "")).replace(">", ""))
                     print(msg.content)
-                    print(channelVar)
                 except:
                     try:
                         channelID = int(msg.content)
