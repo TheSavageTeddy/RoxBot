@@ -187,7 +187,7 @@ class Utility(commands.Cog):
                 try:
                     embedColour = self.colors[str(userInput).upper()]
                 except KeyError:
-                    e = discord.Embed(description=":no_entry_sign: Something went wrong with the channel you specified", colour=0xE74C3C)
+                    e = discord.Embed(description=":no_entry_sign: Something went wrong with the colour you specified", colour=0xE74C3C)
                     await ctx.send(embed=e)
                     return
 
