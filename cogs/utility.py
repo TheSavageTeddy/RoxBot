@@ -59,7 +59,20 @@ class Utility(commands.Cog):
     @commands.guild_only()
     @commands.has_permissions(administrator = True)
     async def send_embed(self, ctx, channel: discord.TextChannel = None):
-        pass
+        def echeck(ms):
+            return ms.channel == ctx.message.channel and ms.author == ctx.message.author
+
+        if not channel:
+            e = discord.Embed(description="What channel would you like send the embed in?", colour=0x2ECC71)
+            await ctx.send(embed=e)
+
+            try:
+                msg = await self.bot.wait_for('message', timeout=60.0, check=check)
+            except asyncio.TimeoutError:
+                e = discord.Embed(description=":no_entry_sign: You did not reply in time!", colour=0xE74C3C)
+                await ctx.send(embed=e)
+            else:
+                print(msg.content)
 
     @commands.group(
         name='encode',
