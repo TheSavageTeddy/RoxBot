@@ -50,7 +50,7 @@ class Moderator(commands.Cog):
             e = discord.Embed(description=":no_entry_sign: You must specify a user", colour=0xE74C3C)
             await ctx.send(embed=e)
             return
-        user: discord.Member
+        user: discord.Member = user
 
         e = discord.Embed(title=f"{user}", colour=0x2ECC71)
     
