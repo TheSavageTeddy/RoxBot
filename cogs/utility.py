@@ -68,7 +68,7 @@ class Utility(commands.Cog):
             await ctx.send(embed=e)
 
             try:
-                msg = await self.bot.wait_for('message', timeout=60.0, check=check)
+                msg = await self.bot.wait_for('message', timeout=60.0, check=echeck)
             except asyncio.TimeoutError:
                 e = discord.Embed(description=":no_entry_sign: You did not reply in time!", colour=0xE74C3C)
                 await ctx.send(embed=e)
