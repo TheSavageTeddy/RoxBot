@@ -20,6 +20,37 @@ class Utility(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.config = getJSON("config.json")
+
+        self.colors = {
+            'DEFAULT': 0x000000,
+            'WHITE': 0xFFFFFF,
+            'AQUA': 0x1ABC9C,
+            'GREEN': 0x2ECC71,
+            'BLUE': 0x3498DB,
+            'PURPLE': 0x9B59B6,
+            'LUMINOUS VIVID PINK': 0xE91E63,
+            'GOLD': 0xF1C40F,
+            'ORANGE': 0xE67E22,
+            'RED': 0xE74C3C,
+            'GREY': 0x95A5A6,
+            'NAVY': 0x34495E,
+            'DARK AQUA': 0x11806A,
+            'DARK GREEN': 0x1F8B4C,
+            'DARK BLUE': 0x206694,
+            'DARK PURPLE': 0x71368A,
+            'DARK VIVID PINK': 0xAD1457,
+            'DARK GOLD': 0xC27C0E,
+            'DARK ORANGE': 0xA84300,
+            'DARK RED': 0x992D22,
+            'DARK GREY': 0x979C9F,
+            'DARKER GREY': 0x7F8C8D,
+            'LIGHT GREY': 0xBCC0C0,
+            'DARK NAVY': 0x2C3E50,
+            'BLURPLE': 0x7289DA,
+            'GREYPLE': 0x99AAB5,
+            'DARK BUT NOT BLACK': 0x2C2F33,
+            'NOT QUITE BLACK': 0x23272A
+        }
     
     @commands.command(
         name='math',
@@ -72,6 +103,7 @@ class Utility(commands.Cog):
             except asyncio.TimeoutError:
                 e = discord.Embed(description=":no_entry_sign: You did not reply in time!", colour=0xE74C3C)
                 await ctx.send(embed=e)
+                return
             else:
                 try:
                     channelVar = int(str(msg.content).replace("<#", "").replace(">", ""))
@@ -81,16 +113,84 @@ class Utility(commands.Cog):
                     except:
                         e = discord.Embed(description=":no_entry_sign: Something went wrong with the channel you specified", colour=0xE74C3C)
                         await ctx.send(embed=e)
+                        return
         else:
             try:
                 channelID = channel.id
             except:
                 e = discord.Embed(description=":no_entry_sign: Something went wrong with the channel you specified", colour=0xE74C3C)
                 await ctx.send(embed=e)
+                return
         
         channel_to_send = self.bot.get_channel(channelID)
 
-        await channel_to_send.send('testing embed send')
+        e = discord.Embed(description="What would you like the title to be?", colour=0x2ECC71)
+        await ctx.send(embed=e)
+
+        try:
+            msg = await self.bot.wait_for('message', timeout=60.0, check=echeck)
+        except asyncio.TimeoutError:
+            e = discord.Embed(description=":no_entry_sign: You did not reply in time!", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+        else:
+            try:
+                embedTitle = str(msg.content)
+            except:
+                e = discord.Embed(description=":no_entry_sign: Something went wrong with the channel you specified", colour=0xE74C3C)
+                await ctx.send(embed=e)
+                return
+
+        e = discord.Embed(description="What would you like the description to be?", colour=0x2ECC71)
+        await ctx.send(embed=e)
+
+        try:
+            msg = await self.bot.wait_for('message', timeout=60.0, check=echeck)
+        except asyncio.TimeoutError:
+            e = discord.Embed(description=":no_entry_sign: You did not reply in time!", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+        else:
+            try:
+                embedDescription = str(msg.content)
+            except:
+                e = discord.Embed(description=":no_entry_sign: Something went wrong with the channel you specified", colour=0xE74C3C)
+                await ctx.send(embed=e)
+                return
+
+        color_list = [c.lower() for c in colors.values()]
+
+        e = discord.Embed(description="What would you colour to be?", colour=0x2ECC71)
+        e.set_footer(text="Send `None` for the default colour")
+        await ctx.send(embed=e)
+
+        try:
+            msg = await self.bot.wait_for('message', timeout=60.0, check=echeck)
+        except asyncio.TimeoutError:
+            e = discord.Embed(description=":no_entry_sign: You did not reply in time!", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+        else:
+            userInput =  str(msg.content)
+            if userInput.lower() == "none":
+                embedColour = self.colors["DEFAULT"]
+            else:
+                try:
+                    embedColour = self.colors[str(userInput).upper()]
+                except KeyError:
+                    e = discord.Embed(description=":no_entry_sign: Something went wrong with the channel you specified", colour=0xE74C3C)
+                    await ctx.send(embed=e)
+                    return
+
+        embed = discord.Embed(
+            title=embedTitle,
+            description=embedDescription,
+            color=embedColour
+        )
+
+        embed.set_footer(text=f"Sent by {ctx.message.author.name}")
+
+        await channel_to_send.send(embed=embed)
 
     @commands.group(
         name='encode',
