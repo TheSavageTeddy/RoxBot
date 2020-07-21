@@ -51,12 +51,14 @@ class Moderator(commands.Cog):
             await ctx.send(embed=e)
             return
 
+        userObject = self.get_user(user.id)
+
         e = discord.Embed(title=f"{user}", colour=0x2ECC71)
     
         e.add_field(name="Discord Tag", value=f"{str(user)}")
         e.add_field(name="Nickname", value=user.nick if hasattr(user, "nick") else "None")
         e.add_field(name="User ID", value=user.id)
-        e.add_field(name="Is Bot?", value=user.id)
+        e.add_field(name="Is Bot?", value=str(userObject.bot))
         e.add_field(name="Account Created", value=user.created_at.strftime("%d %B %Y, %H:%M"))
         e.add_field(name="Server Join Data", value=user.joined_at.strftime("%d %B %Y, %H:%M"))
         e.set_thumbnail(url=user.avatar_url)
