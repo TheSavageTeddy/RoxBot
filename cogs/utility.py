@@ -188,7 +188,7 @@ class Utility(commands.Cog):
             color=embedColour
         )
 
-        embed.set_footer(text=f"Sent by {ctx.message.author.name}")
+        embed.set_footer(text=f"Sent by {ctx.message.author.mention}")
 
         await channel_to_send.send(embed=embed)
 
