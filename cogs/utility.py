@@ -108,7 +108,7 @@ class Utility(commands.Cog):
                 return
             else:
                 try:
-                    channelVar = int(str(msg.content).replace("<#", "").replace(">", ""))
+                    channelID = int(str(msg.content).replace("<#", "").replace(">", ""))
                     print(msg.content)
                     print(channelVar)
                 except:
@@ -127,6 +127,13 @@ class Utility(commands.Cog):
                 return
         
         channel_to_send = self.bot.get_channel(channelID)
+
+        if not channel_to_send:
+            e = discord.Embed(description=":no_entry_sign: That channel does not exists", colour=0xE74C3C)
+            e.set_footer(text="(Or I don't have permissions to view it)")
+            await ctx.send(embed=e)
+            return
+
 
         e = discord.Embed(description="What would you like the title to be?", colour=0x2ECC71)
         await ctx.send(embed=e)
@@ -162,7 +169,6 @@ class Utility(commands.Cog):
                 await ctx.send(embed=e)
                 return
 
-        #color_list = [c.lower() for c in self.colors.values()]
 
         e = discord.Embed(description="What would you colour to be?", colour=0x2ECC71)
         e.set_footer(text="Send `None` for the default colour")
