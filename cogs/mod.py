@@ -45,17 +45,19 @@ class Moderator(commands.Cog):
         aliases=['userinfo', 'user', 'user_info']
     )
     @commands.guild_only()
-    async def whois(self, ctx, user: discord.Member = None):
+    async def whois(self, ctx, user = None):
         if not user:
             e = discord.Embed(description=":no_entry_sign: You must specify a user", colour=0xE74C3C)
             await ctx.send(embed=e)
             return
+        user: discord.Member
 
         e = discord.Embed(title=f"{user}", colour=0x2ECC71)
     
         e.add_field(name="Discord Tag", value=f"{str(user)}")
         e.add_field(name="Nickname", value=user.nick if hasattr(user, "nick") else "None")
         e.add_field(name="User ID", value=user.id)
+        e.add_field(name="Is Bot?", value=user.id)
         e.add_field(name="Account Created", value=user.created_at.strftime("%d %B %Y, %H:%M"))
         e.add_field(name="Server Join Data", value=user.joined_at.strftime("%d %B %Y, %H:%M"))
         e.set_thumbnail(url=user.avatar_url)
