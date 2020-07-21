@@ -210,6 +210,9 @@ class Utility(commands.Cog):
     @commands.guild_only()
     @commands.has_permissions(administrator = True)
     async def edit_embed(self, ctx, channel: discord.TextChannel = None, message: int = None):
+        def echeck(ms):
+            return ms.channel == ctx.message.channel and ms.author == ctx.message.author
+
         if not channel or not message:
             if not channel:
                 e = discord.Embed(description="What channel is the embed in?", colour=0x2ECC71)
