@@ -74,9 +74,7 @@ class Utility(commands.Cog):
                 await ctx.send(embed=e)
             else:
                 try:
-                    channelVar = msg.content
-                    channelVar: discord.TextChannel
-                    channelID = channelVar.id
+                    channelVar = int(str(msg.content).replace("<#", "").replace(">", ""))
                 except:
                     try:
                         channelID = int(msg.content)
