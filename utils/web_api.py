@@ -36,18 +36,17 @@ class ImageAPI:
 
         all_submissions = r.subreddit(subreddit)
         posts = []
-
-        info(f"Searching {subreddit} (Amount:{str(amount)})")
+ 
 
         if not amount:
             amount=20
-            for submission in r.subreddit(subreddit).hot(limit=amount):
-                if submission and not submission.stickied:
-                    posts.append(submission)
-        else:
-            for submission in r.subreddit(subreddit).hot(limit=amount):
-                if submission and not submission.stickied:
-                    posts.append(submission)
+        
+        info(f"Searching {subreddit} (Amount:{str(amount)})")
+        
+        for submission in r.subreddit(subreddit).hot(limit=amount):
+            if submission and not submission.stickied:
+                posts.append(submission)
+
         
         post = posts[random.randint(1, amount)-1]
         while post.over_18:
