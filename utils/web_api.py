@@ -39,7 +39,7 @@ class ImageAPI:
  
 
         if not amount:
-            amount=20
+            amount=50
         
         info(f"Searching {subreddit} (Amount:{str(amount)})")
         
