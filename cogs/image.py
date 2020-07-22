@@ -213,7 +213,7 @@ class Image(commands.Cog):
         e = discord.Embed(colour=0x2ECC71)
         e.set_image(url=image)
         e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
-    '''
+        '''
 
     @commands.command(
         name='meme',
@@ -221,9 +221,9 @@ class Image(commands.Cog):
         aliases=['memes','randomeme']
     )
     async def meme(self, ctx, subreddit: str = None, *, amount: int = None):
-        async with ctx.typing():
-            if not subreddit:
-                if not amount:
+        if not subreddit:
+            if not amount:
+                async with ctx.typing():
                     meme = self.API_Handler.getMeme("dankmemes")
                     e = discord.Embed(colour=0x2ECC71)
                     e.title = f"{meme['title']}"
@@ -231,7 +231,8 @@ class Image(commands.Cog):
                     e.set_footer(text=f"👍 {meme['upvotes']} | Made with ❤️ by Roxiun")
                     await ctx.send(embed=e)
                     return
-                elif amount:
+            elif amount:
+                async with ctx.typing():
                     meme = self.API_Handler.getMeme("dankmemes", amount)
                     e = discord.Embed(colour=0x2ECC71)
                     e.title = f"{meme['title']}"
@@ -239,8 +240,9 @@ class Image(commands.Cog):
                     e.set_footer(text=f"👍 {meme['upvotes']} | Made with ❤️ by Roxiun")
                     await ctx.send(embed=e)
                     return
-            elif subreddit:
-                if amount:
+        elif subreddit:
+            if amount:
+                async with ctx.typing():
                     meme = self.API_Handler.getMeme(subreddit, amount)
                     e = discord.Embed(colour=0x2ECC71)
                     e.title = f"{meme['title']}"
@@ -248,7 +250,8 @@ class Image(commands.Cog):
                     e.set_footer(text=f"👍 {meme['upvotes']} | Made with ❤️ by Roxiun")
                     await ctx.send(embed=e)
                     return
-                else:
+            else:
+                async with ctx.typing():
                     meme = self.API_Handler.getMeme(subreddit)
                     e = discord.Embed(colour=0x2ECC71)
                     e.title = f"{meme['title']}"
