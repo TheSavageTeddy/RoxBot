@@ -223,23 +223,23 @@ class Image(commands.Cog):
     async def meme(self, ctx, subreddit: str = None, *, amount: int = None):
         if not subreddit:
             if not amount:
-                meme = getMeme("dankmemes")
+                meme = self.API_Handler.getMeme("dankmemes")
                 e = discord.Embed(colour=0x2ECC71)
                 e.title = f"{meme['title']}"
                 return
             elif amount:
-                meme = getMeme("dankmemes", amount)
+                meme = self.API_Handler.getMeme("dankmemes", amount)
                 e = discord.Embed(colour=0x2ECC71)
                 e.title = f"{meme['title']}"
                 return
         elif subreddit:
             if amount:
-                meme = getMeme(subreddit, amount)
+                meme = self.API_Handler.getMeme(subreddit, amount)
                 e = discord.Embed(colour=0x2ECC71)
                 e.title = f"{meme['title']}"
                 return
             else:
-                meme = getMeme(subreddit)
+                meme = self.API_Handler.getMeme(subreddit)
                 e = discord.Embed(colour=0x2ECC71)
                 e.title = f"{meme['title']}"
                 return
