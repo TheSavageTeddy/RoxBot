@@ -51,7 +51,7 @@ class Moderator(commands.Cog):
             await ctx.send(embed=e)
             return
 
-        userObject = self.get_user(user.id)
+        #userObject = self.get_user(user.id)
 
         e = discord.Embed(title=f"{user}", colour=0x2ECC71)
     
