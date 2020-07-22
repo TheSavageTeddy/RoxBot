@@ -51,6 +51,10 @@ class Moderator(commands.Cog):
             await ctx.send(embed=e)
             return
 
+        show_roles = ', '.join(
+            [f"<@&{x.id}>" for x in sorted(user.roles, key=lambda x: x.position, reverse=True) if x.id != ctx.guild.default_role.id]
+        ) if len(user.roles) > 1 else 'None'
+
         userObject = self.bot.get_user(user.id)
 
         e = discord.Embed(title=f"{user}", colour=0x2ECC71)
@@ -63,6 +67,12 @@ class Moderator(commands.Cog):
         e.add_field(name="Is Bot?", value=str(userObject.bot))
         e.set_thumbnail(url=user.avatar_url)
         e.set_footer(text="Made with ❤️ by Roxiun")
+
+        e.add_field(
+            name="Roles",
+            value=show_roles,
+            inline=False
+        )
 
         await ctx.send(embed=e)
 
