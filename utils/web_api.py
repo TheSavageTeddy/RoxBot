@@ -4,10 +4,17 @@ import json
 
 import urllib3
 import requests
+import praw
+import random
+
+from dotenv import load_dotenv
 
 class ImageAPI:
     def __init__(self):
-        pass
+        load_dotenv()
+        self.client_id = os.getenv("client_id")
+        self.client_secret = os.getenv("client_secret")
+        self.user_agent = "RoxBot PRAW API"
 
     def getImgflip(self, memeCode, textInput):
         params={
@@ -21,12 +28,30 @@ class ImageAPI:
         dictResp = resp.json()
         return dictResp["data"]["url"]
     
-    def getPrequelMeme(self):
-        params={
-            "sort":"top",
-            "t":"week"
-        }
+    def getMeme(self, subreddit, amount: int = None):
+        r = praw.Reddit(client_id=self.client_id,
+                client_secret=self.client_secret,
+                user_agent=self.user_agent)
 
-        resp = requests.get(url="https://www.reddit.com/r/PrequelMemes.json", params=params)
-        dictResp = resp.json()
-        return dictResp["data"]["children"][random.randint(1, 100)]["data"]["preview"]["images"][0]["source"]["url"]
+        all_submissions = r.subreddit(subreddit)
+        posts = []
+
+        if not amount:
+            amount=20
+            for submission in r.subreddit(subreddit).hot(limit=amount):
+                if submission and not submission.stickied:
+                    posts.append(submission)
+        else:
+            for submission in r.subreddit(subreddit).hot(limit=amount):
+                if submission and not submission.stickied:
+                    posts.append(submission)
+        
+        post = posts[random.randint(1, amount)-1]
+        while post.over_18:
+            post = posts[random.randint(1, amount)-1]
+        return {"title":post.title, "url":post.url, "upvotes":post.score}
+        
+
+if __name__ == "__main__":
+    a=ImageAPI()
+    print(a.getPrequelMeme())

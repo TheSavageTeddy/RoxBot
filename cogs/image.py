@@ -215,5 +215,37 @@ class Image(commands.Cog):
         e.set_footer(text="Made with ❤️ by Roxiun & Imgflip")
     '''
 
+    @commands.command(
+        name='meme',
+        description='Sends a random meme',
+        aliases=[]
+    )
+    async def meme(self, ctx, subreddit: str = None, *, amount: int = None):
+        if not subreddit:
+            if not amount:
+                meme = getMeme("dankmemes")
+                e = discord.Embed(colour=0x2ECC71)
+                e.title = f"{meme['title']}"
+                return
+            elif amount:
+                meme = getMeme("dankmemes", amount)
+                e = discord.Embed(colour=0x2ECC71)
+                e.title = f"{meme['title']}"
+                return
+        elif subreddit:
+            if amount:
+                meme = getMeme(subreddit, amount)
+                e = discord.Embed(colour=0x2ECC71)
+                e.title = f"{meme['title']}"
+                return
+            else:
+                meme = getMeme(subreddit)
+                e = discord.Embed(colour=0x2ECC71)
+                e.title = f"{meme['title']}"
+                return
+
+        e = discord.Embed(description=":no_entry_sign: Something went wrong", colour=0xE74C3C)
+        await ctx.send(embed=e)
+
 def setup(bot):
     bot.add_cog(Image(bot))
