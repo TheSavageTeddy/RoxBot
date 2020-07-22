@@ -8,6 +8,7 @@ import praw
 import random
 
 from dotenv import load_dotenv
+from utils.cli_logging import *
 
 class ImageAPI:
     def __init__(self):
@@ -36,6 +37,8 @@ class ImageAPI:
         all_submissions = r.subreddit(subreddit)
         posts = []
 
+        info(f"Searching {subreddit} (Amount:{str(amount)})")
+
         if not amount:
             amount=20
             for submission in r.subreddit(subreddit).hot(limit=amount):
@@ -48,6 +51,7 @@ class ImageAPI:
         
         post = posts[random.randint(1, amount)-1]
         while post.over_18:
+            warning("Post rated nsfw")
             post = posts[random.randint(1, amount)-1]
         return {"title":post.title, "url":post.url, "upvotes":post.score}
         
