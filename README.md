@@ -26,7 +26,7 @@
     * Search through youtube videos from keywords
 * Image Commands
     * Fun Image commands
-    * Random Memes
+    * Random Memes from any subreddit
     * Meme Generator
 * Moderation
     * Kick, Ban and Mute Members
