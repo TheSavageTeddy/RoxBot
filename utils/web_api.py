@@ -20,3 +20,13 @@ class ImageAPI:
         resp = requests.get(url="https://api.imgflip.com/caption_image", params=params)
         dictResp = resp.json()
         return dictResp["data"]["url"]
+    
+    def getPrequelMeme(self):
+        params={
+            "sort":"top",
+            "t":"week"
+        }
+
+        resp = requests.get(url="https://www.reddit.com/r/PrequelMemes.json", params=params)
+        dictResp = resp.json()
+        return dictResp["data"]["children"][random.randint(1, 100)]["data"]["preview"]["images"][0]["source"]["url"]
