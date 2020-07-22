@@ -227,7 +227,7 @@ class Image(commands.Cog):
                     meme = self.API_Handler.getMeme("dankmemes")
                     e = discord.Embed(colour=0x2ECC71)
                     e.title = f"{meme['title']}"
-                    e.set_image(url=meme['image'])
+                    e.set_image(url=meme['url'])
                     e.set_footer(text=f"👍 {meme['upvotes']} | Made with ❤️ by Roxiun")
                     await ctx.send(embed=e)
                     return
@@ -235,7 +235,7 @@ class Image(commands.Cog):
                     meme = self.API_Handler.getMeme("dankmemes", amount)
                     e = discord.Embed(colour=0x2ECC71)
                     e.title = f"{meme['title']}"
-                    e.set_image(url=meme['image'])
+                    e.set_image(url=meme['url'])
                     e.set_footer(text=f"👍 {meme['upvotes']} | Made with ❤️ by Roxiun")
                     await ctx.send(embed=e)
                     return
@@ -244,7 +244,7 @@ class Image(commands.Cog):
                     meme = self.API_Handler.getMeme(subreddit, amount)
                     e = discord.Embed(colour=0x2ECC71)
                     e.title = f"{meme['title']}"
-                    e.set_image(url=meme['image'])
+                    e.set_image(url=meme['url'])
                     e.set_footer(text=f"👍 {meme['upvotes']} | Made with ❤️ by Roxiun")
                     await ctx.send(embed=e)
                     return
@@ -252,7 +252,7 @@ class Image(commands.Cog):
                     meme = self.API_Handler.getMeme(subreddit)
                     e = discord.Embed(colour=0x2ECC71)
                     e.title = f"{meme['title']}"
-                    e.set_image(url=meme['image'])
+                    e.set_image(url=meme['url'])
                     e.set_footer(text=f"👍 {meme['upvotes']} | Made with ❤️ by Roxiun")
                     await ctx.send(embed=e)
                     return
