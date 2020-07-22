@@ -218,7 +218,7 @@ class Image(commands.Cog):
     @commands.command(
         name='meme',
         description='Sends a random meme',
-        aliases=[]
+        aliases=['memes','randomeme']
     )
     async def meme(self, ctx, subreddit: str = None, *, amount: int = None):
         async with ctx.typing():
