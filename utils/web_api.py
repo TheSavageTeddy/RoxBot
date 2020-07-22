@@ -43,7 +43,7 @@ class ImageAPI:
         
         info(f"Searching {subreddit} (Amount:{str(amount)})")
         
-        for submission in r.subreddit(subreddit).hot(limit=amount):
+        for submission in r.subreddit(subreddit).top('month', limit=amount):
             if submission and not submission.stickied:
                 posts.append(submission)
 
