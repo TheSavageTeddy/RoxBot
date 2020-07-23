@@ -96,5 +96,21 @@ class Utility(commands.Cog):
 
         await ctx.send(content=f"`{choice}`")
 
+
+    @commands.command(
+        name='say',
+        description='Repeats back message!',
+        aliases=['repeat', 'talk','respond','send'],
+    )
+    async def math_command(self, ctx):
+        msg = ctx.message.content
+
+        prefix_used = ctx.prefix
+        alias_used = ctx.invoked_with
+        
+        replaced=msg.replace("@", "@​") #adds zero width space after @ to prevent pings
+
+        await ctx.send(content=f"`{replaced}`")
+
 def setup(bot):
     bot.add_cog(Utility(bot))
