@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="docs/images/roxbot-logo.png" alt="RoxBot" />
+  <img src="docs/images/banner_grey.png" alt="RoxBot" />
 </h1>
 <h2 align="center">
   <img alt="Open Source Discord Bot" src="docs/images/subtitle.png">
