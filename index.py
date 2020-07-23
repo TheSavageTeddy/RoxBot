@@ -13,7 +13,7 @@ from utils.cli_logging import *
 
 #https://gist.github.com/Modelmat/ff2dc0953bf0f399fdd2083b74b4755d
 def get_prefix(bot, message):
-    with open('prefixes.json', 'r') as f:
+    with open('db/prefixes.json', 'r') as f:
         prefixesJSON = json.load(f)
 
     if str(message.guild.id) in prefixesJSON:
