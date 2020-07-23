@@ -585,7 +585,7 @@ class Utility(commands.Cog):
             await ctx.send(embed=e)
             return
         
-        e = discord.Embed(title=f"{str(user)}", colour=0x2ECC71)
+        e = discord.Embed(title=f"{str(member)}", colour=0x2ECC71)
         e.set_image(url=member.avatar_url)
 
         await ctx.send(embed=e)
