@@ -580,7 +580,7 @@ class Utility(commands.Cog):
         aliases=['pfp', 'profilepicture']
     )
     async def avatar(self, ctx, member: discord.Member = None):
-        if not user:
+        if not member:
             e = discord.Embed(description=":no_entry_sign: You must specify a user", colour=0xE74C3C)
             await ctx.send(embed=e)
             return
