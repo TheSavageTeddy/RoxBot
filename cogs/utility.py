@@ -574,5 +574,22 @@ class Utility(commands.Cog):
         else:
             await ctx.send("You do not have testing permissions!")
 
+    @commands.command(
+        name='avatar',
+        description='Gets the profile picture of user',
+        aliases=['pfp', 'profilepicture']
+    )
+    async def avatar(self, ctx, member: discord.Member = None):
+        if not user:
+            e = discord.Embed(description=":no_entry_sign: You must specify a user", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+        
+        e = discord.Embed(title=f"{str(user)}", colour=0x2ECC71)
+        e.set_image(url=member.avatar_url)
+
+        await ctx.send(embed=e)
+
+
 def setup(bot):
     bot.add_cog(Utility(bot))
