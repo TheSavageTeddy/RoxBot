@@ -29,10 +29,12 @@ class ImageAPI:
         dictResp = resp.json()
         return dictResp["data"]["url"]
     
-    def getMeme(self, subreddit, amount: int = None):
+    def getMeme(self, subreddit, amount: int = None, time: str = None):
         r = praw.Reddit(client_id=self.client_id,
                 client_secret=self.client_secret,
                 user_agent=self.user_agent)
+
+        subreddit = subreddit.replace("r/", "")
 
         all_submissions = r.subreddit(subreddit)
         posts = []
@@ -40,10 +42,12 @@ class ImageAPI:
 
         if not amount:
             amount=50
+        if not time:
+            time = 'month'
         
         info(f"Searching {subreddit} (Amount:{str(amount)})")
         
-        for submission in r.subreddit(subreddit).top('month', limit=amount):
+        for submission in r.subreddit(subreddit).top(time, limit=amount):
             if submission and not submission.stickied:
                 posts.append(submission)
 

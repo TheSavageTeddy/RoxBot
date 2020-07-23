@@ -218,9 +218,15 @@ class Image(commands.Cog):
     @commands.command(
         name='meme',
         description='Sends a random meme',
-        aliases=['memes','randomeme']
+        aliases=['memes','randomeme', 'subreddit']
     )
-    async def meme(self, ctx, subreddit: str = None, *, amount: int = None):
+    async def meme(self, ctx, subreddit: str = None, amount: int = None, time: str = None):
+        if not time:
+            time = 'month'
+        possibletime = ['day','week','month','year']
+        time = time.replace("ly", "")
+        if not time in possibletime:
+            return
         if not subreddit:
             if not amount:
                 async with ctx.typing():
@@ -233,7 +239,7 @@ class Image(commands.Cog):
                     return
             elif amount:
                 async with ctx.typing():
-                    meme = self.API_Handler.getMeme("dankmemes", amount)
+                    meme = self.API_Handler.getMeme("dankmemes", amount, time)
                     e = discord.Embed(colour=0x2ECC71)
                     e.title = f"{meme['title']}"
                     e.set_image(url=meme['url'])
@@ -243,7 +249,7 @@ class Image(commands.Cog):
         elif subreddit:
             if amount:
                 async with ctx.typing():
-                    meme = self.API_Handler.getMeme(subreddit, amount)
+                    meme = self.API_Handler.getMeme(subreddit, amount, time)
                     e = discord.Embed(colour=0x2ECC71)
                     e.title = f"{meme['title']}"
                     e.set_image(url=meme['url'])
@@ -252,7 +258,8 @@ class Image(commands.Cog):
                     return
             else:
                 async with ctx.typing():
-                    meme = self.API_Handler.getMeme(subreddit)
+                    amount = 50
+                    meme = self.API_Handler.getMeme(subreddit, amount, time)
                     e = discord.Embed(colour=0x2ECC71)
                     e.title = f"{meme['title']}"
                     e.set_image(url=meme['url'])
