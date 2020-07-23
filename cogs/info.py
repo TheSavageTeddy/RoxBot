@@ -25,12 +25,12 @@ class Info(commands.Cog):
                 title='RoxBot Commands',
                 color=0x2ECC71
             )
-            help_embed.add_field(name="Moderation", value="`?help moderator`")
-            help_embed.add_field(name="Images", value="`?help image`")
-            help_embed.add_field(name="Utility", value="`?help utility`")
-            help_embed.add_field(name="Info", value="`?help info`")
-            help_embed.add_field(name="Music", value="`?help music`")
-            help_embed.add_field(name="Other", value="`?help other`")
+            help_embed.add_field(name="Moderation", value=f"`{ctx.prefix}help moderator`")
+            help_embed.add_field(name="Images", value=f"`{ctx.prefix}hhelp image`")
+            help_embed.add_field(name="Utility", value=f"`{ctx.prefix}hhelp utility`")
+            help_embed.add_field(name="Info", value=f"`{ctx.prefix}hhelp info`")
+            help_embed.add_field(name="Music", value=f"`{ctx.prefix}hhelp music`")
+            help_embed.add_field(name="Other", value=f"`{ctx.prefix}hhelp other`")
         else:
             cogA = cog.lower()
             emojiCategory = {"Moderator":":tools:", "Image":":camera:", "Utility":":tools:","Info":":question:","Other":"", "Music":":musical_note:"}
