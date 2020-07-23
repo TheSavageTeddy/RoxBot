@@ -31,7 +31,7 @@ def get_prefix(bot, message):
 config = getJSON("config.json")
 
 bot = commands.Bot(
-    command_prefix=config.prefix,
+    command_prefix=get_prefix,
     prefix=config.prefix,
     owner_id=config.owners,
     case_insensitive=True
