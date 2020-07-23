@@ -26,11 +26,11 @@ class Info(commands.Cog):
                 color=0x2ECC71
             )
             help_embed.add_field(name="Moderation", value=f"`{ctx.prefix}help moderator`")
-            help_embed.add_field(name="Images", value=f"`{ctx.prefix}hhelp image`")
-            help_embed.add_field(name="Utility", value=f"`{ctx.prefix}hhelp utility`")
-            help_embed.add_field(name="Info", value=f"`{ctx.prefix}hhelp info`")
-            help_embed.add_field(name="Music", value=f"`{ctx.prefix}hhelp music`")
-            help_embed.add_field(name="Other", value=f"`{ctx.prefix}hhelp other`")
+            help_embed.add_field(name="Images", value=f"`{ctx.prefix}help image`")
+            help_embed.add_field(name="Utility", value=f"`{ctx.prefix}help utility`")
+            help_embed.add_field(name="Info", value=f"`{ctx.prefix}help info`")
+            help_embed.add_field(name="Music", value=f"`{ctx.prefix}help music`")
+            help_embed.add_field(name="Other", value=f"`{ctx.prefix}help other`")
         else:
             cogA = cog.lower()
             emojiCategory = {"Moderator":":tools:", "Image":":camera:", "Utility":":tools:","Info":":question:","Other":"", "Music":":musical_note:"}
@@ -66,7 +66,7 @@ class Info(commands.Cog):
             elif cogA in all_commandsName:
                 command = all_commandsData[all_commandsName.index(cogA)]
                 help_embed = discord.Embed(
-                    title=f'Information about ?{command.name}',
+                    title=f'Information about {ctx.prefix}{command.name}',
                     color=0x2ECC71
                 )
                 help_embed.add_field(name="**Description**\n", value=f"{command.description}\n", inline=False)
