@@ -25,7 +25,7 @@ class Info(commands.Cog):
                 title='RoxBot Commands',
                 color=0x2ECC71
             )
-            help_embed.add_field(name="Moderation", value="`?help moderation`")
+            help_embed.add_field(name="Moderation", value="`?help moderator`")
             help_embed.add_field(name="Images", value="`?help image`")
             help_embed.add_field(name="Utility", value="`?help utility`")
             help_embed.add_field(name="Info", value="`?help info`")
