@@ -61,6 +61,24 @@ class Utility(commands.Cog):
             self.bot.clear()
         else:
             await ctx.send("You do not own this bot!")
+    
+    @commands.command(
+        name='8ball',
+        description='Ask the 8ball something!',
+        aliases=['ball8', '8b', 'b8'],
+    )
+    async def math_command(self, ctx):
+        msg = ctx.message.content
+
+        prefix_used = ctx.prefix
+        alias_used = ctx.invoked_with
+        responses = ["YES!", "yeah", "why not", "definetly", 
+                    "idk", "maybe", "not sure", "don't ask me", "error: try again"
+                    ,"NO", "bad idea", "nah", "why would you"]
+
+        choice = random.choice(responses)
+
+        await ctx.send(content=f"`{choice}`")
 
 def setup(bot):
     bot.add_cog(Utility(bot))
