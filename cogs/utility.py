@@ -55,7 +55,7 @@ class Utility(commands.Cog):
     @commands.command(
         name='math',
         description='Evaluates the maths equations',
-        aliases=['maths', 'calc', 'calculat', 'add', 'addition', 'multiply', 'calculate'],
+        aliases=['maths', 'calc', 'calculat', 'add', 'addition', 'multiply', 'calculate','eval','evaluate'],
     )
     async def math_command(self, ctx):
         msg = ctx.message.content
@@ -523,7 +523,7 @@ class Utility(commands.Cog):
     @commands.command(
         name='shutdown',
         description='Shuts down the bot (Owner only)',
-        aliases=['sd']
+        aliases=['sd','stop','poweroff']
     )
     async def shutdown(self,ctx):
         if ctx.message.author.id == self.config.owners[0]: #replace OWNERID with your user id
@@ -589,6 +589,38 @@ class Utility(commands.Cog):
         e.set_image(url=member.avatar_url)
 
         await ctx.send(embed=e)
+
+
+
+    @commands.command(
+        name='8ball',
+        description='Ask the 8ball something!',
+        aliases=['eightball']
+    )
+    async def 8ball(self,ctx):
+        responses = ["YES!", "yeah", "why not", "definetly", 
+            "idk", "maybe", "not sure", "don't ask me", "error: try again"
+            ,"NO", "bad idea", "nah", "why would you"]
+        choice = random.choice(choices)
+        await ctx.send(content="{choice}")
+
+
+
+    @commands.command(
+        name='topic',
+        description='Chooses a random topic you can talk about!',
+        aliases=['topics','question','questions'],
+    )
+    async def topic(self, ctx):
+        msg = ctx.message.content
+
+        prefix_used = ctx.prefix
+        alias_used = ctx.invoked_with
+        topics = ["What is your hobby?", "Do you play any musical instruments?","What do you do in your free time?","What would you do if you suddenly got $10 000?", "Do you like school?","What school subject is your favourite?","Do you like this bot? :D", "How has your day been?","What do you use discord for?","Do you play any computer games?","How many topics do you think this bot has?","What do you do during holidays?","What countries have you visited?","What is your favourite food?","What is your favourite drink?","Do you have any pets?","How much sleep do you get?","What would you do if you got stranded on a desert island with food and water?", "Do you prefer pen or pencil?","Do you prefer typing on computer or writing it down on paper?", "Dogs or cats?", "How do you plan to spent the rest of your day?","What is your favourite animal?","What would you do if you won the lottery?","What would you do if unicorns existed?","Do you believe in flat earth?","Do you believe in global warming?","What do you think is the biggest problem in society?","What did you have for breakfast?","What is the most dangerous thing you have done?","What is the most fun thing you have done?","Hot or cold water?", "What is your favourite season?","What would you do if there was an earthquake?","Have you ever experienced a natural disaster?","Describe your perfect holiday","Describe your perfect house",""]
+
+        choice = random.choice(topics)
+
+        await ctx.send(content=f"{choice}")
 
 
 def setup(bot):
