@@ -602,7 +602,7 @@ class Utility(commands.Cog):
             "idk", "maybe", "not sure", "don't ask me", "error: try again"
             ,"NO", "bad idea", "nah", "why would you"]
         choice = random.choice(choices)
-        e = discord.Embed(description=f"{choice}", colour=0x2ECC71)
+        e = discord.Embed(description=f"{choices}", colour=0x2ECC71)
         await ctx.send(embed=e)
 def setup(bot):
     bot.add_cog(Utility(bot))
