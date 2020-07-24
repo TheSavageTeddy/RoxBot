@@ -34,7 +34,7 @@ class Info(commands.Cog):
         else:
             cogA = cog.lower()
             emojiCategory = {"Moderator":":tools:", "Image":":camera:", "Utility":":tools:","Info":":question:","Other":"", "Music":":musical_note:"}
-            categoryAlias = {}
+            categoryAlias = {"mod":"moderator","moderation":"moderator","moderate":"moderator","util":"utility","utils":"utility","utilities":"utility"}
             
             cogs = [c for c in self.bot.cogs.keys()]
 

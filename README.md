@@ -34,6 +34,7 @@
     * Prune messages - *Upcomming*
     * Profanity Filter - *Upcomming*
     * Alt-Detect - Has features that allow identification of likely alt accounts
+
 **Note**: Web dashboard is curently unreleased and will be released in the next 2-3wks.
 
 ## How do I add it to my server?
