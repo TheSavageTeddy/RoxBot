@@ -523,7 +523,7 @@ class Utility(commands.Cog):
     @commands.command(
         name='shutdown',
         description='Shuts down the bot (Owner only)',
-        aliases=['sd','stop','poweroff']
+        aliases=['sd','poweroff']
     )
     async def shutdown(self,ctx):
         if ctx.message.author.id == self.config.owners[0]: #replace OWNERID with your user id
