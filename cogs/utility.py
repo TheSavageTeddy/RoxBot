@@ -597,11 +597,12 @@ class Utility(commands.Cog):
         description='Ask the 8ball something!',
         aliases=['eightball']
     )
-    async def 8ball(self,ctx):
+    async def eight_ball(self,ctx):
         responses = ["YES!", "yeah", "why not", "definetly", 
             "idk", "maybe", "not sure", "don't ask me", "error: try again"
             ,"NO", "bad idea", "nah", "why would you"]
         choice = random.choice(choices)
-        await ctx.send(content=choice)
+        e = discord.Embed(description=f"{choice}", colour=0x2ECC71)
+        await ctx.send(embed=e)
 def setup(bot):
     bot.add_cog(Utility(bot))
