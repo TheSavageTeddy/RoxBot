@@ -1,3 +1,4 @@
+# imports
 import os
 import sys
 import time
@@ -15,6 +16,7 @@ from utils.cli_logging import *
 import base64
 import codecs
 from requests.utils import requote_uri
+from urllib.parse import unquote
 
 class Utility(commands.Cog):  
     def __init__(self, bot):
@@ -51,11 +53,11 @@ class Utility(commands.Cog):
             'DARK BUT NOT BLACK': 0x2C2F33,
             'NOT QUITE BLACK': 0x23272A
         }
-    
+# math
     @commands.command(
         name='math',
         description='Evaluates the maths equations',
-        aliases=['maths', 'calc', 'calculat', 'add', 'addition', 'multiply', 'calculate','eval','evaluate'],
+        aliases=['maths', 'calc', 'calculat', 'add', 'addition', 'multiply', 'calculate'],
     )
     async def math_command(self, ctx):
         msg = ctx.message.content
@@ -74,6 +76,9 @@ class Utility(commands.Cog):
         description='Makes a random choice',
         aliases=['choice', 'chooser']
     )
+
+
+# choose
     async def choose(self, ctx):
         msg = ctx.message.content
 
@@ -85,6 +90,7 @@ class Utility(commands.Cog):
 
         await ctx.send(content=f"I choose `{choice}`")
 
+# sendembed
     @commands.command(
         name='sendembed',
         description='Sends an embed in the selected channel',
@@ -201,7 +207,7 @@ class Utility(commands.Cog):
 
         await channel_to_send.send(embed=embed)
 
-
+# editembed
     @commands.command(
         name='editembed',
         description='Edits the embed in the selected channel',
@@ -328,8 +334,7 @@ class Utility(commands.Cog):
 
         await message.edit(embed=embed, content=None)
 
-
-
+# encode
     @commands.group(
         name='encode',
         description='Encodes the input',
@@ -344,7 +349,7 @@ class Utility(commands.Cog):
             )
             e.add_field(name="Usage", value=f"`?encode <encoding_type> <input>`")
             e.add_field(name="Avaliable encoding types", value=f"`base16 base32 base64 base85 hex binary url rot13 rot47 `")
-            e.set_footer(text="Made with ❤️ by Roxiun")
+            e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
             await ctx.send(embed=e)
 
     @encode.command(name="base64", aliases=["b64"])
@@ -359,7 +364,7 @@ class Utility(commands.Cog):
         result = base64.b64encode(input.encode('UTF-8')).decode('utf-8')
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
-        e.set_footer(text="Made with ❤️ by Roxiun")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
 
         await ctx.send(embed=e)
     
@@ -375,7 +380,7 @@ class Utility(commands.Cog):
         result = base64.b32encode(input.encode('UTF-8')).decode('utf-8')
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
-        e.set_footer(text="Made with ❤️ by Roxiun")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
 
         await ctx.send(embed=e)
     
@@ -391,7 +396,7 @@ class Utility(commands.Cog):
         result = base64.b16encode(input.encode('UTF-8')).decode('utf-8')
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
-        e.set_footer(text="Made with ❤️ by Roxiun")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
 
         await ctx.send(embed=e)
     
@@ -407,7 +412,7 @@ class Utility(commands.Cog):
         result = base64.b85encode(input.encode('UTF-8')).decode('utf-8')
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
-        e.set_footer(text="Made with ❤️ by Roxiun")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
 
         await ctx.send(embed=e)
 
@@ -423,7 +428,7 @@ class Utility(commands.Cog):
         result = (input.encode('UTF-8').hex()).decode('utf-8')
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
-        e.set_footer(text="Made with ❤️ by Roxiun")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
 
         await ctx.send(embed=e)  
     
@@ -439,7 +444,7 @@ class Utility(commands.Cog):
         result = requote_uri(str(input))
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
-        e.set_footer(text="Made with ❤️ by Roxiun")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
 
         await ctx.send(embed=e)  
     
@@ -455,7 +460,7 @@ class Utility(commands.Cog):
         result = codecs.encode(str(input), "rot-13")
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
-        e.set_footer(text="Made with ❤️ by Roxiun")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
 
         await ctx.send(embed=e)  
     
@@ -487,14 +492,15 @@ class Utility(commands.Cog):
 
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
-        e.set_footer(text="Made with ❤️ by Roxiun")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
 
         await ctx.send(embed=e) 
 
+# decode
     @commands.group(
         name='decode',
         description='Decode the input',
-        aliases=['decrypt']
+        aliases=['decrypt',]
     )
     async def decode(self, ctx):
         if ctx.invoked_subcommand is None:
@@ -505,9 +511,162 @@ class Utility(commands.Cog):
             )
             e.add_field(name="Usage", value=f"`?decode <decoding_type> <input>`")
             e.add_field(name="Avaliable decoding types", value=f"`base16 base32 base64 base85 hex binary url rot13 rot47 `")
-            e.set_footer(text="Made with ❤️ by Roxiun")
+            e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
             await ctx.send(embed=e)   
 
+    @decode.command(name="base64", aliases=["b64"])
+    async def decode_base64(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        result = base64.b64decode(input.encode('UTF-8')).decode('utf-8')
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
+
+        await ctx.send(embed=e)
+    
+    @decode.command(name="base32", aliases=["b32"])
+    async def decode_base32(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        result = base64.b32decode(input.encode('UTF-8')).decode('utf-8')
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
+
+        await ctx.send(embed=e)
+    
+    @decode.command(name="base16", aliases=["b16"])
+    async def decode_base16(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        result = base64.b16decode(input.encode('UTF-8')).decode('utf-8')
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
+
+        await ctx.send(embed=e)
+    
+    @decode.command(name="base85", aliases=["b85"])
+    async def decode_base85(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        result = base64.b85decode(input.encode('UTF-8')).decode('utf-8')
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
+
+        await ctx.send(embed=e)
+
+    @decode.command(name="hex", aliases=[])
+    async def decode_hex(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        result = ((input.decode('hex').encode('UTF-8').decode('utf-8')))
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
+
+        await ctx.send(embed=e)  
+    
+    @decode.command(name="url", aliases=[])
+    async def decode_url(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        result = unquote(str(input))
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
+
+        await ctx.send(embed=e)  
+    
+    @decode.command(name="rot13", aliases=['r13'])
+    async def decode_rot13(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        result = codecs.decode(str(input), "rot-13")
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
+
+        await ctx.send(embed=e)  
+    
+    #https://github.com/VoxelPixel
+    @decode.command(name="rot47", aliases=['r47'])
+    async def decode_rot47(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+
+
+        message = str(input)
+        key = 47
+        decryp_text = ""
+
+        for i in range(len(message)):
+            temp = ord(message[i]) - key
+            if ord(message[i]) == 32:
+                decryp_text += " "
+            elif temp < 32:
+                temp += 94
+                decryp_text += chr(temp)
+            else:
+                decryp_text += chr(temp)
+
+
+        result=decryp_text
+
+
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
+
+        await ctx.send(embed=e) 
+
+
+        
+
+    
+# prune
     @commands.command(name="prune", aliases=[])
     async def prune(self, ctx, user: discord.Member = None):
         if not user:
@@ -516,14 +675,15 @@ class Utility(commands.Cog):
             return
 
         e = discord.Embed(description=":no_entry_sign: Comming Soon", colour=0xE74C3C)
-        e.set_footer(text="Made with ❤️ by Roxiun")
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
 
         await ctx.send(embed=e)  
 
+# shutdown
     @commands.command(
         name='shutdown',
         description='Shuts down the bot (Owner only)',
-        aliases=['sd','poweroff']
+        aliases=['sd']
     )
     async def shutdown(self,ctx):
         if ctx.message.author.id == self.config.owners[0]: #replace OWNERID with your user id
@@ -539,7 +699,8 @@ class Utility(commands.Cog):
                 self.bot.clear()
         else:
             await ctx.send("You do not own this bot!")
-    
+
+# restart
     @commands.command(
         name='restart',
         description='Restarts down the bot (Owner only)',
@@ -559,6 +720,7 @@ class Utility(commands.Cog):
         else:
             await ctx.send("You do not own this bot!")
 
+# test
     @commands.command(
         name='test',
         description='Testing command(Owner only)',
@@ -574,6 +736,7 @@ class Utility(commands.Cog):
         else:
             await ctx.send("You do not have testing permissions!")
 
+# avatar
     @commands.command(
         name='avatar',
         description='Gets the profile picture of user',
@@ -590,19 +753,20 @@ class Utility(commands.Cog):
 
         await ctx.send(embed=e)
 
-
-
+# 8ball
     @commands.command(
         name='8ball',
         description='Ask the 8ball something!',
         aliases=['eightball']
     )
     async def eight_ball(self,ctx):
-        responses = ["YES!", "yeah", "why not", "definetly", 
+        responses = ["YES!", "yeah", "why not", "definetly", "OF COURSE","YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"
             "idk", "maybe", "not sure", "don't ask me", "error: try again"
-            ,"NO", "bad idea", "nah", "why would you"]
+            ,"NO", "bad idea", "nah", "why would you","DEFINiTLY NOT","NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"]
         choice = random.choice(responses)
         e = discord.Embed(description=f"{choice}", colour=0x2ECC71)
+        e.set_footer(text="Made with ❤️ by Roxiun and TheSavageTeddy")
         await ctx.send(embed=e)
+
 def setup(bot):
     bot.add_cog(Utility(bot))
