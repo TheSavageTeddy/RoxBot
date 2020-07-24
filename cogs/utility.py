@@ -55,7 +55,7 @@ class Utility(commands.Cog):
     @commands.command(
         name='math',
         description='Evaluates the maths equations',
-        aliases=['maths', 'calc', 'calculat', 'add', 'addition', 'multiply', 'calculate'],
+        aliases=['maths', 'calc', 'calculat', 'add', 'addition', 'multiply', 'calculate','eval','evaluate'],
     )
     async def math_command(self, ctx):
         msg = ctx.message.content
@@ -523,7 +523,7 @@ class Utility(commands.Cog):
     @commands.command(
         name='shutdown',
         description='Shuts down the bot (Owner only)',
-        aliases=['sd']
+        aliases=['sd','stop','poweroff']
     )
     async def shutdown(self,ctx):
         if ctx.message.author.id == self.config.owners[0]: #replace OWNERID with your user id
@@ -591,5 +591,17 @@ class Utility(commands.Cog):
         await ctx.send(embed=e)
 
 
+
+    @commands.command(
+        name='8ball',
+        description='Ask the 8ball something!',
+        aliases=['eightball']
+    )
+    async def 8ball(self,ctx):
+        responses = ["YES!", "yeah", "why not", "definetly", 
+            "idk", "maybe", "not sure", "don't ask me", "error: try again"
+            ,"NO", "bad idea", "nah", "why would you"]
+        choice = random.choice(choices)
+        await ctx.send(content=choice)
 def setup(bot):
     bot.add_cog(Utility(bot))
