@@ -117,7 +117,8 @@ class Moderator(commands.Cog):
             await ctx.send(embed=e)
         else:
             userName = str(user)
-            await user.ban(reason=f"{reason}- {ctx.message.author.name}")
+            m = ctx.guild.get_member(member)
+            await ctx.guild.ban(discord.Object(id=user), reason=f"{reason} - {ctx.message.author.name}")
             e = discord.Embed(colour=0x2ECC71)
             e.set_author(
                 name=f"{userName} has been banned",
