@@ -619,8 +619,8 @@ class Utility(commands.Cog):
         e.add_field(name="Output", value=f"`{result}`")
         e.set_footer(text="Made with ❤️ by Roxiun")
 
-    @encode.command(name="rot47", aliases=['r47'])
-    async def encode_rot47(self, ctx, *, input: commands.clean_content = None):
+    @decode.command(name="rot47", aliases=['r47'])
+    async def decode_rot47(self, ctx, *, input: commands.clean_content = None):
         if not input:
             e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
             await ctx.send(embed=e)
