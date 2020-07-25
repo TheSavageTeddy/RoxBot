@@ -98,12 +98,13 @@ class Info(commands.Cog):
         aliases=['botinvite', 'addbot']
     )
     async def botinvite(self, ctx):
+        description = ""
         invite_embed = discord.Embed(
             title='Invite me to your Server!',
             color=0x2ECC71
         )
-        invite_embed.add_field(name=f"[Full Permissions]({self.config.bot_invite})", value="")
-        invite_embed.add_field(name=f"[Basic Permissions]({self.config.bot_invite_basic})", value="")
+        invite_embed.add_field(name=f"[Full Permissions]({self.config.bot_invite})", value=description + "\n\u200b")
+        invite_embed.add_field(name=f"[Basic Permissions]({self.config.bot_invite_basic})", value=description + "\n\u200b")
         invite_embed.set_footer(text="Made with ❤️ by Roxiun")
         await ctx.send(embed=invite_embed)
     
