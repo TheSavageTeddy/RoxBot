@@ -118,7 +118,7 @@ class Moderator(commands.Cog):
         else:
             userName = str(user)
             m = ctx.guild.get_member(user)
-            await ctx.guild.ban(user.id, reason=f"{reason} - {ctx.message.author.name}")
+            await ctx.guild.ban(user, reason=f"{reason} - {ctx.message.author.name}")
             e = discord.Embed(colour=0x2ECC71)
             e.set_author(
                 name=f"{userName} has been banned",
