@@ -494,6 +494,22 @@ class Utility(commands.Cog):
 
         await ctx.send(embed=e) 
 
+    @encode.command(name="binary", aliases=['bin'])
+    async def encode_binary(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        result = ''.join(format(ord(c), '08b') for c in str(input))
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun")
+
+        await ctx.send(embed=e)
+
     @commands.group(
         name='decode',
         description='Decode the input',
