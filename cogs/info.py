@@ -103,7 +103,7 @@ class Info(commands.Cog):
             color=0x2ECC71
         )
         invite_embed.add_field(name=f"[Full Permissions]({self.config.bot_invite})")
-        invite_embed.add_field(name=f"[Basic Permissions]({self.config.bot_invite_basic}})")
+        invite_embed.add_field(name=f"[Basic Permissions]({self.config.bot_invite_basic})")
         invite_embed.set_footer(text="Made with ❤️ by Roxiun")
         await ctx.send(embed=invite_embed)
     
