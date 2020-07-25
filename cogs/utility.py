@@ -15,6 +15,7 @@ from utils.cli_logging import *
 import base64
 import codecs
 from requests.utils import requote_uri
+from urllib.parse import unquote
 
 class Utility(commands.Cog):  
     def __init__(self, bot):
@@ -329,7 +330,6 @@ class Utility(commands.Cog):
         await message.edit(embed=embed, content=None)
 
 
-
     @commands.group(
         name='encode',
         description='Encodes the input',
@@ -540,6 +540,8 @@ class Utility(commands.Cog):
         else:
             await ctx.send("You do not own this bot!")
     
+
+
     @commands.command(
         name='restart',
         description='Restarts down the bot (Owner only)',
