@@ -76,7 +76,6 @@ class Moderator(commands.Cog):
 
         await ctx.send(embed=e)
 
-
     @commands.command(
         name='kick',
         description='Kicks a member from the server',

@@ -54,6 +54,9 @@ class Utility(commands.Cog):
             'NOT QUITE BLACK': 0x23272A
         }
     
+    def decode_binary_string(self, s):
+        return ''.join(chr(int(s[i*8:i*8+8],2)) for i in range(len(s)//8))
+
     @commands.command(
         name='math',
         description='Evaluates the maths equations',
@@ -202,7 +205,6 @@ class Utility(commands.Cog):
         embed.set_footer(text=f"Sent by {ctx.message.author.name}")
 
         await channel_to_send.send(embed=embed)
-
 
     @commands.command(
         name='editembed',
@@ -650,6 +652,19 @@ class Utility(commands.Cog):
 
         await ctx.send(embed=e) 
 
+    @decode.command(name="binary", aliases=['bin'])
+    async def decode_binary(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        result = decode_binary_string(str(input))
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun")
 
     @commands.command(name="prune", aliases=[])
     async def prune(self, ctx, user: discord.Member = None):
