@@ -661,8 +661,7 @@ class Utility(commands.Cog):
 
         e = discord.Embed(title="Result", colour=0x2ECC71)
     
-        result = self.decode_binary_string(str(input).replace(" ", ""))
-        print(f"res: {result}")
+        result = self.decode_binary_string(str(input).replace(" ", "")).decode('utf-8')
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
         e.set_footer(text="Made with ❤️ by Roxiun")
