@@ -782,5 +782,109 @@ class Utility(commands.Cog):
         choice = random.choice(responses)
         e = discord.Embed(description=f"{choice}", colour=0x2ECC71)
         await ctx.send(embed=e)
+
+
+    @commands.command(
+        name='coinflip',
+        description='Flip a coin! Has chance to land on heads or tails. Or even b24gaXRzIHNpZGUh',
+        aliases=['cf', 'coin_flip','coin','flipacoin','flipcoin','flip_coin']
+    )
+    async def coinflip(self,ctx):
+        coinflip = ["The coin landed on `heads!`","The coin landed on `tails!`"]
+        if int(random.randint(0,100)) == int(69):
+            result="THE COIN LANDED ON ITS SIDE OMG WTF?!?!?!"
+        else:
+            result = random.choice(coinflip)
+        e = discord.Embed(description=f"{result}", colour=0x2ECC71)
+        await ctx.send(embed=e)
+
+
+
+    @commands.command(
+        name='dice',
+        description='Roll a die/dice with numbers 1-6 on them!',
+        aliases=['rolldie', 'rolldice']
+    )
+    async def dice(self,ctx):
+        outcomes = [
+'''
+```
+ __________
+|          |
+|          |
+|     •    |
+|          |
+|__________|
+
+You rolled a 1!
+```
+''',
+'''
+```
+ __________
+|          |
+|       •  |
+|          |
+|  •       |
+|__________|
+
+You rolled a 2!
+```
+''',
+'''
+```
+ __________
+|          |
+|        • |
+|     •    |
+|  •       |
+|__________|
+
+You rolled a 3!
+```
+''',
+'''
+```
+ __________
+|          |
+|  •    •  |
+|          |
+|  •    •  |
+|__________|
+
+You rolled a 4!
+```
+''',
+'''
+```
+ __________
+|          |
+|  •    •  |
+|     •    |
+|  •    •  |
+|__________|
+
+You rolled a 5!
+```
+''',
+'''
+```
+ __________
+|          |
+|  •    •  |
+|  •    •  |
+|  •    •  |
+|__________|
+
+You rolled a 6!
+```
+'''
+]
+
+        result=random.choice(outcomes)
+        e = discord.Embed(description=f"{result}", colour=0x2ECC71)
+        e.set_footer(text="Command and ASCII art made by TheSavageTeddy!")
+        await ctx.send(embed=e)
+
 def setup(bot):
     bot.add_cog(Utility(bot))
