@@ -619,6 +619,37 @@ class Utility(commands.Cog):
         e.add_field(name="Output", value=f"`{result}`")
         e.set_footer(text="Made with ❤️ by Roxiun")
 
+    @encode.command(name="rot47", aliases=['r47'])
+    async def encode_rot47(self, ctx, *, input: commands.clean_content = None):
+        if not input:
+            e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        e = discord.Embed(title="Result", colour=0x2ECC71)
+    
+        message = str(input)
+        key = 47
+        encryp_text = ""
+
+        for i in range(len(message)):
+            temp = ord(message[i]) - key
+            if ord(message[i]) == 32:
+                decryp_text += " "
+            elif temp < 32:
+                temp += 94
+                decryp_text += chr(temp)
+            else:
+                decryp_text += chr(temp)
+            
+        result = decryp_text
+
+        e.add_field(name="Input", value=f"`{input}`")
+        e.add_field(name="Output", value=f"`{result}`")
+        e.set_footer(text="Made with ❤️ by Roxiun")
+
+        await ctx.send(embed=e) 
+
 
     @commands.command(name="prune", aliases=[])
     async def prune(self, ctx, user: discord.Member = None):
