@@ -4,7 +4,7 @@ import requests
 import time
 
 def start_server():
-	minecraft_server = subprocess.Popen(["java", "-Xmx3G", "-jar", "spigot-1.8.8.jar"], cwd="/home/ronan/Server/BedWarsObly") #java -Dfile.encoding=UTF-8 -Xmx3G -jar 
+	minecraft_server = subprocess.Popen(["java", "-Xmx3G", "-jar", "spigot-1.8.8.jar"], cwd="/home/ronan/Server/BedWarsOnly") #java -Dfile.encoding=UTF-8 -Xmx3G -jar 
 	ngrok = subprocess.Popen(["./ngrok", "tcp", "-region", "au", "25565"], cwd="/home/ronan/")
 	return {"Minecraft":minecraft_server.pid, "ngrok":ngrok.pid}
 
