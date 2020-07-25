@@ -637,6 +637,8 @@ class Utility(commands.Cog):
         e.add_field(name="Output", value=f"`{result}`")
         e.set_footer(text="Made with ❤️ by Roxiun")
 
+        await ctx.send(embed=e)
+
     @decode.command(name="rot47", aliases=['r47'])
     async def decode_rot47(self, ctx, *, input: commands.clean_content = None):
         if not input:
