@@ -42,17 +42,17 @@
 * [Minimum Permissions](https://discordapp.com/oauth2/authorize?client_id=652111582662361100&scope=bot&permissions=305524070) (Can Break for some commands)
 
 ## I found a bug/error!
-Create and [issue](https://github.com/Roxiun/RoxBot/issues) or join the [suppport server](https://discord.gg/abDzX98)
+Create and [issue][issue-link] or join the [suppport server][server-link]
 
 ## How to Contribute
 Submit a [Pull Request][pr-link]
 
 ## Credits
 * [TheSavageTeddy][tst] - Breaking the bot countless times and making the pfp
-* [TheDrone7](https://repl.it/talk/learn/Discordpy-Rewrite-Tutorial-using-commands-extension/10690) - discord.py reference
-* [Rapptz](https://github.com/Rapptz/discord.py/blob/master/examples/basic_voice.py) - Music commands mostly from here
-* [AlexFlipnote](https://github.com/AlexFlipnote/discord_bot.py) - Learnt alot from this repo
-* [VoxelPixel](https://github.com/VoxelPixel) - rot47 functions
+* [TheDrone7][repl-tutorial] - discord.py reference
+* [Rapptz][rapptz] - Music commands mostly from here
+* [AlexFlipnote][alexflipnote] - Learnt alot from this repo
+* [VoxelPixel][voxelpixel] - rot47 functions
 
 <!--
 Badges & links
@@ -64,5 +64,15 @@ Badges & links
 [built-with-love]:https://madewithlove.now.sh/au?heart=true&template=for-the-badge
 [pr-badge]:https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGlkPSJzdmcyIiB3aWR0aD0iNjQ1IiBoZWlnaHQ9IjU4NSIgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPiA8ZyBpZD0ibGF5ZXIxIj4gIDxwYXRoIGlkPSJwYXRoMjQxNyIgZD0ibTI5Ny4zIDU1MC44N2MtMTMuNzc1LTE1LjQzNi00OC4xNzEtNDUuNTMtNzYuNDM1LTY2Ljg3NC04My43NDQtNjMuMjQyLTk1LjE0Mi03Mi4zOTQtMTI5LjE0LTEwMy43LTYyLjY4NS01Ny43Mi04OS4zMDYtMTE1LjcxLTg5LjIxNC0xOTQuMzQgMC4wNDQ1MTItMzguMzg0IDIuNjYwOC01My4xNzIgMTMuNDEtNzUuNzk3IDE4LjIzNy0zOC4zODYgNDUuMS02Ni45MDkgNzkuNDQ1LTg0LjM1NSAyNC4zMjUtMTIuMzU2IDM2LjMyMy0xNy44NDUgNzYuOTQ0LTE4LjA3IDQyLjQ5My0wLjIzNDgzIDUxLjQzOSA0LjcxOTcgNzYuNDM1IDE4LjQ1MiAzMC40MjUgMTYuNzE0IDYxLjc0IDUyLjQzNiA2OC4yMTMgNzcuODExbDMuOTk4MSAxNS42NzIgOS44NTk2LTIxLjU4NWM1NS43MTYtMTIxLjk3IDIzMy42LTEyMC4xNSAyOTUuNSAzLjAzMTYgMTkuNjM4IDM5LjA3NiAyMS43OTQgMTIyLjUxIDQuMzgwMSAxNjkuNTEtMjIuNzE1IDYxLjMwOS02NS4zOCAxMDguMDUtMTY0LjAxIDE3OS42OC02NC42ODEgNDYuOTc0LTEzNy44OCAxMTguMDUtMTQyLjk4IDEyOC4wMy01LjkxNTUgMTEuNTg4LTAuMjgyMTYgMS44MTU5LTI2LjQwOC0yNy40NjF6IiBmaWxsPSIjZGQ1MDRmIi8%2BIDwvZz48L3N2Zz4%3D
 [pr-link]:https://github.com/Roxiun/RoxBot/pulls
+[issue-link]:https://github.com/Roxiun/RoxBot/issues
 [repo]:https://github.com/Roxiun/RoxBot/
+[server-invite]:https://discord.gg/abDzX98
+
+<!--
+Credits
+-->
+[repl-tutorial]:https://repl.it/talk/learn/Discordpy-Rewrite-Tutorial-using-commands-extension/10690)
+[alexflipnote]:https://github.com/AlexFlipnote/discord_bot.py
+[rapptz]:https://github.com/Rapptz/discord.py/blob/master/examples/basic_voice.py
+[voxelpixel]:https://github.com/VoxelPixel
 [tst]:https://github.com/TheSavageTeddy/
