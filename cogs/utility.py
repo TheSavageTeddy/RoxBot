@@ -420,7 +420,7 @@ class Utility(commands.Cog):
 
         e = discord.Embed(title="Result", colour=0x2ECC71)
     
-        result = (input.encode('UTF-8').hex()).decode('utf-8')
+        result = (input.encode('UTF-8').hex())#.decode('utf-8')
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
         e.set_footer(text="Made with ❤️ by Roxiun")
