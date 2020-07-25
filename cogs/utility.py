@@ -661,10 +661,12 @@ class Utility(commands.Cog):
 
         e = discord.Embed(title="Result", colour=0x2ECC71)
     
-        result = self.decode_binary_string(str(input).replace(" ", "")).decode('utf-8')
+        result = self.decode_binary_string(str(input).replace(" ", ""))
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
         e.set_footer(text="Made with ❤️ by Roxiun")
+
+        await ctx.send(embed=e)
 
     @commands.command(name="prune", aliases=[])
     async def prune(self, ctx, user: discord.Member = None):
