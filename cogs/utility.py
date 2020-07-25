@@ -630,7 +630,7 @@ class Utility(commands.Cog):
     
         message = str(input)
         key = 47
-        encryp_text = ""
+        decryp_text = ""
 
         for i in range(len(message)):
             temp = ord(message[i]) - key
