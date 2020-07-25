@@ -13,6 +13,11 @@ def start_server_beta():
 	ngrok = subprocess.Popen(["./ngrok", "tcp", "-region", "au", "25565"], cwd="/home/ronan/")
 	return {"Minecraft":minecraft_server.pid, "ngrok":ngrok.pid}
 
+def start_server_smp():
+	minecraft_server = subprocess.Popen(["java", "-Dfile.encoding=UTF-8", "-Xmx3G", "-jar", "paper-114.jar"], cwd="/home/ronan/Server/SMP") #java -Dfile.encoding=UTF-8 -Xmx3G -jar 
+	ngrok = subprocess.Popen(["./ngrok", "tcp", "-region", "au", "25565"], cwd="/home/ronan/")
+	return {"Minecraft":minecraft_server.pid, "ngrok":ngrok.pid}
+
 def get_ip():
 	#curl --silent http://127.0.0.1:4040/api/tunnels | jq '.tunnels[0].public_url'
     resp = requests.get(url="http://127.0.0.1:4040/api/tunnels")

@@ -138,6 +138,105 @@ class Other(commands.Cog):
         else:
             await ctx.send(":x: Couldnt find a running server")
 
+    @commands.command(
+        name='tstsmp',
+        description='Starts a private TheSavageTeddy SMP',
+        aliases=[]
+    )
+    async def tstSMP(self, ctx):
+        Server_embed = discord.Embed(
+            title='Starting Server...',
+            color=0x2ECC71
+        )
+        Server_embed.add_field(name="Server IP", value=f"`Generating... 16 seconds`")
+        Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
+        Server_embed.set_footer(text="Made with ❤️ by Roxiun")
+        msg = await ctx.send(embed=Server_embed)
+        
+        pool = ThreadPool(processes=1)
+        async_result = pool.apply_async(start_server_smp, ())
+        for i in range(15,-1,-1):
+            async with ctx.typing():
+                Server_embed = discord.Embed(
+                    title='Starting Server...',
+                    color=0x2ECC71
+                )
+                Server_embed.add_field(name="Server IP", value=f"`Generating... {i} seconds`")
+                Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
+                Server_embed.set_footer(text="Made with ❤️ by Roxiun")
+                await msg.edit(
+                    embed=Server_embed,
+                    content=None
+                )
+                time.sleep(1)
+        async with ctx.typing():
+            pid_list = async_result.get()
+            self.pid_listClass = async_result.get()
+            genServerIP = get_ip()
+            Server_embed = discord.Embed(
+                title='Private TheSavageTeddy SMP Minecraft Server',
+                color=0x2ECC71
+            )
+            Server_embed.add_field(name="Server IP", value=f"`{genServerIP}`")
+            Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
+            Server_embed.add_field(name="Time Remaining", value=f"`2:00:00`", inline=True)
+            Server_embed.set_footer(text="Made with ❤️ by Roxiun")
+            await msg.edit(
+                embed=Server_embed,
+                content=None
+            )
+            serverStartTime = time.time()
+        
+        for i in range(120):
+            await asyncio.sleep(60)
+            if not psutil.pid_exists(pid_list["Minecraft"]):
+                Server_embed = discord.Embed(
+                    title='Private TheSavageTeddy SMP Minecraft Server',
+                    color=0x2ECC71
+                )
+                Server_embed.add_field(name="Server IP", value=f"`Offline`")
+                Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
+                Server_embed.add_field(name="Time Remaining", value=f"`0:00:00`", inline=True)
+                Server_embed.set_footer(text="Made with ❤️ by Roxiun")
+                await msg.edit(
+                    embed=Server_embed,
+                    content=None
+                )
+                return
+            elif self.hour_passed(serverStartTime):
+                p = psutil.Process(pid_list["Minecraft"])
+                p.terminate()
+                p2 = psutil.Process(pid_list["ngrok"])
+                p2.terminate()
+                Server_embed = discord.Embed(
+                    title='Private TheSavageTeddy SMP Minecraft Server',
+                    color=0x2ECC71
+                )
+                Server_embed.add_field(name="Server IP", value=f"`Offline`")
+                Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
+                Server_embed.add_field(name="Time Remaining", value=f"`0:00:00`", inline=True)
+                Server_embed.set_footer(text="Made with ❤️ by Roxiun")
+                await msg.edit(
+                    embed=Server_embed,
+                    content=None
+                )
+                return
+            else:
+                elapsedTime = i*60 # Time passed in seconds
+                timeRemaining = 7200 - elapsedTime # time left in seconds
+                
+                Server_embed = discord.Embed(
+                    title='Private TheSavageTeddy SMP Minecraft Server',
+                    color=0x2ECC71
+                )
+                Server_embed.add_field(name="Server IP", value=f"`{genServerIP}`")
+                Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
+                Server_embed.add_field(name="Time Remaining", value=f"`{str(timedelta(seconds=timeRemaining))}`", inline=True)
+                Server_embed.set_footer(text="Made with ❤️ by Roxiun")
+                await msg.edit(
+                    embed=Server_embed,
+                    content=None
+                )
 
 def setup(bot):
     bot.add_cog(Other(bot))
