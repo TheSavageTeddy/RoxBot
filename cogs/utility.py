@@ -14,6 +14,7 @@ from utils.cli_logging import *
 
 import base64
 import codecs
+import binascii
 from requests.utils import requote_uri
 from urllib.parse import unquote
 
@@ -597,7 +598,7 @@ class Utility(commands.Cog):
 
         e = discord.Embed(title="Result", colour=0x2ECC71)
     
-        result = (input.encode('UTF-8').decode("hex")).decode('utf-8')
+        result = (binascii.unhexlify(input.encode('UTF-8'))).decode('utf-8')
         e.add_field(name="Input", value=f"`{input}`")
         e.add_field(name="Output", value=f"`{result}`")
         e.set_footer(text="Made with ❤️ by Roxiun")
