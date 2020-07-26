@@ -335,7 +335,7 @@ class Other(commands.Cog):
             
                 with open('db/minecraft_server.json') as json_file:
                     servers = json.load(json_file)
-                servers["data"][0] = {"user":"", "msg":"","createdAt":""}
+                servers["data"][0] = {"user":ctx.message.author.name, "msgID":msg.id,"msgChannel":msg.channel.id,"createdAt":serverStartTime}
             
             else:
                 sip = get_ip()
