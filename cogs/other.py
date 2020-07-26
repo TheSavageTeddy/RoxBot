@@ -257,8 +257,7 @@ class Other(commands.Cog):
             e.add_field(name="Avaliable server types", value=f"`bedwars smp-tst`")
             e.set_footer(text="Made with ❤️ by Roxiun")
             await ctx.send(embed=e)  
-
-    
+   
     @minecraftserver.command(
         name='start',
         description='Starts private minecraft servers',
@@ -334,7 +333,7 @@ class Other(commands.Cog):
             
                 with open('db/minecraft_server.json') as json_file:
                     servers = json.load(json_file)
-                servers["data"][0] = {"user":ctx.message.author.name, "msgID":msg.id,"msgChannel":msg.channel.id,"createdAt":str(serverStartTime), "PID":pid_list}
+                servers["data"][0] = {"user":ctx.message.author.id, "msgID":msg.id,"msgChannel":msg.channel.id,"createdAt":str(serverStartTime), "PID":pid_list}
 
                 with open('db/minecraft_server.json', 'w+') as outfile:
                     json.dump(servers, outfile)
@@ -369,7 +368,40 @@ class Other(commands.Cog):
         with open('db/minecraft_server.json') as json_file:
             servers = json.load(json_file)
         if len(servers["data"]) == 0:
-            if 
+            e = discord.Embed(description=":no_entry_sign: No Server found", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+        elif psutil.pid_exists(servers["data"][0]["PID"]["Minecraft"]) or psutil.pid_exists(servers["data"][0]["PID"]["ngrok"]):
+            if servers["data"][0]["user"] == ctx.message.author.id or ctx.message.author.id == 352308837794971648:
+                # kill the processes
+                p = psutil.Process(servers["data"][0]["PID"]["Minecraft"])
+                p.terminate()
+                p2 = psutil.Process(servers["data"][0]["PID"]["ngrok"])
+                p2.terminate()
+
+                # edit the message
+                channel = self.bot.get_channel(servers["data"][0]["msgChannel"])
+                message = await channel.fetch_message(servers["data"][0]["msgID"])
+
+                Server_embed = discord.Embed(
+                    title='Private BedWars Minecraft Server',
+                    color=0x2ECC71
+                )
+                Server_embed.add_field(name="Server IP", value=f"`Offline`")
+                Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
+                Server_embed.add_field(name="Time Remaining", value=f"`0:00:00`", inline=True)
+                Server_embed.set_footer(text="Made with ❤️ by Roxiun")
+                
+                await message.edit(embed=Server_embed, content=None)
+
+                # remove from db
+                servers["data"] = []
+                with open('db/minecraft_server.json', 'w+') as outfile:
+                    json.dump(servers, outfile)
+                
+                # sends message
+                e = discord.Embed(description=":white_check_mark: Server Ended!", colour=0x2ECC71)
+                await ctx.send(embed=e)
 
     #'''
 
