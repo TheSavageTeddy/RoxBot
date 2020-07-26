@@ -244,7 +244,7 @@ class Other(commands.Cog):
     @commands.group(
         name='minecraftserver',
         description='Creates private minecraft servers',
-        aliases=['mcserver', 'mcserver', 'mcs']
+        aliases=['mcserver', 'mcs']
     )
     async def minecraftserver(self, ctx):
         if ctx.invoked_subcommand is None:
