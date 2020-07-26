@@ -109,7 +109,7 @@ class Moderator(commands.Cog):
     )
     @commands.guild_only()
     @commands.has_permissions(manage_roles = True)
-    async def mute(self, ctx, user: discord.Member, *, reason: str = None):
+    async def mute(self, ctx, user: discord.Member = None, *, reason: str = None):
         if not user:
             e = discord.Embed(description=":no_entry_sign: You must specify a user", colour=0xE74C3C)
             await ctx.send(embed=e)
