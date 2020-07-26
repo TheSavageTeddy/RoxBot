@@ -818,7 +818,6 @@ class Utility(commands.Cog):
 |          |
 |__________|
 
-
 ''',
 '''
 ```js
@@ -828,7 +827,6 @@ class Utility(commands.Cog):
 |          |
 |  •       |
 |__________|
-
 
 ''',
 '''
@@ -840,7 +838,6 @@ class Utility(commands.Cog):
 |  •       |
 |__________|
 
-
 ''',
 '''
 ```js
@@ -850,7 +847,6 @@ class Utility(commands.Cog):
 |          |
 |  •    •  |
 |__________|
-
 
 ''',
 '''
@@ -862,7 +858,6 @@ class Utility(commands.Cog):
 |  •    •  |
 |__________|
 
-
 ''',
 '''
 ```js
@@ -872,7 +867,6 @@ class Utility(commands.Cog):
 |  •    •  |
 |  •    •  |
 |__________|
-
 
 '''
 ]
