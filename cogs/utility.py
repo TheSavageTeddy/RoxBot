@@ -675,7 +675,7 @@ class Utility(commands.Cog):
 
         await ctx.send(embed=e) 
 
-    @decode.command(name="binary", aliases=['bin','base2','base02'])
+    @decode.command(name="binary", aliases=['bin'])
     async def decode_binary(self, ctx, *, input: commands.clean_content = None):
         if not input:
             e = discord.Embed(description=":no_entry_sign: You must give an input string", colour=0xE74C3C)
