@@ -77,7 +77,7 @@ class Utility(commands.Cog):
         ```
         '''
 
-        await ctx.send(content=text")
+        await ctx.send(content=text)
     
     @commands.command(
         name='choose',
