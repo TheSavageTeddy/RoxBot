@@ -72,10 +72,7 @@ class Utility(commands.Cog):
         nsp = NumericStringParser()
         solved = str(nsp.eval(equation))
         
-        text = f'''```js
-        {solved}
-        ```
-        '''
+        text = f'''```js\n{solved}```'''
 
         await ctx.send(content=text)
     
@@ -821,8 +818,7 @@ class Utility(commands.Cog):
 |          |
 |__________|
 
-You rolled a 1!
-```
+
 ''',
 '''
 ```js
@@ -833,8 +829,7 @@ You rolled a 1!
 |  •       |
 |__________|
 
-You rolled a 2!
-```
+
 ''',
 '''
 ```js
@@ -845,8 +840,7 @@ You rolled a 2!
 |  •       |
 |__________|
 
-You rolled a 3!
-```
+
 ''',
 '''
 ```js
@@ -857,8 +851,7 @@ You rolled a 3!
 |  •    •  |
 |__________|
 
-You rolled a 4!
-```
+
 ''',
 '''
 ```js
@@ -869,8 +862,7 @@ You rolled a 4!
 |  •    •  |
 |__________|
 
-You rolled a 5!
-```
+
 ''',
 '''
 ```js
@@ -881,15 +873,35 @@ You rolled a 5!
 |  •    •  |
 |__________|
 
-You rolled a 6!
-```
+
 '''
 ]
 
         result=random.choice(outcomes)
-        e = discord.Embed(description=f"{result}", colour=0x2ECC71)
-        e.set_footer(text="Command and ASCII art made by TheSavageTeddy!")
-        await ctx.send(embed=e)
+        e = discord.Embed(description=f"{result}\n\n```", colour=0x2ECC71)
+        e.set_footer(text="Made with ❤️ by Roxiun & TheSavageTeddy!")
+        msg = await ctx.send(embed=e)
+
+        for i in range(7):
+            await asyncio.sleep(0.1)
+            result=random.choice(outcomes)
+            e = discord.Embed(description=f"{result}\n\n```", colour=0x2ECC71)
+            e.set_footer(text="Made with ❤️ by Roxiun & TheSavageTeddy!")
+            await msg.edit(
+                embed=e,
+                content=None
+            )
+        
+        
+        result=random.choice(outcomes)
+        n = outcomes.index(result)
+        e = discord.Embed(description=f"{result}\nYou rolled a {n}!\n```", colour=0x2ECC71)
+        e.set_footer(text="Made with ❤️ by Roxiun & TheSavageTeddy!")
+
+        await msg.edit(
+            embed=e,
+            content=None
+        )
 
 def setup(bot):
     bot.add_cog(Utility(bot))
