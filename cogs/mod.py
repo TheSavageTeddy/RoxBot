@@ -126,7 +126,7 @@ class Moderator(commands.Cog):
             return
         else:
             print(muted_role)
-            user.add_roles(muted_role)
+            await user.add_roles(muted_role)
             e = discord.Embed(colour=0x2ECC71)
             e.set_author(
                 name=f"{userName} has been muted",
