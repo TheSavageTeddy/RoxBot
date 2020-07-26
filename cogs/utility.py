@@ -750,6 +750,7 @@ class Utility(commands.Cog):
         if ctx.message.author.id == self.config.owners[0]: #replace OWNERID with your user id
             try:
                 rmsg = await ctx.send(content="<:github:734317758438965330> (Emoji test)")
+                await ctx.send(f"{rmsg}")
             except Exception as e:
                 await smsg.edit(content=f":x: An error occured\n {e}")
                 warning("Error in testing command")
