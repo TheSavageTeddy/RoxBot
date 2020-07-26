@@ -256,6 +256,7 @@ class Other(commands.Cog):
             e.set_footer(text="Made with ❤️ by Roxiun")
             await ctx.send(embed=e)  
 
+    '''
     @minecraftserver.command(
         name='start',
         description='Starts private minecraft servers',
@@ -352,6 +353,7 @@ class Other(commands.Cog):
             e.set_footer(text="Use ?minecraftserver for a list of server types")
             await ctx.send(embed=e)
             return
+    '''
 
 def setup(bot):
     bot.add_cog(Other(bot))
