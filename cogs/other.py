@@ -359,6 +359,18 @@ class Other(commands.Cog):
             e.set_footer(text="Use ?minecraftserver for a list of server types")
             await ctx.send(embed=e)
             return
+
+    @minecraftserver.command(
+        name='stop',
+        description='Stops private minecraft servers',
+        aliases=['turnoff', 'off']
+    )
+    async def stop_minecraft(self, ctx):
+        with open('db/minecraft_server.json') as json_file:
+            servers = json.load(json_file)
+        if len(servers["data"]) == 0:
+            if 
+
     #'''
 
 def setup(bot):
