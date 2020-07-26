@@ -125,7 +125,6 @@ class Moderator(commands.Cog):
             await ctx.send(embed=e)
             return
         else:
-            print(muted_role)
             await user.add_roles(muted_role)
             e = discord.Embed(colour=0x2ECC71)
             e.set_author(
