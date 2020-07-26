@@ -239,6 +239,7 @@ class Other(commands.Cog):
                     content=None
                 )
 
+    '''
     @commands.group(
         name='minecraftserver',
         description='Creates private minecraft servers',
@@ -256,7 +257,7 @@ class Other(commands.Cog):
             e.set_footer(text="Made with ❤️ by Roxiun")
             await ctx.send(embed=e)  
 
-    '''
+    
     @minecraftserver.command(
         name='start',
         description='Starts private minecraft servers',
