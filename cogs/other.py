@@ -299,7 +299,8 @@ class Other(commands.Cog):
         
             if not get_ip():
                 pool = ThreadPool(processes=1)
-                async_result = pool.apply_async(start_server, type_aliases[serverType])
+                print(type_aliases[serverType])
+                async_result = pool.apply_async(start_server, f"{type_aliases[serverType]}")
                 for i in range(15,-1,-1):
                     async with ctx.typing():
                         Server_embed = discord.Embed(
@@ -331,9 +332,6 @@ class Other(commands.Cog):
                         content=None
                     )
                     serverStartTime = time.time()
-
-                with open(filename, 'wb') as f:
-                    pickle.dump(your_content, f)
 
             else:
                 sip = get_ip()
