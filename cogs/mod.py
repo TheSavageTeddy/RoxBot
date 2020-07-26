@@ -170,6 +170,7 @@ class Moderator(commands.Cog):
             e.set_footer(text="Make Sure I have permissions to kick, and am higher than the specified member")
             await ctx.send(embed=e)
     
+    '''
     @ban.error
     async def ban_error(self, ctx, error):
         if isinstance(error, discord.Forbidden):
@@ -179,7 +180,7 @@ class Moderator(commands.Cog):
             e = discord.Embed(description=":no_entry_sign: Something went wrong", colour=0xE74C3C)
             e.set_footer(text="Make Sure I have permissions to ban, and am higher than the specified member")
             await ctx.send(embed=e)
-
+    '''
 
 def setup(bot):
     bot.add_cog(Moderator(bot))
