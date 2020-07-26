@@ -71,8 +71,13 @@ class Utility(commands.Cog):
 
         nsp = NumericStringParser()
         solved = str(nsp.eval(equation))
+        
+        text = f'''```js
+        {solved}
+        ```
+        '''
 
-        await ctx.send(content=f"```{solved}```")
+        await ctx.send(content=text")
     
     @commands.command(
         name='choose',
@@ -808,7 +813,7 @@ class Utility(commands.Cog):
     async def dice(self,ctx):
         outcomes = [
 '''
-```
+```js
  __________
 |          |
 |          |
@@ -820,7 +825,7 @@ You rolled a 1!
 ```
 ''',
 '''
-```
+```js
  __________
 |          |
 |       •  |
@@ -832,7 +837,7 @@ You rolled a 2!
 ```
 ''',
 '''
-```
+```js
  __________
 |          |
 |        • |
@@ -844,7 +849,7 @@ You rolled a 3!
 ```
 ''',
 '''
-```
+```js
  __________
 |          |
 |  •    •  |
@@ -856,7 +861,7 @@ You rolled a 4!
 ```
 ''',
 '''
-```
+```js
  __________
 |          |
 |  •    •  |
@@ -868,7 +873,7 @@ You rolled a 5!
 ```
 ''',
 '''
-```
+```js
  __________
 |          |
 |  •    •  |
