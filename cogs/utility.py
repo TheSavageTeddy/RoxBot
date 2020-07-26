@@ -782,5 +782,23 @@ class Utility(commands.Cog):
         choice = random.choice(responses)
         e = discord.Embed(description=f"{choice}", colour=0x2ECC71)
         await ctx.send(embed=e)
+
+
+    @commands.command(
+        name='coinflip',
+        description='Flip a coin! Has chance to land on heads or tails. Or even b24gaXRzIHNpZGUh',
+        aliases=['cf', 'coin_flip','coin','flipacoin','flipcoin','flip_coin']
+    )
+    async def coinflip(self,ctx):
+        coinflip = ["The coin landed on `heads!`","The coin landed on `tails!`"]
+        if int(random.randint(0,100)) == int(69):
+            result="THE COIN LANDED ON ITS SIDE OMG WTF?!?!?!"
+        else:
+            result = random.choice(coinflip)
+        e = discord.Embed(description=f"{result}", colour=0x2ECC71)
+        await ctx.send(embed=e)
+
+
+
 def setup(bot):
     bot.add_cog(Utility(bot))
