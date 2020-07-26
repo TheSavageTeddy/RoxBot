@@ -876,7 +876,7 @@ class Utility(commands.Cog):
         e.set_footer(text="Made with ❤️ by Roxiun & TheSavageTeddy!")
         msg = await ctx.send(embed=e)
 
-        for i in range(7):
+        for i in range(6):
             await asyncio.sleep(0.1)
             result=random.choice(outcomes)
             e = discord.Embed(description=f"{result}```", colour=0x2ECC71)
