@@ -24,6 +24,7 @@ class Other(commands.Cog):
     def hour_passed(self, oldepoch):
         return time.time() - oldepoch >= 7200
 
+    '''
     @commands.command(
         name='bedwars',
         description='Starts a private bedwars server',
@@ -238,8 +239,8 @@ class Other(commands.Cog):
                     embed=Server_embed,
                     content=None
                 )
-
     '''
+    
     @commands.group(
         name='minecraftserver',
         description='Creates private minecraft servers',
@@ -354,7 +355,7 @@ class Other(commands.Cog):
             e.set_footer(text="Use ?minecraftserver for a list of server types")
             await ctx.send(embed=e)
             return
-    '''
+    
 
 def setup(bot):
     bot.add_cog(Other(bot))
