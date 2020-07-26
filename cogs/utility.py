@@ -18,6 +18,8 @@ import binascii
 from requests.utils import requote_uri
 from urllib.parse import unquote
 
+from itertools import cycle
+
 class Utility(commands.Cog):  
     def __init__(self, bot):
         self.bot = bot
@@ -871,15 +873,17 @@ class Utility(commands.Cog):
 '''
 ]
 
+        rolling = ['Rolling...', 'Rolling.', 'Rolling..']
+        rolling_cycle = cycle(rolling)
         result=random.choice(outcomes)
-        e = discord.Embed(description=f"{result}Rolling...```", colour=0x2ECC71)
+        e = discord.Embed(description=f"{result}{next(rolling_cycle)}```", colour=0x2ECC71)
         e.set_footer(text="Made with ❤️ by Roxiun & TheSavageTeddy!")
         msg = await ctx.send(embed=e)
 
         for i in range(6):
             await asyncio.sleep(0.1)
             result=random.choice(outcomes)
-            e = discord.Embed(description=f"{result}Rolling...```", colour=0x2ECC71)
+            e = discord.Embed(description=f"{result}{next(rolling_cycle)}```", colour=0x2ECC71)
             e.set_footer(text="Made with ❤️ by Roxiun & TheSavageTeddy!")
             await msg.edit(
                 embed=e,
