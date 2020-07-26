@@ -103,10 +103,40 @@ class Moderator(commands.Cog):
             await ctx.send(embed=e)
 
     @commands.command(
-        name='ban',
-        description='Bans a member from the server',
-        aliases=[]
+        name='mute',
+        description='Mutes a member in the server',
+        aliases=['shutup','shut']
     )
+    @commands.guild_only()
+    @commands.has_permissions(manage_roles = True)
+    async def mute(self, ctx, user: discord.Member, *, reason: str = None):
+        if not user:
+            e = discord.Embed(description=":no_entry_sign: You must specify a user", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+
+        process(f"Mute Command Called by {ctx.message.author.name}")
+        
+        userName = str(user)
+        m = ctx.guild.get_member(user)
+        muted_role = next((g for g in ctx.guild.roles if "muted" in g.name.lower() and not ("roles" in g.name.lower())), None)
+        if not muted_role:
+            e = discord.Embed(description=":no_entry_sign: You must have role with the word `Muted` in it", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
+        else:
+            await m.add_roles(muted_role, reason=f"{reason} - {ctx.message.author.name}")
+            e = discord.Embed(colour=0x2ECC71)
+            e.set_author(
+                name=f"{userName} has been muted",
+                icon_url=user.avatar_url
+            )
+            desc = ""
+            desc += f"**Reason**: {reason}\n"
+            desc += f"**Moderator:** {ctx.message.author.mention}"
+            e.description = desc
+            await ctx.send(embed=e)
+
     @commands.guild_only()
     @commands.has_permissions(ban_members = True)
     async def ban(self, ctx, user: discord.Member, *, reason: str = None):
@@ -128,6 +158,7 @@ class Moderator(commands.Cog):
             desc += f"**Moderator:** {ctx.message.author.mention}"
             e.description = desc
             await ctx.send(embed=e)
+
 
     @kick.error
     async def kick_error(self, ctx, error):
