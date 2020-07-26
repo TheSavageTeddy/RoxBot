@@ -794,13 +794,199 @@ class Utility(commands.Cog):
         aliases=['cf', 'coin_flip','coin','flipacoin','flipcoin','flip_coin']
     )
     async def coinflip(self,ctx):
-        coinflip = ["The coin landed on `heads!`","The coin landed on `tails!`"]
+        coinflip = [
+'''
+```
+   _________
+  /         \ 
+ /  H     H  \ 
+|   H     H   |
+|   HHHHHHH   |
+|   H     H   |
+ \  H     H  /
+  \_________/
+```
+The coin landed on `heads!`
+'''
+,
+'''
+```
+   _________
+  /         \ 
+ /  TTTTTTT  \ 
+|      T      |
+|      T      |
+|      T      |
+ \     T     /
+  \_________/
+```
+The coin landed on `tails!`
+''']
+        animation=[
+'''
+```
+   _________
+  /         \ 
+ /           \ 
+|             |
+|             |
+|             |
+ \           /
+  \_________/
+```
+''',
+'''
+```
+
+  ___________
+ /           \ 
+|             |
+|             |
+|             |
+ \___________/
+
+```
+''',
+'''
+```
+
+
+  ___________
+ /           \ 
+|             |
+|             |
+ \___________/
+
+```
+''',
+'''
+```
+
+
+  ___________
+ /           \ 
+|             |
+ \___________/
+
+
+```
+''',
+'''
+```
+
+
+
+  ___________
+ /           \ 
+ \___________/
+
+
+```
+''',
+'''
+```
+
+
+
+ _____________
+|_|_|_|_|_|_|_|
+
+
+
+```
+''',
+'''
+```
+
+
+
+  ___________
+ /           \ 
+ \___________/
+
+
+```
+''',
+'''
+```
+
+
+  ___________
+ /           \ 
+|             |
+ \___________/
+
+
+```
+''',
+'''
+```
+
+
+  ___________
+ /           \ 
+|             |
+|             |
+ \___________/
+
+```
+''',
+'''
+```
+
+  ___________
+ /           \ 
+|             |
+|             |
+|             |
+ \___________/
+
+```
+'''
+]
+
+
+        frame=0
+        ani=animation[frame]
+        e = discord.Embed(description=f"{ani}", colour=0x2ECC71)
+        e.set_footer(text="Made with ❤️ by Roxiun & TheSavageTeddy!")
+        msg = await ctx.send(embed=e)
+
+        for i in range(9):
+            await asyncio.sleep(0.1)
+            frame=frame+1
+            ani=animation[frame]
+            e = discord.Embed(description=f"{ani}", colour=0x2ECC71)
+            e.set_footer(text="Made with ❤️ by Roxiun & TheSavageTeddy!")
+            await msg.edit(
+                embed=e,
+                content=None
+            )
+
+
+
+
         if int(random.randint(0,100)) == int(69):
-            result="THE COIN LANDED ON ITS SIDE OMG WTF?!?!?!"
+            result=
+'''
+```
+ _____________
+|_|_|_|_|_|_|_|
+```
+THE COIN LANDED ON ITS SIDE OMG WTF?!?!?!
+'''
         else:
             result = random.choice(coinflip)
         e = discord.Embed(description=f"{result}", colour=0x2ECC71)
-        await ctx.send(embed=e)
+        e.set_footer(text="Made with ❤️ by Roxiun & TheSavageTeddy!")
+
+        await msg.edit(
+            embed=e,
+            content=None
+        )
+
+
+
 
 
 
