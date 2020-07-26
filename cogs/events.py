@@ -15,9 +15,13 @@ class Events(commands.Cog):
         self.bot = bot
         self.config = getJSON("config.json")
         self.check_for_change.start()
-    
+
+    def hour_passed(self, oldepoch):
+        return time.time() - oldepoch >= 7200
+
     @loop(seconds=60.0)
     async def check_for_change(self):
+        # Check for Updates
         process("Checking for New Update")
         WATCHED_FILES = ["index.py", "cogs/easter.py", "cogs/events.py", "cogs/image.py", "cogs/info.py", "cogs/mod.py", "cogs/music.py", "cogs/other.py", "cogs/utility.py", "utils/cli_logging.py", "utils/data.py", "utils/safe_math.py", "utils/start_server.py", "utils/web_api.py"]
         WATCHED_FILES_MTIMES = [(f, getmtime(f)) for f in WATCHED_FILES]
@@ -38,6 +42,39 @@ class Events(commands.Cog):
                 os.execv(sys.executable, ['python'] + sys.argv)
         if len(changed) == 0:
             info("No files changes")
+
+        # Check Server Status
+        with open('db/minecraft_server.json') as json_file:
+            servers = json.load(json_file)
+        if len(servers["data"]) == 0:
+            pass
+        else:
+            if self.hour_passed(float(servers["data"][0]["createdAt"])):
+                # kill the processes
+                p = psutil.Process(servers["data"][0]["PID"]["Minecraft"])
+                p.terminate()
+                p2 = psutil.Process(servers["data"][0]["PID"]["ngrok"])
+                p2.terminate()
+
+                # edit the message
+                channel = self.bot.get_channel(servers["data"][0]["msgChannel"])
+                message = await channel.fetch_message(servers["data"][0]["msgID"])
+
+                Server_embed = discord.Embed(
+                    title='Private BedWars Minecraft Server',
+                    color=0x2ECC71
+                )
+                Server_embed.add_field(name="Server IP", value=f"`Offline`")
+                Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
+                Server_embed.add_field(name="Time Remaining", value=f"`0:00:00`", inline=True)
+                Server_embed.set_footer(text="Made with ❤️ by Roxiun")
+                
+                await message.edit(embed=Server_embed, content=None)
+
+                # remove from db
+                servers["data"] = []
+                with open('db/minecraft_server.json', 'w+') as outfile:
+                    json.dump(servers, outfile)
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild):

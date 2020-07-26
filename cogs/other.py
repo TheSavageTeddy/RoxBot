@@ -240,7 +240,7 @@ class Other(commands.Cog):
                     content=None
                 )
     '''
-    '''
+    #'''
     @commands.group(
         name='minecraftserver',
         description='Creates private minecraft servers',
@@ -317,7 +317,6 @@ class Other(commands.Cog):
                         asyncio.sleep(1)
                 async with ctx.typing():
                     pid_list = async_result.get()
-                    self.pid_listClass = async_result.get()
                     genServerIP = get_ip()
                     Server_embed = discord.Embed(
                         title='Private BedWars Minecraft Server',
@@ -335,8 +334,11 @@ class Other(commands.Cog):
             
                 with open('db/minecraft_server.json') as json_file:
                     servers = json.load(json_file)
-                servers["data"][0] = {"user":ctx.message.author.name, "msgID":msg.id,"msgChannel":msg.channel.id,"createdAt":serverStartTime}
-            
+                servers["data"][0] = {"user":ctx.message.author.name, "msgID":msg.id,"msgChannel":msg.channel.id,"createdAt":str(serverStartTime), "PID":pid_list}
+
+                with open('db/minecraft_server.json', 'w+') as outfile:
+                    json.dump(servers, outfile)
+
             else:
                 sip = get_ip()
                 Server_embed = discord.Embed(
@@ -357,7 +359,7 @@ class Other(commands.Cog):
             e.set_footer(text="Use ?minecraftserver for a list of server types")
             await ctx.send(embed=e)
             return
-    '''
+    #'''
 
 def setup(bot):
     bot.add_cog(Other(bot))

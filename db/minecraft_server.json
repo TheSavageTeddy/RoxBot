@@ -2,7 +2,8 @@
     "data":[
         {
             "user":"",
-            "msg":"",
+            "msgID":"",
+            "msgChannel":"",
             "createdAt":""
         }
     ]
