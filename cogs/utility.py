@@ -71,8 +71,13 @@ class Utility(commands.Cog):
 
         nsp = NumericStringParser()
         solved = str(nsp.eval(equation))
+        
+        text = f'''```js
+        {solved}
+        ```
+        '''
 
-        await ctx.send(content=f"```{solved}```")
+        await ctx.send(content=text")
     
     @commands.command(
         name='choose',
@@ -773,7 +778,7 @@ class Utility(commands.Cog):
     @commands.command(
         name='8ball',
         description='Ask the 8ball something!',
-        aliases=['eightball']
+        aliases=['eightball','8b']
     )
     async def eight_ball(self,ctx):
         responses = ["YES!", "yeah", "why not", "definetly", 
@@ -799,6 +804,92 @@ class Utility(commands.Cog):
         await ctx.send(embed=e)
 
 
+
+    @commands.command(
+        name='dice',
+        description='Roll a die/dice with numbers 1-6 on them!',
+        aliases=['rolldie', 'rolldice']
+    )
+    async def dice(self,ctx):
+        outcomes = [
+'''
+```js
+ __________
+|          |
+|          |
+|     •    |
+|          |
+|__________|
+
+You rolled a 1!
+```
+''',
+'''
+```js
+ __________
+|          |
+|       •  |
+|          |
+|  •       |
+|__________|
+
+You rolled a 2!
+```
+''',
+'''
+```js
+ __________
+|          |
+|        • |
+|     •    |
+|  •       |
+|__________|
+
+You rolled a 3!
+```
+''',
+'''
+```js
+ __________
+|          |
+|  •    •  |
+|          |
+|  •    •  |
+|__________|
+
+You rolled a 4!
+```
+''',
+'''
+```js
+ __________
+|          |
+|  •    •  |
+|     •    |
+|  •    •  |
+|__________|
+
+You rolled a 5!
+```
+''',
+'''
+```js
+ __________
+|          |
+|  •    •  |
+|  •    •  |
+|  •    •  |
+|__________|
+
+You rolled a 6!
+```
+'''
+]
+
+        result=random.choice(outcomes)
+        e = discord.Embed(description=f"{result}", colour=0x2ECC71)
+        e.set_footer(text="Command and ASCII art made by TheSavageTeddy!")
+        await ctx.send(embed=e)
 
 def setup(bot):
     bot.add_cog(Utility(bot))
