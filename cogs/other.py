@@ -327,7 +327,7 @@ class Other(commands.Cog):
                     Server_embed.add_field(name="Server IP", value=f"`{genServerIP}`")
                     Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
                     Server_embed.add_field(name="Time Remaining", value=f"`2:00:00`", inline=True)
-                    Server_embed.set_footer(text="Made with ❤️ by Roxiun")
+                    Server_embed.set_footer(text="Hang with us it can take up to 3mins for the server to completly start | Made with ❤️ by Roxiun")
                     await msg.edit(
                         embed=Server_embed,
                         content=None
