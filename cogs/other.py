@@ -333,12 +333,12 @@ class Other(commands.Cog):
                     )
                     serverStartTime = time.time()
             
-                with open('db/minecraft_server.json') as json_file:
-                    servers = json.load(json_file)
-                servers["data"][0] = {"user":ctx.message.author.id, "msgID":msg.id,"msgChannel":msg.channel.id,"createdAt":str(serverStartTime), "PID":pid_list}
+                    with open('db/minecraft_server.json') as json_file:
+                        servers = json.load(json_file)
+                    servers["data"][0] = {"user":ctx.message.author.id, "msgID":msg.id,"msgChannel":msg.channel.id,"createdAt":str(serverStartTime), "PID":pid_list}
 
-                with open('db/minecraft_server.json', 'w+') as outfile:
-                    json.dump(servers, outfile)
+                    with open('db/minecraft_server.json', 'w') as outfile:
+                        json.dump(servers, outfile)
 
             else:
                 sip = get_ip()
