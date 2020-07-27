@@ -18,7 +18,7 @@ def start_server(server_type = None):
 		ngrok = subprocess.Popen(["./ngrok", "tcp", "-region", "au", "25565"], cwd="/home/ronan/")
 		return {"Minecraft":minecraft_server.pid, "ngrok":ngrok.pid}
 	elif server_type == 'smp-tst':
-		minecraft_server = subprocess.Popen(["java", "-Dfile.encoding=UTF-8", "-Xmx3G", "-jar", "paper-114.jar"], cwd="/home/ronan/Server/SMP") #java -Dfile.encoding=UTF-8 -Xmx3G -jar 
+		minecraft_server = subprocess.Popen(["java", "-Dfile.encoding=UTF-8", "-Xmx3G", "-jar", "paper-114.jar", "--nogui"], cwd="/home/ronan/Server/SMP") #java -Dfile.encoding=UTF-8 -Xmx3G -jar 
 		ngrok = subprocess.Popen(["./ngrok", "tcp", "-region", "au", "25565"], cwd="/home/ronan/")
 		return {"Minecraft":minecraft_server.pid, "ngrok":ngrok.pid}
 
