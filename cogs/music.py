@@ -3,7 +3,6 @@ import time
 import re
 import urllib.request
 import urllib.parse
-from youtube_search import YoutubeSearch
 import asyncio
 import discord
 import youtube_dl
