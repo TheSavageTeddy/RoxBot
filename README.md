@@ -42,17 +42,17 @@
 * [Minimum Permissions](https://discordapp.com/oauth2/authorize?client_id=652111582662361100&scope=bot&permissions=305524070) (Can Break for some commands)
 
 ## I found a bug/error!
-Create and [issue][issue-link] or join the [suppport server][server-link]
+Create and [issue][issue-link] or join the [Suppport Server](https://discord.gg/abDzX98)
 
 ## How to Contribute
 Submit a [Pull Request][pr-link]
 
 ## Credits
-* [TheSavageTeddy][tst] - Breaking the bot countless times and making the pfp
-* [TheDrone7][repl-tutorial] - discord.py reference
-* [Rapptz][rapptz] - Music commands mostly from here
-* [AlexFlipnote][alexflipnote] - Learnt alot from this repo
-* [VoxelPixel][voxelpixel] - rot47 functions
+* [TheSavageTeddy](https://github.com/TheSavageTeddy/) - Breaking the bot countless times and making the pfp
+* [TheDrone7](https://repl.it/talk/learn/) - discord.py reference
+* [Rapptz](https://github.com/Rapptz/discord.py/blob/master/examples/basic_voice.py) - Music commands mostly from here
+* [AlexFlipnote](https://github.com/AlexFlipnote/discord_bot.py) - Learnt alot from this repo
+* [VoxelPixel](https://github.com/VoxelPixel) - rot47 functions
 
 <!--
 Badges & links
@@ -71,8 +71,3 @@ Badges & links
 <!--
 Credits
 -->
-[repl-tutorial]:https://repl.it/talk/learn/Discordpy-Rewrite-Tutorial-using-commands-extension/10690)
-[alexflipnote]:https://github.com/AlexFlipnote/discord_bot.py
-[rapptz]:https://github.com/Rapptz/discord.py/blob/master/examples/basic_voice.py
-[voxelpixel]:https://github.com/VoxelPixel
-[tst]:https://github.com/TheSavageTeddy/
