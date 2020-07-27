@@ -299,7 +299,8 @@ class Other(commands.Cog):
             if not get_ip():
                 pool = ThreadPool(processes=1)
                 print(type_aliases[serverType])
-                async_result = pool.apply_async(start_server, args=(type_aliases[serverType],))
+                ar1 = type_aliases[serverType]
+                async_result = pool.apply_async(start_server, args=(ar1))
                 for i in range(15,-1,-1):
                     async with ctx.typing():
                         Server_embed = discord.Embed(
