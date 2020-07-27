@@ -7,6 +7,7 @@ import json
 
 import psutil
 import concurrent.futures
+import signal
 from multiprocessing.pool import ThreadPool
 from threading import Thread
 from utils.data import getJSON
@@ -376,10 +377,17 @@ class Other(commands.Cog):
         elif psutil.pid_exists(servers["data"][0]["PID"]["Minecraft"]) or psutil.pid_exists(servers["data"][0]["PID"]["ngrok"]):
             if servers["data"][0]["user"] == ctx.message.author.id or ctx.message.author.id == 352308837794971648:
                 # kill the processes
+                '''
                 p = psutil.Process(servers["data"][0]["PID"]["Minecraft"])
                 p.terminate()
                 p2 = psutil.Process(servers["data"][0]["PID"]["ngrok"])
                 p2.terminate()
+                '''
+                try:
+                    os.kill(servers["data"][0]["PID"]["Minecraft"], signal.SIGKILL)
+                    os.kill(servers["data"][0]["PID"]["ngrok"], signal.SIGKILL)
+                except:
+                    print('Process killing failed')
 
                 # edit the message
                 channel = self.bot.get_channel(servers["data"][0]["msgChannel"])

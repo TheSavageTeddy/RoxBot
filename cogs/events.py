@@ -58,10 +58,11 @@ class Events(commands.Cog):
         else:
             if self.hour_passed(float(servers["data"][0]["createdAt"])):
                 # kill the processes
-                p = psutil.Process(servers["data"][0]["PID"]["Minecraft"])
-                p.terminate()
-                p2 = psutil.Process(servers["data"][0]["PID"]["ngrok"])
-                p2.terminate()
+                try:
+                    os.kill(servers["data"][0]["PID"]["Minecraft"], signal.SIGKILL)
+                    os.kill(servers["data"][0]["PID"]["ngrok"], signal.SIGKILL)
+                except:
+                    print('Process killing failed')
 
                 # edit the message
                 channel = self.bot.get_channel(servers["data"][0]["msgChannel"])
