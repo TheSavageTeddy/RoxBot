@@ -336,8 +336,9 @@ class Other(commands.Cog):
             
                     with open('db/minecraft_server.json') as json_file:
                         servers = json.load(json_file)
-                    servers["data"][0] = {"user":ctx.message.author.id, "msgID":msg.id,"msgChannel":msg.channel.id,"createdAt":str(serverStartTime), "PID":pid_list}
-
+                    
+                    servers["data"] = [{"user":ctx.message.author.id, "msgID":msg.id,"msgChannel":msg.channel.id,"createdAt":str(serverStartTime), "PID":pid_list}]
+                    print(servers)
                     with open('db/minecraft_server.json', 'w') as outfile:
                         json.dump(servers, outfile)
 

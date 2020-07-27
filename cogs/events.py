@@ -53,7 +53,7 @@ class Events(commands.Cog):
         # Check Server Status
         with open('db/minecraft_server.json') as json_file:
             servers = json.load(json_file)
-        if len(servers["data"]) == 0:
+        if len(servers["data"]) == 0 and get_ip():
             pass
         else:
             if self.hour_passed(float(servers["data"][0]["createdAt"])):
