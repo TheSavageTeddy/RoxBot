@@ -4,6 +4,7 @@ import requests
 import time
 
 def start_server(server_type = None):
+	print(f"Server type of {server_type}")
 	if not server_type:
 		minecraft_server = subprocess.Popen(["java", "-Xmx3G", "-jar", "spigot-1.8.8.jar"], cwd="/home/ronan/Server/BedWarsOnly") #java -Dfile.encoding=UTF-8 -Xmx3G -jar 
 		ngrok = subprocess.Popen(["./ngrok", "tcp", "-region", "au", "25565"], cwd="/home/ronan/")
