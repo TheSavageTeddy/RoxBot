@@ -240,7 +240,7 @@ class Other(commands.Cog):
                     content=None
                 )
     '''
-    #'''
+
     @commands.group(
         name='minecraftserver',
         description='Creates private minecraft servers',
@@ -253,7 +253,7 @@ class Other(commands.Cog):
                 description=f"Creates private minecraft servers",
                 color=0x2ECC71
             )
-            e.add_field(name="Usage", value=f"`?minecraft <start/stop> <server_type>`")
+            e.add_field(name="Usage", value=f"`?minecraftserver <start/stop> <server_type>`")
             e.add_field(name="Avaliable server types", value=f"`bedwars smp-tst`")
             e.set_footer(text="Made with ❤️ by Roxiun")
             await ctx.send(embed=e)  
@@ -403,7 +403,6 @@ class Other(commands.Cog):
                 e = discord.Embed(description=":white_check_mark: Server Ended!", colour=0x2ECC71)
                 await ctx.send(embed=e)
 
-    #'''
 
 def setup(bot):
     bot.add_cog(Other(bot))

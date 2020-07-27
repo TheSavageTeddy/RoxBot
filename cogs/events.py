@@ -81,6 +81,9 @@ class Events(commands.Cog):
                 servers["data"] = []
                 with open('db/minecraft_server.json', 'w+') as outfile:
                     json.dump(servers, outfile)
+            else:
+                # update the message with left time
+                pass
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
