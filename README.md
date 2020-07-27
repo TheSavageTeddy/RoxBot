@@ -19,8 +19,8 @@
 **RoxBot** is an all purpose bot that seeks to be the one bot that can do anything you need. It's development is highly active with new updates being pushed out every 2-48hrs.
 
 ## Features
-* Private BedWars Server
-    * Our bot has a built-in command that starts your very own private bedwars server
+* Private Bedwars Server
+    * Our bot has a built-in command that starts your very own private bedwars server, which other people can join and play with you by connecting to the IP address provided
 * Music Commands
     * Play Youtube Video from URL
     * Search through youtube videos from keywords
@@ -33,7 +33,16 @@
     * Tempmute and tempban members - *Upcomming*
     * Prune messages - *Upcomming*
     * Profanity Filter - *Upcomming*
-    * Alt-Detect - Has features that allow identification of likely alt accounts
+    * Alt-Detect - Has features that allow identification of likely alt accounts - *Upcoming*
+* Utility
+    * Dice - Rolls a dice
+    * Coinflip - Flips a coin *TheSavageTeddy broke this smh and also crashed bot again*
+    * Decode and Encode - Encodes or Decodes text given
+    * 8ball - ask 8ball a yes or no question
+    * Math - Evaluates a given math equation
+    * Send Embed - Sends an embed in a given channel, can use Edit Embed to edit it
+    * Choose - Makes a random choice
+    * Prune - Removes messages sent by users *Upcoming*
 
 **Note**: Web dashboard is curently unreleased and will be released in the next 2-3wks.
 
