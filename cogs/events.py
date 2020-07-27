@@ -16,6 +16,7 @@ import concurrent.futures
 from multiprocessing.pool import ThreadPool
 from threading import Thread
 from utils.data import getJSON
+from utils.start_server import *
 
 class Events(commands.Cog):  
     def __init__(self, bot):
@@ -53,7 +54,7 @@ class Events(commands.Cog):
         # Check Server Status
         with open('db/minecraft_server.json') as json_file:
             servers = json.load(json_file)
-        if len(servers["data"]) == 0 and get_ip():
+        if len(servers["data"]) == 0:
             pass
         else:
             if self.hour_passed(float(servers["data"][0]["createdAt"])):
@@ -85,7 +86,28 @@ class Events(commands.Cog):
                     json.dump(servers, outfile)
             else:
                 # update the message with left time
+                '''
+                # edit the message
+                channel = self.bot.get_channel(servers["data"][0]["msgChannel"])
+                message = await channel.fetch_message(servers["data"][0]["msgID"])
+
+                sip = get_ip()
+
+                timeStarted = servers["data"][0]["createdAt"]
+
+                Server_embed = discord.Embed(
+                    title='Private BedWars Minecraft Server',
+                    color=0x2ECC71
+                )
+                Server_embed.add_field(name="Server IP", value=f"`{sip}`")
+                Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
+                Server_embed.add_field(name="Time Remaining", value=f"`0:00:00`", inline=True)
+                Server_embed.set_footer(text="Made with ❤️ by Roxiun")
+                
+                await message.edit(embed=Server_embed, content=None)
+                '''
                 pass
+
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
