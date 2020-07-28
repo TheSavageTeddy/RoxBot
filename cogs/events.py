@@ -89,7 +89,7 @@ class Events(commands.Cog):
                     json.dump(servers, outfile)
             else:
                 # update the message with left time
-
+                print("Attempting to edit message")
                 start_time = servers["data"][0]["createdAt"]
                 current_time = time.time()
                 elapsed_time = math.ceil(current_time-start_time)
