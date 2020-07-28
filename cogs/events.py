@@ -203,7 +203,7 @@ class Events(commands.Cog):
             else:
                 # update the message with left time
                 print("Attempting to edit message")
-                start_time = servers["data"][0]["createdAt"]
+                start_time = float(servers["data"][0]["createdAt"])
                 current_time = time.time()
                 elapsed_time = math.ceil(current_time-start_time)
 
