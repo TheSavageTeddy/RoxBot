@@ -168,6 +168,69 @@ class Events(commands.Cog):
         print(f"RoxBot is in {len(self.bot.guilds)} servers!")
         print(f"{75 - len(self.bot.guilds)} servers to go")
 
+        with open('db/minecraft_server.json') as json_file:
+            servers = json.load(json_file)
+        if len(servers["data"]) == 0:
+            pass
+        else:
+            if self.hour_passed(float(servers["data"][0]["createdAt"])):
+                # kill the processes
+                try:
+                    os.kill(servers["data"][0]["PID"]["Minecraft"], signal.SIGKILL)
+                    os.kill(servers["data"][0]["PID"]["ngrok"], signal.SIGKILL)
+                except:
+                    print('Process killing failed')
+
+                # edit the message
+                channel = self.bot.get_channel(servers["data"][0]["msgChannel"])
+                message = await channel.fetch_message(servers["data"][0]["msgID"])
+
+                Server_embed = discord.Embed(
+                    title='Private BedWars Minecraft Server',
+                    color=0x2ECC71
+                )
+                Server_embed.add_field(name="Server IP", value=f"`Offline`")
+                Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
+                Server_embed.add_field(name="Time Remaining", value=f"`0:00:00`", inline=True)
+                Server_embed.set_footer(text="Made with ❤️ by Roxiun")
+                
+                await message.edit(embed=Server_embed, content=None)
+
+                # remove from db
+                servers["data"] = []
+                with open('db/minecraft_server.json', 'w+') as outfile:
+                    json.dump(servers, outfile)
+            else:
+                # update the message with left time
+                print("Attempting to edit message")
+                start_time = servers["data"][0]["createdAt"]
+                current_time = time.time()
+                elapsed_time = math.ceil(current_time-start_time)
+
+                time_remaining = 7200-elapsed_time
+                time_remaining_formatted = str(timedelta(seconds=time_remaining))
+                
+                # edit the message
+                channel = self.bot.get_channel(servers["data"][0]["msgChannel"])
+                message = await channel.fetch_message(servers["data"][0]["msgID"])
+
+                sip = get_ip()
+
+                timeStarted = servers["data"][0]["createdAt"]
+
+                Server_embed = discord.Embed(
+                    title='Private BedWars Minecraft Server',
+                    color=0x2ECC71
+                )
+                Server_embed.add_field(name="Server IP", value=f"`{sip}`")
+                Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
+                Server_embed.add_field(name="Time Remaining", value=f"`{time_remaining_formatted}`", inline=True)
+                Server_embed.set_footer(text="Made with ❤️ by Roxiun")
+                
+                await message.edit(embed=Server_embed, content=None)
+                
+
+
     
 def setup(bot):
     bot.add_cog(Events(bot))
