@@ -1,5 +1,6 @@
 import os
 import time
+import math
 import discord
 import asyncio
 import pickle

@@ -1,6 +1,8 @@
 import os
 import sys
 import json
+import math
+import time
 from os.path import getmtime
 from utils.data import getJSON
 
@@ -8,6 +10,7 @@ import discord
 from discord.ext import commands
 from discord.ext.tasks import loop
 from datetime import datetime
+from datetime import timedelta
 
 from utils.cli_logging import *
 
@@ -86,7 +89,14 @@ class Events(commands.Cog):
                     json.dump(servers, outfile)
             else:
                 # update the message with left time
-                '''
+
+                start_time = servers["data"][0]["createdAt"]
+                current_time = time.time()
+                elapsed_time = math.ceil(current_time-start_time)
+
+                time_remaining = 7200-elapsed_time
+                time_remaining_formatted = str(timedelta(seconds=time_remaining))
+                
                 # edit the message
                 channel = self.bot.get_channel(servers["data"][0]["msgChannel"])
                 message = await channel.fetch_message(servers["data"][0]["msgID"])
@@ -101,12 +111,12 @@ class Events(commands.Cog):
                 )
                 Server_embed.add_field(name="Server IP", value=f"`{sip}`")
                 Server_embed.add_field(name="Server Info", value=f"Ram: 3GB\n CPU: i3-2100\n Max Players: 4")
-                Server_embed.add_field(name="Time Remaining", value=f"`0:00:00`", inline=True)
+                Server_embed.add_field(name="Time Remaining", value=f"`{time_remaining_formatted}`", inline=True)
                 Server_embed.set_footer(text="Made with ❤️ by Roxiun")
                 
                 await message.edit(embed=Server_embed, content=None)
-                '''
-                pass
+                
+
 
 
     @commands.Cog.listener()
