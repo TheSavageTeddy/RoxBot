@@ -128,9 +128,6 @@ class Events(commands.Cog):
         except IndexError:
             pass
         info("Joined new guild")
-        #else:
-            #await to_send.send(self.config.join_message)
-
 
     @check_for_change.before_loop
     async def before_check_for_change(self):
