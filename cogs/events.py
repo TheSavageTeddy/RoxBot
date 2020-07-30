@@ -117,8 +117,6 @@ class Events(commands.Cog):
                 await message.edit(embed=Server_embed, content=None)
                 
 
-
-
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
         if not self.config.join_message:
@@ -226,8 +224,6 @@ class Events(commands.Cog):
                 
                 await message.edit(embed=Server_embed, content=None)
                 
-
-
     
 def setup(bot):
     bot.add_cog(Events(bot))
