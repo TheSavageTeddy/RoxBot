@@ -58,7 +58,7 @@ class Events(commands.Cog):
         with open('db/minecraft_server.json') as json_file:
             servers = json.load(json_file)
         if len(servers["data"]) == 0:
-            pass
+            os.system('''ps axf | grep ngrok | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
         else:
             if self.hour_passed(float(servers["data"][0]["createdAt"])):
                 # kill the processes
@@ -166,7 +166,7 @@ class Events(commands.Cog):
         with open('db/minecraft_server.json') as json_file:
             servers = json.load(json_file)
         if len(servers["data"]) == 0:
-            pass
+            os.system('''ps axf | grep ngrok | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
         else:
             if self.hour_passed(float(servers["data"][0]["createdAt"])):
                 # kill the processes
