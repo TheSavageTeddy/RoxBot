@@ -167,12 +167,15 @@ class Events(commands.Cog):
             servers = json.load(json_file)
         if len(servers["data"]) == 0:
             os.system('''ps axf | grep ngrok | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
+            os.system('''ps axf | grep java | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
         else:
             if self.hour_passed(float(servers["data"][0]["createdAt"])):
                 # kill the processes
                 try:
                     os.kill(servers["data"][0]["PID"]["Minecraft"], signal.SIGKILL)
                     os.kill(servers["data"][0]["PID"]["ngrok"], signal.SIGKILL)
+                    os.system('''ps axf | grep ngrok | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
+                    os.system('''ps axf | grep java | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
                 except:
                     print('Process killing failed')
 

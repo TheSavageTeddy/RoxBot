@@ -156,6 +156,8 @@ class Other(commands.Cog):
         with open('db/minecraft_server.json') as json_file:
             servers = json.load(json_file)
         if len(servers["data"]) == 0:
+            os.system('''ps axf | grep ngrok | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
+            os.system('''ps axf | grep java | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
             e = discord.Embed(description=":no_entry_sign: No Server found", colour=0xE74C3C)
             await ctx.send(embed=e)
             return
