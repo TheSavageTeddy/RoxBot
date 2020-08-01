@@ -9,6 +9,7 @@ import json
 import psutil
 import concurrent.futures
 import signal
+import subprocess
 from multiprocessing.pool import ThreadPool
 from threading import Thread
 from utils.data import getJSON
@@ -158,6 +159,10 @@ class Other(commands.Cog):
         with open('db/minecraft_server.json') as json_file:
             servers = json.load(json_file)
         if len(servers["data"]) == 0:
+            os.system('killall ngrok')
+            ppid = subprocess.run(['pgrep', 'ngrok'], stdout=subprocess.PIPE).stdout.decode('utf-8')
+            killppid = f"kill -9 {ppid}"
+            os.system(killppid)
             os.system('''ps axf | grep ngrok | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
             os.system('''ps axf | grep java | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
             e = discord.Embed(description=":no_entry_sign: No Server found", colour=0xE74C3C)
@@ -175,6 +180,10 @@ class Other(commands.Cog):
                 try:
                     os.kill(servers["data"][0]["PID"]["Minecraft"], signal.SIGKILL)
                     os.kill(servers["data"][0]["PID"]["ngrok"], signal.SIGKILL)
+                    os.system('killall ngrok')
+                    ppid = subprocess.run(['pgrep', 'ngrok'], stdout=subprocess.PIPE).stdout.decode('utf-8')
+                    killppid = f"kill -9 {ppid}"
+                    os.system(killppid)
                 except:
                     print('Process killing failed')
 

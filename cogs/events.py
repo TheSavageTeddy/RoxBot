@@ -59,6 +59,10 @@ class Events(commands.Cog):
             servers = json.load(json_file)
         if len(servers["data"]) == 0:
             os.system('''ps axf | grep ngrok | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
+            os.system('killall ngrok')
+            ppid = subprocess.run(['pgrep', 'ngrok'], stdout=subprocess.PIPE).stdout.decode('utf-8')
+            killppid = f"kill -9 {ppid}"
+            os.system(killppid)
         else:
             if self.hour_passed(float(servers["data"][0]["createdAt"])):
                 # kill the processes
@@ -168,6 +172,10 @@ class Events(commands.Cog):
         if len(servers["data"]) == 0:
             os.system('''ps axf | grep ngrok | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
             os.system('''ps axf | grep java | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
+            os.system('killall ngrok')
+            ppid = subprocess.run(['pgrep', 'ngrok'], stdout=subprocess.PIPE).stdout.decode('utf-8')
+            killppid = f"kill -9 {ppid}"
+            os.system(killppid)
         else:
             if self.hour_passed(float(servers["data"][0]["createdAt"])):
                 # kill the processes
