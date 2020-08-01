@@ -21,6 +21,10 @@ def start_server(server_type = None):
 		minecraft_server = subprocess.Popen(["java", "-Dfile.encoding=UTF-8", "-Xms1G", "-Xmx3G", "-jar", "spigot-1.16.1.jar", "nogui"], cwd="/home/ronan/Server/SMP") #java -Dfile.encoding=UTF-8 -Xmx3G -jar 
 		ngrok = subprocess.Popen(["./ngrok", "tcp", "-region", "au", "25565"], cwd="/home/ronan/")
 		return {"Minecraft":minecraft_server.pid, "ngrok":ngrok.pid}
+	elif server_type == 'bedwars-cracked':
+		minecraft_server = subprocess.Popen(["java", "-Dfile.encoding=UTF-8", "-Xmx3G", "-jar", "spigot-1.8.8.jar"], cwd="/home/ronan/Server/BedWarsCracked") #java -Dfile.encoding=UTF-8 -Xmx3G -jar 
+		ngrok = subprocess.Popen(["./ngrok", "tcp", "-region", "au", "25565"], cwd="/home/ronan/")
+		return {"Minecraft":minecraft_server.pid, "ngrok":ngrok.pid}
 
 
 def start_server_smp():

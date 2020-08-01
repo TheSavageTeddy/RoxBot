@@ -69,7 +69,9 @@ class Other(commands.Cog):
             "bw-beta":"bedwars-beta",
             "bedwar-beta":"bedwars-beta",
             "bed-beta":"bedwars-beta",
-            "bedwars-beta":"bedwars-beta"
+            "bedwars-beta":"bedwars-beta",
+            "bw-cracked":"bedwars-cracked",
+            "bedwars-cracked":"bedwars-cracked"
         }
 
         if any((serverType in i) for i in type_aliases.items()):
