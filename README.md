@@ -11,7 +11,6 @@
 <div align="center">
 
 [![Discord][discord-badge]][discord-invite] [![Built with Love][built-with-love]][repo] [![Patreon][patreon-badge]][patreon-link] [![Pull Requests][pr-badge]][pr-link]
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRoxiun%2FRoxBot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FRoxiun%2FRoxBot?ref=badge_shield)
 
 </div>
 
