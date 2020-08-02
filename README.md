@@ -71,3 +71,7 @@ Badges & links
 <!--
 Credits
 -->
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FRoxiun%2FRoxBot.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FRoxiun%2FRoxBot?ref=badge_large)
