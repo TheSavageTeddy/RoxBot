@@ -60,8 +60,10 @@ class Events(commands.Cog):
         if len(servers["data"]) == 0:
             os.system('''ps axf | grep ngrok | grep -v grep | awk '{print "kill -9 " $1}' | sh''')
             os.system('killall ngrok')
+            process(f"Attempting to find ngrok processes")
             ppid = subprocess.run(['pgrep', 'ngrok'], stdout=subprocess.PIPE).stdout.decode('utf-8')
             killppid = f"kill -9 {ppid}"
+            process(f"Attempting to kill running processes - {killppid}")
             os.system(killppid)
         else:
             if self.hour_passed(float(servers["data"][0]["createdAt"])):
