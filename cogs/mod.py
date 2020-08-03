@@ -1,5 +1,7 @@
 import os
 import time
+import math
+import asyncio
 import discord
 from utils.data import getJSON
 
@@ -172,6 +174,86 @@ class Moderator(commands.Cog):
             e.description = desc
             await ctx.send(embed=e)
 
+    @commands.command(
+        name='tempmute',
+        description='Temporarily mutes a member in the server',
+        aliases=['tempshutup','tempshut', 'temporarilymute']
+    )
+    @commands.guild_only()
+    @commands.has_permissions(manage_roles = True)
+    async def tempmute(self, ctx, user: discord.Member = None, timem: str = None, *, reason: str = None):
+        if ctx.message.author.id == self.config.owners[0]:
+            if not user:
+                e = discord.Embed(description=":no_entry_sign: You must specify a user", colour=0xE74C3C)
+                await ctx.send(embed=e)
+                return
+            elif not timem:
+                e = discord.Embed(description=":no_entry_sign: You must specify a duration", colour=0xE74C3C)
+                await ctx.send(embed=e)
+                return
+
+            abreviations = {
+                "seconds":"seconds",
+                "second":"seconds",
+                "secs":"seconds",
+                "sec":"seconds",
+                "minutes":"minutes",
+                "minute":"minutes",
+                "mins":"minutes",
+                "min":"minutes",
+                "m":"minutes", 
+                "s":"seconds"
+            }
+
+            if timem:
+                try:
+                    timem = float(timem)
+                except:
+                    await ctx.send("Not supported yet sorry!")
+                    return
+
+            process(f"Tempmute Command Called by {ctx.message.author.name}")
+            
+            userName = str(user)
+            m = ctx.guild.get_member(user)
+            muted_role = next((g for g in ctx.guild.roles if "muted" in g.name.lower() and not ("roles" in g.name.lower())), None)
+            if not muted_role:
+                e = discord.Embed(description=":no_entry_sign: You must have role with the word `Muted` in it", colour=0xE74C3C)
+                await ctx.send(embed=e)
+                return
+            else:
+                await user.add_roles(muted_role)
+                mute_time = time.time()
+                e = discord.Embed(colour=0x2ECC71)
+                e.set_author(
+                    name=f"{userName} has been muted",
+                    icon_url=user.avatar_url
+                )
+                desc = ""
+                desc += f"**Reason**: {reason}\n"
+                desc += f"**Moderator:** {ctx.message.author.mention}"
+                e.description = desc
+                await ctx.send(embed=e)
+                with open('db/mod.json') as json_file:
+                    mod = json.load(json_file)
+                old_mod_list = mod["data"]
+                mod_list = mod["data"]
+                mod_list.append({"time_muted":str(mute_time), "user":user.id, "length_muted":str(timem)})
+                mod["data"] = mod_list
+                with open('db/mod.json', 'w') as outfile:
+                    json.dump(mod, outfile)
+                
+                if timem <= 120:
+                    await asyncio.sleep(math.ceil(timem))
+                    await user.remove_roles(muted_role)
+                    with open('db/mod.json') as json_file:
+                        mod = json.load(json_file)
+                    mod["data"] = old_mod_list
+                    with open('db/mod.json', 'w') as outfile:
+                        json.dump(mod, outfile)
+
+
+
 
     @commands.command(
         name='ban',
@@ -210,7 +292,6 @@ class Moderator(commands.Cog):
             e.set_footer(text="Make Sure I have permissions to kick, and am higher than the specified member")
             await ctx.send(embed=e)
     
-
     @ban.error
     async def ban_error(self, ctx, error):
         if isinstance(error, discord.Forbidden):
@@ -220,7 +301,6 @@ class Moderator(commands.Cog):
             e = discord.Embed(description=":no_entry_sign: Something went wrong", colour=0xE74C3C)
             e.set_footer(text="Make Sure I have permissions to ban, and am higher than the specified member")
             await ctx.send(embed=e)
-
 
 def setup(bot):
     bot.add_cog(Moderator(bot))
