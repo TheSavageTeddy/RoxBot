@@ -54,6 +54,34 @@ class Events(commands.Cog):
         if len(changed) == 0:
             info("No files changes")
 
+        # Check for muted/banned users       
+        with open('db/mod.json') as json_file:
+            mod = json.load(json_file)
+        for item in mod["data"]:
+            try:
+                muted_time = item["time_muted"]
+                print(muted_time)
+                muted_time = float(muted_time)
+                current_time = time.time()
+                mute_elapsed_time = current_time - muted_time 
+                muted_length = float(item["length_muted"])
+                info(f"Found mute with etime of: {mute_elapsed_time} and ml of: {muted_length}")
+                if mute_elapsed_time >= muted_length:
+                    process(f"Attempting to unmute user id: {item['user']}")
+                    guild_object = self.bot.get_guild(int(item["guild_id"]))
+                    user = self.bot.get_user(item["user"])
+                    muted_role = next((g for g in guild_object.roles if "muted" in g.name.lower() and not ("roles" in g.name.lower())), None)
+                    m = guild_object.get_member(item["user"])
+                    await m.remove_roles(muted_role)
+                    temp_mod_list = mod["data"]
+                    temp_mod_list.remove(item)
+                    mod["data"] = temp_mod_list
+                    # unmute user
+            except:
+                pass
+        with open('db/mod.json', 'w') as outfile:
+            json.dump(mod, outfile)
+    
         # Check Server Status
         with open('db/minecraft_server.json') as json_file:
             servers = json.load(json_file)
@@ -121,7 +149,7 @@ class Events(commands.Cog):
                 Server_embed.set_footer(text="Made with ❤️ by Roxiun")
                 
                 await message.edit(embed=Server_embed, content=None)
-                
+ 
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
@@ -241,24 +269,27 @@ class Events(commands.Cog):
         with open('db/mod.json') as json_file:
             mod = json.load(json_file)
         for item in mod["data"]:
-            muted_time = item["time_muted"]
-            print(muted_time)
-            muted_time = float(muted_time)
-            current_time = time.time()
-            mute_elapsed_time = current_time - muted_time 
-            muted_length = float(item["length_muted"])
-            info(f"Found mute with etime of: {mute_elapsed_time} and ml of: {muted_length}")
-            if mute_elapsed_time >= muted_length:
-                process(f"Attempting to unmute user id: {item['user']}")
-                guild_object = self.bot.get_guild(int(item["guild_id"]))
-                user = self.bot.get_user(item["user"])
-                muted_role = next((g for g in guild_object.roles if "muted" in g.name.lower() and not ("roles" in g.name.lower())), None)
-                m = guild_object.get_member(item["user"])
-                await m.remove_roles(muted_role)
-                temp_mod_list = mod["data"]
-                temp_mod_list.remove(item)
-                mod["data"] = temp_mod_list
-                # unmute user
+            try:
+                muted_time = item["time_muted"]
+                print(muted_time)
+                muted_time = float(muted_time)
+                current_time = time.time()
+                mute_elapsed_time = current_time - muted_time 
+                muted_length = float(item["length_muted"])
+                info(f"Found mute with etime of: {mute_elapsed_time} and ml of: {muted_length}")
+                if mute_elapsed_time >= muted_length:
+                    process(f"Attempting to unmute user id: {item['user']}")
+                    guild_object = self.bot.get_guild(int(item["guild_id"]))
+                    user = self.bot.get_user(item["user"])
+                    muted_role = next((g for g in guild_object.roles if "muted" in g.name.lower() and not ("roles" in g.name.lower())), None)
+                    m = guild_object.get_member(item["user"])
+                    await m.remove_roles(muted_role)
+                    temp_mod_list = mod["data"]
+                    temp_mod_list.remove(item)
+                    mod["data"] = temp_mod_list
+                    # unmute user
+            except:
+                pass
         with open('db/mod.json', 'w') as outfile:
             json.dump(mod, outfile)
     
