@@ -245,7 +245,9 @@ class Events(commands.Cog):
             current_time = time.time()
             mute_elapsed_time = current_time - muted_time 
             muted_length = float(mod["data"][item]["length_muted"])
+            info(f"Found mute with etime of: {mute_elapsed_time} and ml of: {muted_length}")
             if mute_elapsed_time >= muted_length:
+                process(f"Attempting to unmute user id: {mod['data'][item]['user']}")
                 guild_object: discord.Guild = mod["data"][item]["guild_id"]
                 user: discord.Member = mod["data"][item]["user"]
                 m = guild_object.get_member(user)
