@@ -241,7 +241,9 @@ class Events(commands.Cog):
         with open('db/mod.json') as json_file:
             mod = json.load(json_file)
         for item in mod["data"]:
-            muted_time = float(mod["data"][item]["time_muted"])
+            muted_time = mod["data"][item]["time_muted"]
+            print(muted_time)
+            muted_time = float(muted_time)
             current_time = time.time()
             mute_elapsed_time = current_time - muted_time 
             muted_length = mod["data"][item]["length_muted"]
