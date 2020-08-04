@@ -239,7 +239,7 @@ class Moderator(commands.Cog):
                     mod = json.load(json_file)
                 old_mod_list = mod["data"]
                 mod_list = mod["data"]
-                mod_list.append({"time_muted":str(mute_time), "user":user.id, "length_muted":str(timem)})
+                mod_list.append({"time_muted":str(mute_time), "user":user.id, "length_muted":str(timem), "guild_id":str(ctx.guild.id)})
                 mod["data"] = mod_list
                 with open('db/mod.json', 'w') as outfile:
                     json.dump(mod, outfile)

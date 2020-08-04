@@ -236,7 +236,26 @@ class Events(commands.Cog):
                 Server_embed.set_footer(text="Made with ❤️ by Roxiun")
                 
                 await message.edit(embed=Server_embed, content=None)
-                
+
+        # Check for muted/banned users       
+        with open('db/mod.json') as json_file:
+            mod = json.load(json_file)
+        for item in mod["data"]:
+            muted_time = float(mod["data"][item]["time_muted"])
+            current_time = time.time()
+            mute_elapsed_time = current_time - muted_time 
+            muted_length = float(mod["data"][item]["length_muted"])
+            if mute_elapsed_time >= muted_length:
+                guild_object: discord.Guild = mod["data"][item]["guild_id"]
+                user: discord.Member = mod["data"][item]["user"]
+                m = guild_object.get_member(user)
+                await user.remove_roles(muted_role)
+                temp_mod_list = mod["data"]
+                temp_mod_list.remove(item)
+                mod["data"] = temp_mod_list
+                # unmute user
+        with open('db/mod.json', 'w') as outfile:
+            json.dump(mod, outfile)
     
 def setup(bot):
     bot.add_cog(Events(bot))
