@@ -253,7 +253,7 @@ class Events(commands.Cog):
                 guild_object = self.bot.get_guild(int(item["guild_id"]))
                 user = self.bot.get_user(item["user"])
                 muted_role = next((g for g in guild_object.roles if "muted" in g.name.lower() and not ("roles" in g.name.lower())), None)
-                m = guild_object.get_member(user)
+                m = guild_object.get_member(item["user"])
                 await m.remove_roles(muted_role)
                 temp_mod_list = mod["data"]
                 temp_mod_list.remove(item)
