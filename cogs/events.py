@@ -244,6 +244,7 @@ class Events(commands.Cog):
             muted_time = float(mod["data"][item]["time_muted"])
             current_time = time.time()
             mute_elapsed_time = current_time - muted_time 
+            muted_length = mod["data"][item]["length_muted"]
             muted_length = float(mod["data"][item]["length_muted"])
             info(f"Found mute with etime of: {mute_elapsed_time} and ml of: {muted_length}")
             if mute_elapsed_time >= muted_length:
