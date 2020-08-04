@@ -241,26 +241,23 @@ class Events(commands.Cog):
         with open('db/mod.json') as json_file:
             mod = json.load(json_file)
         for item in mod["data"]:
-            try:
-                muted_time = item["time_muted"]
-                print(muted_time)
-                muted_time = float(muted_time)
-                current_time = time.time()
-                mute_elapsed_time = current_time - muted_time 
-                muted_length = float(item["length_muted"])
-                info(f"Found mute with etime of: {mute_elapsed_time} and ml of: {muted_length}")
-                if mute_elapsed_time >= muted_length:
-                    process(f"Attempting to unmute user id: {item['user']}")
-                    guild_object = self.bot.get_guild(int(item["guild_id"]))
-                    user = self.bot.get_user(item["user"])
-                    m = guild_object.get_member(user)
-                    await user.remove_roles(muted_role)
-                    temp_mod_list = mod["data"]
-                    temp_mod_list.remove(item)
-                    mod["data"] = temp_mod_list
-                    # unmute user
-            except:
-                pass
+            muted_time = item["time_muted"]
+            print(muted_time)
+            muted_time = float(muted_time)
+            current_time = time.time()
+            mute_elapsed_time = current_time - muted_time 
+            muted_length = float(item["length_muted"])
+            info(f"Found mute with etime of: {mute_elapsed_time} and ml of: {muted_length}")
+            if mute_elapsed_time >= muted_length:
+                process(f"Attempting to unmute user id: {item['user']}")
+                guild_object = self.bot.get_guild(int(item["guild_id"]))
+                user = self.bot.get_user(item["user"])
+                m = guild_object.get_member(user)
+                await user.remove_roles(muted_role)
+                temp_mod_list = mod["data"]
+                temp_mod_list.remove(item)
+                mod["data"] = temp_mod_list
+                # unmute user
         with open('db/mod.json', 'w') as outfile:
             json.dump(mod, outfile)
     
