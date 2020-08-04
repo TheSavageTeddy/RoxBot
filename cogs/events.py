@@ -252,7 +252,7 @@ class Events(commands.Cog):
                 process(f"Attempting to unmute user id: {item['user']}")
                 guild_object = self.bot.get_guild(int(item["guild_id"]))
                 user = self.bot.get_user(item["user"])
-                muted_role = next((g for g in guild_object if "muted" in g.name.lower() and not ("roles" in g.name.lower())), None)
+                muted_role = next((g for g in guild_object.roles if "muted" in g.name.lower() and not ("roles" in g.name.lower())), None)
                 m = guild_object.get_member(user)
                 await m.remove_roles(muted_role)
                 temp_mod_list = mod["data"]
