@@ -243,7 +243,6 @@ class Moderator(commands.Cog):
 
 
 
-
     @commands.command(
         name='ban',
         description='Bans a member from the server',
