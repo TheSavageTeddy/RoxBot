@@ -194,7 +194,8 @@ class Moderator(commands.Cog):
             await ctx.send(embed=e)
             return
 
-        timem = self.time_handler.formatTime(timem)
+        print(f"Mute time of {timem}")
+        timem = float(self.time_handler.formatTime(timem))
         if not timem:
             e = discord.Embed(description=":no_entry_sign: You must specify a real duration", colour=0xE74C3C)
             await ctx.send(embed=e)
