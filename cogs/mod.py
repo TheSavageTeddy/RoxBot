@@ -13,6 +13,7 @@ from discord.ext.tasks import loop
 from datetime import datetime
 
 from utils.cli_logging import *
+from utils.data import FormatTime
 
 # From: https://github.com/Rapptz/RoboDanny/blob/rewrite/cogs/mod.py
 class MemberID(commands.Converter):
@@ -27,7 +28,6 @@ class MemberID(commands.Converter):
         else:
             return m.id
 
-
 class ActionReason(commands.Converter):
     async def convert(self, ctx, argument):
         ret = argument
@@ -41,6 +41,8 @@ class Moderator(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.config = getJSON("config.json")
+
+        self.time_handler = FormatTime()
     
     @commands.command(
         name='whois',
@@ -192,25 +194,11 @@ class Moderator(commands.Cog):
             await ctx.send(embed=e)
             return
 
-        abreviations = {
-            "seconds":"seconds",
-            "second":"seconds",
-            "secs":"seconds",
-            "sec":"seconds",
-            "minutes":"minutes",
-            "minute":"minutes",
-            "mins":"minutes",
-            "min":"minutes",
-            "m":"minutes", 
-            "s":"seconds"
-        }
-
-        if timem:
-            try:
-                timem = float(timem)
-            except:
-                await ctx.send("Not supported yet sorry!")
-                return
+        timem = self.time_handler.formatTime(timem)
+        if not timem:
+            e = discord.Embed(description=":no_entry_sign: You must specify a real duration", colour=0xE74C3C)
+            await ctx.send(embed=e)
+            return
 
         process(f"Tempmute Command Called by {ctx.message.author.name}")
         
