@@ -798,6 +798,8 @@ class Utility(commands.Cog):
         coinflip = ["The coin landed on `heads!`","The coin landed on `tails!`"]
         if int(random.randint(0,100)) == int(69):
             result="THE COIN LANDED ON ITS SIDE OMG WTF?!?!?!"
+        elif int(random.randint(0,420)) == int(69):
+            result="dude you coin blew up and you DIED wtf this is like less than 0.3% chance wtf wtf wtf wtf wtf wtf wtf wtf wtf wtf"
         else:
             result = random.choice(coinflip)
         e = discord.Embed(description=f"{result}", colour=0x2ECC71)
